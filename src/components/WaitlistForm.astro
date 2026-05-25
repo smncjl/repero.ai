@@ -3,6 +3,11 @@ interface Props { lang:'en'|'fr' }
 const { lang } = Astro.props;
 const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT || '/api/waitlist';
 const isEn = lang === 'en';
+const sendingLabel = isEn ? 'Sending...' : 'Envoi...';
+const successTitle = isEn ? 'You’re on the waitlist.' : 'Vous êtes sur la liste d’attente.';
+const successBody = isEn
+  ? 'Your request has been received. We’ll follow up when the next spots open.'
+  : 'Votre demande a bien été reçue. Nous vous recontacterons lorsque de nouveaux accès seront ouverts.';
 const profiles = isEn
   ? [
       ['personal', 'Personal use'],
@@ -23,22 +28,74 @@ const profiles = isEn
       ['field-technician', 'Technicien / métier terrain'],
       ['student-researcher', 'Étudiant / recherche'],
       ['other', 'Autre']
-    ];
+  ];
 ---
-<form class="grid gap-4" method="POST" action={endpoint}>
-  <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
-  <div style="position:absolute;left:-9999px;" aria-hidden="true">
-    <label>
-      Website
-      <input type="text" name="website" tabindex="-1" autocomplete="off" />
-    </label>
+<div class="grid gap-4" data-waitlist-widget>
+  <div class="hidden rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5" data-waitlist-success role="status" aria-live="polite">
+    <p class="eyebrow">{isEn ? 'Submitted' : 'Envoyé'}</p>
+    <h3 class="mt-2 text-xl font-semibold text-white">{successTitle}</h3>
+    <p class="mt-2 text-sm leading-7 text-emerald-50/90">{successBody}</p>
   </div>
-  <input type="hidden" name="language" value={lang} />
-  <select class="form-select" name="profile" required>
-    <option value="">{isEn ? 'Profile type' : 'Type de profil'}</option>
-    {profiles.map(([value, label]) => <option value={value}>{label}</option>)}
-  </select>
-  <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
-  <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
-  <button class="btn-primary" type="submit">{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>
-</form>
+  <form class="grid gap-4" method="POST" action={endpoint} data-waitlist-form>
+    <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
+    <div style="position:absolute;left:-9999px;" aria-hidden="true">
+      <label>
+        Website
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+    <input type="hidden" name="language" value={lang} />
+    <select class="form-select" name="profile" required>
+      <option value="">{isEn ? 'Profile type' : 'Type de profil'}</option>
+      {profiles.map(([value, label]) => <option value={value}>{label}</option>)}
+    </select>
+    <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
+    <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
+    <button class="btn-primary" type="submit" data-waitlist-submit>{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>
+  </form>
+</div>
+
+<script is:inline define:vars={{ sendingLabel }}>
+  const waitlistWrap = document.querySelector('[data-waitlist-widget]');
+
+  if (waitlistWrap) {
+    const form = waitlistWrap.querySelector('[data-waitlist-form]');
+    const success = waitlistWrap.querySelector('[data-waitlist-success]');
+    const submit = waitlistWrap.querySelector('[data-waitlist-submit]');
+
+    if (form && success && submit) {
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const submitButton = submit;
+        const originalLabel = submitButton.textContent || '';
+        submitButton.setAttribute('disabled', 'disabled');
+        submitButton.textContent = sendingLabel;
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            credentials: 'same-origin'
+          });
+
+          if (!response.ok) {
+            throw new Error(`Waitlist submission failed with ${response.status}`);
+          }
+
+          form.hidden = true;
+          success.classList.remove('hidden');
+        } catch (error) {
+          console.error('[waitlist] enhanced submit failed, falling back to native submit', error);
+          submitButton.removeAttribute('disabled');
+          submitButton.textContent = originalLabel;
+          form.submit();
+          return;
+        }
+
+        submitButton.removeAttribute('disabled');
+        submitButton.textContent = originalLabel;
+      });
+    }
+  }
+</script>
