@@ -1,0 +1,18 @@
+---
+interface Props { lang: 'en' | 'fr'; }
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+---
+<header class="page-shell py-5">
+  <div class="flex items-center justify-between rounded-2xl border border-slate-800/80 bg-slate-950/60 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.18)] backdrop-blur">
+    <a href={isEn ? '/en' : '/fr'} class="flex items-center gap-3 text-lg font-bold tracking-tight">
+      <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-sky-500/30 bg-sky-500/10 text-sm text-sky-300">R</span>
+      <span>Repero AI</span>
+    </a>
+    <nav class="flex items-center gap-2 text-sm text-slate-300">
+      <a class="rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/use-cases' : '/fr/cas-usages'}>{isEn ? 'Use cases' : 'Cas d\'usages'}</a>
+      <a class="rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/waitlist' : '/fr/liste-attente'}>{isEn ? 'Waitlist' : 'Liste d\'attente'}</a>
+      <a class="chip ml-1" href={isEn ? '/fr' : '/en'}>{isEn ? 'FR' : 'EN'}</a>
+    </nav>
+  </div>
+</header>

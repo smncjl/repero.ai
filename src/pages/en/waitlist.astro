@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
+---
+<BaseLayout lang="en" title="Waitlist | Repero AI" description="Join Repero AI early beta.">
+  <Header lang="en" />
+  <main class="page-shell py-10">
+    <section class="grid gap-8 md:grid-cols-[1fr_.9fr] md:items-start">
+      <div class="surface">
+        <p class="eyebrow">Early access</p>
+        <h1 class="mt-3 text-4xl font-bold text-white md:text-5xl">Join the early beta.</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Help shape a European-first AI workspace built around clarity, control and portability.</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="chip">Data control</span>
+          <span class="chip">Transparency</span>
+          <span class="chip">Portability</span>
+        </div>
+      </div>
+      <div class="surface">
+        <p class="eyebrow">Request access</p>
+        <h2 class="mt-3 text-2xl font-semibold text-white">Tell us what you want to use it for.</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-300">We’ll use this to prioritise the right onboarding and product direction.</p>
+        <div class="mt-6">
+          <WaitlistForm lang="en" />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang="en" />
+</BaseLayout>
