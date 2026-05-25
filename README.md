@@ -46,11 +46,11 @@ Recommended settings:
 
 Pages deploys the Function automatically. Anything inside `functions/` is published with the site, so `/api/waitlist` becomes available after the Pages deployment.
 
-You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` and fill in the D1 database ID if you prefer repository-managed configuration.
+You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` if you want a local Wrangler file for non-Page use.
 
-`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB`, `EMAIL` and variables directly in the Cloudflare Pages dashboard.
+`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs.
 
-This repository now includes a real `wrangler.toml` with the outbound email binding. Keep the D1 `DB` binding and the `WAITLIST_FROM_EMAIL` variable in the Cloudflare dashboard unless you decide to manage those values from config too.
+Cloudflare Pages does not support `send_email` in the Pages config file. Configure the `EMAIL` binding in the Cloudflare dashboard, and keep the D1 `DB` binding plus `WAITLIST_FROM_EMAIL` there as well.
 
 ## Environment variables
 
