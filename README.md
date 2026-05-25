@@ -40,6 +40,8 @@ Recommended settings:
 - Node.js version: use the version defined by the project
 - Add a Pages Function at `functions/api/waitlist.js`
 - Create a D1 database and bind it as `DB`
+- Enable Cloudflare Email Service and bind it as `EMAIL`
+- Set `WAITLIST_FROM_EMAIL` to a verified sender address on your Cloudflare domain
 - Optionally create a Queue and bind it as `WAITLIST_QUEUE` if you want async follow-up processing
 
 ## Environment variables
@@ -65,6 +67,12 @@ Recommended table fields:
 - message
 - source page
 - created at
+
+### Anti-spam and email
+
+The waitlist Function includes a simple honeypot field named `website`. If a bot fills it, the submission is ignored.
+
+When `EMAIL` is bound and `WAITLIST_FROM_EMAIL` is set, the Function sends a confirmation email to the person who signed up.
 
 Queue usage is optional for now. If you set `WAITLIST_QUEUE`, the Function will also enqueue new submissions for later processing, which makes it easy to add email confirmation or CRM sync without changing the form.
 

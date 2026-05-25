@@ -25,6 +25,50 @@ function responseRedirect(language, request) {
   return Response.redirect(new URL(target, request.url), 303);
 }
 
+function emailSubject(language) {
+  return language === 'fr' ? 'Bienvenue sur la liste d’attente Repero AI' : 'Welcome to the Repero AI waitlist';
+}
+
+function emailHtml(language) {
+  if (language === 'fr') {
+    return `
+      <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
+        <h1 style="margin: 0 0 12px; font-size: 24px;">Merci, vous êtes sur la liste d’attente.</h1>
+        <p style="margin: 0 0 12px;">Nous avons bien reçu votre inscription à Repero AI.</p>
+        <p style="margin: 0 0 12px;">Nous allons revenir vers vous dès que nous ouvrirons les prochains accès.</p>
+        <p style="margin: 0; color: #475569;">Repero AI</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
+      <h1 style="margin: 0 0 12px; font-size: 24px;">Thanks, you’re on the waitlist.</h1>
+      <p style="margin: 0 0 12px;">We’ve received your Repero AI signup.</p>
+      <p style="margin: 0 0 12px;">We’ll be in touch when the next spots open.</p>
+      <p style="margin: 0; color: #475569;">Repero AI</p>
+    </div>
+  `;
+}
+
+function emailText(language) {
+  if (language === 'fr') {
+    return [
+      'Merci, vous êtes sur la liste d’attente.',
+      'Nous avons bien reçu votre inscription à Repero AI.',
+      'Nous reviendrons vers vous dès que nous ouvrirons les prochains accès.',
+      'Repero AI'
+    ].join('\n\n');
+  }
+
+  return [
+    'Thanks, you’re on the waitlist.',
+    'We’ve received your Repero AI signup.',
+    'We’ll be in touch when the next spots open.',
+    'Repero AI'
+  ].join('\n\n');
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   const formData = await request.formData();
@@ -33,6 +77,11 @@ export async function onRequestPost(context) {
   const profile = text(formData.get('profile'));
   const intendedUse = text(formData.get('intendedUse'));
   const message = text(formData.get('message'));
+  const website = text(formData.get('website'));
+
+  if (website) {
+    return responseRedirect(language, request);
+  }
 
   if (!email || !profile || !intendedUse) {
     return new Response('Missing required fields.', { status: 400 });
@@ -62,6 +111,26 @@ export async function onRequestPost(context) {
 
   if (inserted && env.WAITLIST_QUEUE && context.waitUntil) {
     context.waitUntil(env.WAITLIST_QUEUE.send(JSON.stringify(payload)));
+  }
+
+  if (inserted && env.EMAIL && env.WAITLIST_FROM_EMAIL) {
+    const sendConfirmation = env.EMAIL.send({
+      to: email,
+      from: { email: env.WAITLIST_FROM_EMAIL, name: env.WAITLIST_FROM_NAME || 'Repero AI' },
+      subject: emailSubject(language),
+      html: emailHtml(language),
+      text: emailText(language)
+    });
+
+    if (context.waitUntil) {
+      context.waitUntil(sendConfirmation.catch((error) => {
+        console.error('[waitlist] confirmation email failed', error);
+      }));
+    } else {
+      await sendConfirmation.catch((error) => {
+        console.error('[waitlist] confirmation email failed', error);
+      });
+    }
   }
 
   return responseRedirect(language, request);
