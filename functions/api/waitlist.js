@@ -87,6 +87,11 @@ export async function onRequestPost(context) {
     return new Response('Missing required fields.', { status: 400 });
   }
 
+  if (!env.DB) {
+    console.error('[waitlist] missing DB binding');
+    return new Response('Waitlist storage is not configured.', { status: 500 });
+  }
+
   await env.DB.exec(TABLE_SQL);
 
   const payload = {
@@ -116,7 +121,7 @@ export async function onRequestPost(context) {
   if (inserted && env.EMAIL && env.WAITLIST_FROM_EMAIL) {
     const sendConfirmation = env.EMAIL.send({
       to: email,
-      from: { email: env.WAITLIST_FROM_EMAIL, name: env.WAITLIST_FROM_NAME || 'Repero AI' },
+      from: env.WAITLIST_FROM_EMAIL,
       subject: emailSubject(language),
       html: emailHtml(language),
       text: emailText(language)
