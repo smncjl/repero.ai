@@ -4,8 +4,19 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import WaitlistForm from '../../components/WaitlistForm.astro';
 const submitted = Astro.url.searchParams.get('submitted') === '1';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/liste-attente', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en/waitlist', site).href }];
 ---
-<BaseLayout lang="fr" title="Liste d'attente | Repero AI" description="Rejoindre la bêta Repero AI.">
+<BaseLayout
+  lang="fr"
+  title="Liste d'attente | Repero AI"
+  description="Rejoindre la bêta Repero AI."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
   <Header lang="fr" />
   <main class="page-shell py-10">
     <section class="grid gap-8 md:grid-cols-[1fr_.9fr] md:items-start">

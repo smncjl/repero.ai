@@ -38,17 +38,25 @@ Recommended settings:
 - Build command: `npm run build`
 - Output directory: `dist`
 - Node.js version: use the version defined by the project
-- Add a Pages Function at `functions/api/waitlist.js`
 - Create a D1 database and bind it as `DB`
 - Optionally create a Queue and bind it as `WAITLIST_QUEUE` if you want async follow-up processing
 
+Default site URL:
+
+```bash
+SITE_URL=https://repero.ai
+```
+
 Pages deploys the Function automatically. Anything inside `functions/` is published with the site, so `/api/waitlist` becomes available after the Pages deployment.
 
-You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` if you want a local Wrangler file for non-Page use.
+SEO routes:
 
-`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs.
+- `/robots.txt`
+- `/sitemap.xml`
 
-Cloudflare Pages does not support `send_email` in the Pages config file. Keep the D1 `DB` binding in the Cloudflare dashboard.
+You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` if you prefer repository-managed configuration.
+
+`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB` and variables directly in the Cloudflare Pages dashboard.
 
 If you want confirmation emails, point the Pages Function at a separate email worker with:
 

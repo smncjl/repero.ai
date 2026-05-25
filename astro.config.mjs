@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://repero.ai',
+  site: process.env.SITE_URL || 'https://repero.ai',
   integrations: [tailwind()],
   output: 'static'
 });

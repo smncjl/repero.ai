@@ -2,8 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
 ---
-<BaseLayout lang="fr" title="Repero AI | Votre travail avec l’IA, enfin organisé" description="Espace de travail IA européen pour centraliser, structurer et retrouver vos conversations, documents et artefacts.">
+<BaseLayout
+  lang="fr"
+  title="Repero AI | Votre travail avec l’IA, enfin organisé"
+  description="Espace de travail IA européen pour centraliser, structurer et retrouver vos conversations, documents et artefacts."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
   <Header lang="fr" />
   <main class="page-shell pb-12">
     <section class="grid gap-8 py-8 md:grid-cols-[1.15fr_.85fr] md:items-center md:py-14">

@@ -1,13 +1,20 @@
 ---
 import UseCasePage from '../../../components/UseCasePage.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/cas-usages/quotidien', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en/use-cases/everyday', site).href }];
 ---
 <UseCasePage
   lang="fr"
+  canonical={canonical}
   title="Vie quotidienne"
   description="Garder les sujets personnels organisés."
   items={["city trip", "comparaison d’achats importants", "projets familiaux", "dossiers administratifs et documents personnels", "planification de rénovation"]}
   exampleTitle="Exemple concret"
   exampleIntro="Un city trip devient plus simple quand la conversation, les recherches et les décisions restent dans le même projet."
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
   exampleSteps={[
     "Je démarre une conversation pour préparer un city trip à Madrid.",
     "Je transforme cette conversation en projet et j’y range le contexte du voyage.",

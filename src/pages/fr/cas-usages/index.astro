@@ -2,8 +2,19 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/cas-usages', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en/use-cases', site).href }];
 ---
-<BaseLayout lang="fr" title="Cas d’usage | Repero AI" description="Cas d’usage Repero AI.">
+<BaseLayout
+  lang="fr"
+  title="Cas d’usage | Repero AI"
+  description="Cas d’usage Repero AI."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
   <Header lang="fr" />
   <main class="page-shell py-10">
     <section class="surface">
