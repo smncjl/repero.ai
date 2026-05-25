@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         brand: '#1D4ED8',
-        slate: '#0F172A'
+        ink: '#0F172A'
       }
     }
   },
