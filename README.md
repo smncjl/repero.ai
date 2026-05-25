@@ -54,9 +54,9 @@ SEO routes:
 - `/robots.txt`
 - `/sitemap.xml`
 
-You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` if you prefer repository-managed configuration.
+You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to a local `wrangler.toml` if you want repository-free local configuration.
 
-`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB` and variables directly in the Cloudflare Pages dashboard.
+`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. Do not commit a real `wrangler.toml` unless you intentionally want the repository to be the source of truth for Pages configuration.
 
 If you want confirmation emails, point the Pages Function at a separate email worker with:
 
