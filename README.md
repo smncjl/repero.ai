@@ -60,7 +60,7 @@ You can override it if you want to send submissions to another service.
 
 ### Waitlist storage
 
-The waitlist Function creates its D1 table on first use, so deployment stays quick.
+The waitlist Function will try to ensure its D1 table exists on first use. If your database was created before the current schema was added, run the SQL in `schemas/waitlist.sql` once in the D1 console.
 
 Recommended table fields:
 
