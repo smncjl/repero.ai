@@ -44,6 +44,10 @@ Recommended settings:
 - Set `WAITLIST_FROM_EMAIL` to a verified sender address on your Cloudflare domain
 - Optionally create a Queue and bind it as `WAITLIST_QUEUE` if you want async follow-up processing
 
+Pages deploys the Function automatically. Anything inside `functions/` is published with the site, so `/api/waitlist` becomes available after the Pages deployment.
+
+You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` and fill in the D1 database ID if you prefer repository-managed configuration.
+
 ## Environment variables
 
 The waitlist form endpoint defaults to `/api/waitlist`.

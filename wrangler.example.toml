@@ -1,0 +1,20 @@
+# Copy this file to wrangler.toml only if you want to manage Cloudflare
+# Pages configuration from the repository instead of the dashboard.
+
+name = "repero-ai"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-05-25"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "repero-ai-waitlist"
+database_id = "replace-with-your-d1-database-id"
+
+[[send_email]]
+name = "EMAIL"
+
+# Optional. Keep this disabled until a queue exists in Cloudflare.
+#
+# [[queues.producers]]
+# binding = "WAITLIST_QUEUE"
+# queue = "repero-ai-waitlist"
