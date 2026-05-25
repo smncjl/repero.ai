@@ -1,16 +1,13 @@
-const TABLE_SQL = `
-CREATE TABLE IF NOT EXISTS waitlist_entries (
-  id TEXT PRIMARY KEY,
-  email TEXT NOT NULL UNIQUE,
-  language TEXT NOT NULL,
-  profile TEXT NOT NULL,
-  intended_use TEXT NOT NULL,
-  message TEXT,
-  source_page TEXT,
-  status TEXT NOT NULL DEFAULT 'new',
-  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-`;
+const TABLE_SQL = 'CREATE TABLE IF NOT EXISTS "waitlist_entries" ("id" TEXT PRIMARY KEY, "email" TEXT NOT NULL UNIQUE, "language" TEXT NOT NULL, "profile" TEXT NOT NULL, "intended_use" TEXT NOT NULL, "message" TEXT, "source_page" TEXT, "status" TEXT NOT NULL DEFAULT \'new\', "created_at" TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);';
+
+async function ensureWaitlistTable(env) {
+  try {
+    await env.DB.prepare(TABLE_SQL).run();
+  } catch (error) {
+    console.error('[waitlist] failed to ensure schema', error);
+    throw new Error('Failed to initialize waitlist storage.');
+  }
+}
 
 function normalizeEmail(value) {
   return String(value || '').trim().toLowerCase();
@@ -92,7 +89,7 @@ export async function onRequestPost(context) {
     return new Response('Waitlist storage is not configured.', { status: 500 });
   }
 
-  await env.DB.exec(TABLE_SQL);
+  await ensureWaitlistTable(env);
 
   const payload = {
     id: crypto.randomUUID(),
