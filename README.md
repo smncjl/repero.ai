@@ -50,6 +50,8 @@ You can configure bindings in the Cloudflare dashboard, or copy `wrangler.exampl
 
 `wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB`, `EMAIL` and variables directly in the Cloudflare Pages dashboard.
 
+This repository now includes a real `wrangler.toml` with the outbound email binding. Keep the D1 `DB` binding and the `WAITLIST_FROM_EMAIL` variable in the Cloudflare dashboard unless you decide to manage those values from config too.
+
 ## Environment variables
 
 The waitlist form endpoint defaults to `/api/waitlist`.
