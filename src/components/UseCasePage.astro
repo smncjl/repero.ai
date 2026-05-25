@@ -7,17 +7,25 @@ interface Props {
   lang: 'en' | 'fr';
   title: string;
   description: string;
+  canonical: string;
   items: string[];
   exampleTitle?: string;
   exampleIntro?: string;
   exampleSteps?: string[];
+  alternates?: Array<{ lang: 'en' | 'fr' | 'x-default'; href: string }>;
 }
 
-const { lang, title, description, items, exampleTitle, exampleIntro, exampleSteps } = Astro.props;
+const { lang, title, description, canonical, items, exampleTitle, exampleIntro, exampleSteps, alternates } = Astro.props;
 const useCaseLabel = lang === 'fr' ? 'Cas d’usage' : 'Use case';
 const characteristicsLabel = lang === 'fr' ? 'Points clés' : 'Characteristics';
 ---
-<BaseLayout lang={lang} title={`${title} | Repero AI`} description={description}>
+<BaseLayout
+  lang={lang}
+  title={`${title} | Repero AI`}
+  description={description}
+  canonical={canonical}
+  alternates={alternates}
+>
   <Header lang={lang} />
   <main class="page-shell flex-1 py-10">
     <section class="surface">

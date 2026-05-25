@@ -10,9 +10,6 @@ binding = "DB"
 database_name = "repero-ai-waitlist"
 database_id = "replace-with-your-d1-database-id"
 
-[[send_email]]
-name = "EMAIL"
-
 # Optional. Keep this disabled until a queue exists in Cloudflare.
 #
 # [[queues.producers]]

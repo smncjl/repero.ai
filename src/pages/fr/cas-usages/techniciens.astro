@@ -1,13 +1,20 @@
 ---
 import UseCasePage from '../../../components/UseCasePage.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/cas-usages/techniciens', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en/use-cases/tradespeople', site).href }];
 ---
 <UseCasePage
   lang="fr"
+  canonical={canonical}
   title="Techniciens"
   description="Centraliser les connaissances terrain et la documentation."
   items={["manuels", "documentation d’installation", "notes d’intervention", "documents fournisseurs", "connaissance spécifique aux équipements"]}
   exampleTitle="Exemple concret"
   exampleIntro="Le terrain est plus fluide quand le manuel, les notes d’intervention et la liste de contrôle restent dans un même projet."
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
   exampleSteps={[
     "J’ouvre le manuel de l’équipement et je crée un projet autour de cet équipement dans Repero AI.",
     "J’ajoute les notes d’intervention, les documents fournisseurs et les prochaines étapes de maintenance.",

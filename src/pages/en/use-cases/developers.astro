@@ -1,13 +1,20 @@
 ---
 import UseCasePage from '../../../components/UseCasePage.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/en/use-cases/developers', site).href;
+const alternates = [{ lang: 'fr', href: new URL('/fr/cas-usages/developpeurs', site).href }];
 ---
 <UseCasePage
   lang="en"
+  canonical={canonical}
   title="Developers"
   description="Keep technical work aligned across analysis, docs and implementation."
   items={["code snippets", "requirements analysis", "architecture notes", "debugging sessions", "technical documentation", "reusable prompts and decisions"]}
   exampleTitle="Concrete example"
   exampleIntro="A technical project stays usable when the analysis, docs and tasks all live in the same place."
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
   exampleSteps={[
     "I import the business analysis and create a project around it in Repero AI.",
     "I update the platform documentation with the requirements, assumptions and open decisions.",

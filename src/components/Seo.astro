@@ -1,0 +1,67 @@
+---
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl } from '../config/site';
+
+interface AlternateLink {
+  lang: 'en' | 'fr' | 'x-default';
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  lang: 'en' | 'fr';
+  ogType?: string;
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  alternates?: AlternateLink[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  lang,
+  ogType = 'website',
+  ogImage = DEFAULT_OG_IMAGE,
+  twitterCard = 'summary_large_image',
+  alternates = []
+} = Astro.props;
+
+const siteBase = Astro.site?.href || SITE_URL;
+const canonicalUrl = absoluteUrl(canonical, siteBase);
+const ogImageUrl = absoluteUrl(ogImage, siteBase);
+const hreflangs = [{ lang, href: canonicalUrl }, ...alternates];
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: siteBase,
+  logo: ogImageUrl
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: siteBase
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{hreflangs.map((link) => (
+  <link rel="alternate" hreflang={link.lang} href={link.href} />
+))}
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<script type="application/ld+json" set:html={JSON.stringify([organizationJsonLd, websiteJsonLd])} />
