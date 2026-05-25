@@ -1,18 +1,20 @@
 ---
 interface Props { lang:'en'|'fr' }
 const { lang } = Astro.props;
-const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT;
+const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT || '/api/waitlist';
 const isEn = lang === 'en';
 ---
-{endpoint ? (
-  <form class="grid gap-4" method="POST" action={endpoint}>
-    <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
-    <input type="hidden" name="language" value={lang} />
-    <select class="form-select" name="profile" required><option value="">{isEn ? 'Profile type' : 'Type de profil'}</option><option>Everyday user</option><option>Developer</option><option>Data team</option><option>Tradesperson / technician</option></select>
-    <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
-    <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
-    <button class="btn-primary" type="submit">{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>
-  </form>
-) : (
-  <p class="rounded-xl border border-sky-500/30 bg-sky-500/10 p-4 text-sky-100">{isEn ? 'Waitlist endpoint is not configured yet. Please set PUBLIC_WAITLIST_ENDPOINT.' : 'Le point de soumission n\'est pas configuré. Définissez PUBLIC_WAITLIST_ENDPOINT.'}</p>
-)}
+<form class="grid gap-4" method="POST" action={endpoint}>
+  <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
+  <div style="position:absolute;left:-9999px;" aria-hidden="true">
+    <label>
+      Website
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  <input type="hidden" name="language" value={lang} />
+  <select class="form-select" name="profile" required><option value="">{isEn ? 'Profile type' : 'Type de profil'}</option><option>Everyday user</option><option>Developer</option><option>Data team</option><option>Tradesperson / technician</option></select>
+  <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
+  <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
+  <button class="btn-primary" type="submit">{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>
+</form>
