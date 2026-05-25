@@ -15,7 +15,7 @@ interface Props {
 
 const { lang, title, description, items, exampleTitle, exampleIntro, exampleSteps } = Astro.props;
 const useCaseLabel = lang === 'fr' ? 'Cas d’usage' : 'Use case';
-const characteristicsLabel = lang === 'fr' ? 'Caractéristiques' : 'Characteristics';
+const characteristicsLabel = lang === 'fr' ? 'Points clés' : 'Characteristics';
 ---
 <BaseLayout lang={lang} title={`${title} | Repero AI`} description={description}>
   <Header lang={lang} />
