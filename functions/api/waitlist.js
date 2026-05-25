@@ -17,53 +17,63 @@ function text(value) {
   return String(value || '').trim();
 }
 
+function toHex(buffer) {
+  return Array.from(new Uint8Array(buffer), (byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
 function responseRedirect(language, request) {
   const target = language === 'fr' ? '/fr/liste-attente?submitted=1' : '/en/waitlist?submitted=1';
   return Response.redirect(new URL(target, request.url), 303);
 }
 
-function emailSubject(language) {
-  return language === 'fr' ? 'Confirmation de votre inscription Repero AI' : 'Repero AI waitlist confirmation';
+async function signEmailWorkerRequest(secret, timestamp, body) {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+
+  const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(`${timestamp}.${body}`));
+  return toHex(signature);
 }
 
-function emailHtml(language) {
-  if (language === 'fr') {
-    return `
-      <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
-        <h1 style="margin: 0 0 12px; font-size: 24px;">Confirmation de votre inscription.</h1>
-        <p style="margin: 0 0 12px;">Nous avons bien reçu votre inscription à Repero AI.</p>
-        <p style="margin: 0 0 12px;">Nous allons revenir vers vous dès que nous ouvrirons les prochains accès.</p>
-        <p style="margin: 0; color: #475569;">Repero AI</p>
-      </div>
-    `;
+async function notifyEmailWorker(env, payload) {
+  if (!env.EMAIL_WORKER_URL) {
+    return;
   }
 
-  return `
-    <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
-      <h1 style="margin: 0 0 12px; font-size: 24px;">Waitlist confirmation.</h1>
-      <p style="margin: 0 0 12px;">We’ve received your Repero AI signup.</p>
-      <p style="margin: 0 0 12px;">We’ll be in touch when the next spots open.</p>
-      <p style="margin: 0; color: #475569;">Repero AI</p>
-    </div>
-  `;
-}
-
-function emailText(language) {
-  if (language === 'fr') {
-    return [
-      'Merci, vous êtes sur la liste d’attente.',
-      'Nous avons bien reçu votre inscription à Repero AI.',
-      'Nous reviendrons vers vous dès que nous ouvrirons les prochains accès.',
-      'Repero AI'
-    ].join('\n\n');
+  if (!env.EMAIL_WORKER_SECRET) {
+    console.warn('[waitlist] EMAIL_WORKER_URL is set but EMAIL_WORKER_SECRET is missing');
+    return;
   }
 
-  return [
-    'Thanks, you’re on the waitlist.',
-    'We’ve received your Repero AI signup.',
-    'We’ll be in touch when the next spots open.',
-    'Repero AI'
-  ].join('\n\n');
+  const body = JSON.stringify({
+    waitlistEntryId: payload.id,
+    email: payload.email,
+    language: payload.language,
+    profile: payload.profile,
+    intendedUse: payload.intendedUse,
+    message: payload.message,
+    sourcePage: payload.sourcePage
+  });
+  const timestamp = String(Date.now());
+  const signature = await signEmailWorkerRequest(env.EMAIL_WORKER_SECRET, timestamp, body);
+
+  const response = await fetch(env.EMAIL_WORKER_URL, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-email-worker-signature': signature,
+      'x-email-worker-timestamp': timestamp
+    },
+    body
+  });
+
+  if (!response.ok) {
+    throw new Error(`Email worker returned ${response.status}`);
+  }
 }
 
 export async function onRequestPost(context) {
@@ -115,23 +125,15 @@ export async function onRequestPost(context) {
     context.waitUntil(env.WAITLIST_QUEUE.send(JSON.stringify(payload)));
   }
 
-  if (inserted && env.EMAIL && env.WAITLIST_FROM_EMAIL) {
-    const sendConfirmation = env.EMAIL.send({
-      to: email,
-      from: env.WAITLIST_FROM_EMAIL,
-      subject: emailSubject(language),
-      html: emailHtml(language),
-      text: emailText(language)
+  if (inserted && env.EMAIL_WORKER_URL) {
+    const sendConfirmation = notifyEmailWorker(env, payload).catch((error) => {
+      console.error('[waitlist] confirmation email failed', error);
     });
 
     if (context.waitUntil) {
-      context.waitUntil(sendConfirmation.catch((error) => {
-        console.error('[waitlist] confirmation email failed', error);
-      }));
+      context.waitUntil(sendConfirmation);
     } else {
-      await sendConfirmation.catch((error) => {
-        console.error('[waitlist] confirmation email failed', error);
-      });
+      await sendConfirmation;
     }
   }
 

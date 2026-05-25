@@ -40,17 +40,27 @@ Recommended settings:
 - Node.js version: use the version defined by the project
 - Add a Pages Function at `functions/api/waitlist.js`
 - Create a D1 database and bind it as `DB`
-- Enable Cloudflare Email Service and bind it as `EMAIL`
-- Set `WAITLIST_FROM_EMAIL` to a verified sender address on your Cloudflare domain
 - Optionally create a Queue and bind it as `WAITLIST_QUEUE` if you want async follow-up processing
 
 Pages deploys the Function automatically. Anything inside `functions/` is published with the site, so `/api/waitlist` becomes available after the Pages deployment.
 
-You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` and fill in the D1 database ID if you prefer repository-managed configuration.
+You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` if you want a local Wrangler file for non-Page use.
 
-`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB`, `EMAIL` and variables directly in the Cloudflare Pages dashboard.
+`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs.
 
-This repository now includes a real `wrangler.toml` with the outbound email binding. Keep the D1 `DB` binding and the `WAITLIST_FROM_EMAIL` variable in the Cloudflare dashboard unless you decide to manage those values from config too.
+Cloudflare Pages does not support `send_email` in the Pages config file. Keep the D1 `DB` binding in the Cloudflare dashboard.
+
+If you want confirmation emails, point the Pages Function at a separate email worker with:
+
+```bash
+EMAIL_WORKER_URL=
+EMAIL_WORKER_SECRET=
+```
+
+The worker owns:
+
+- `WAITLIST_FROM_EMAIL`
+- `WAITLIST_FROM_NAME`
 
 ## Environment variables
 
@@ -80,7 +90,7 @@ Recommended table fields:
 
 The waitlist Function includes a simple honeypot field named `website`. If a bot fills it, the submission is ignored.
 
-When `EMAIL` is bound and `WAITLIST_FROM_EMAIL` is set, the Function sends a confirmation email to the person who signed up.
+If `EMAIL_WORKER_URL` and `EMAIL_WORKER_SECRET` are set, the Function notifies the external email worker after the signup is stored in D1. Email confirmation is optional and will not block the waitlist submission if the worker is unavailable.
 
 Queue usage is optional for now. If you set `WAITLIST_QUEUE`, the Function will also enqueue new submissions for later processing, which makes it easy to add email confirmation or CRM sync without changing the form.
 
