@@ -23,14 +23,14 @@ function responseRedirect(language, request) {
 }
 
 function emailSubject(language) {
-  return language === 'fr' ? 'Bienvenue sur la liste d’attente Repero AI' : 'Welcome to the Repero AI waitlist';
+  return language === 'fr' ? 'Confirmation de votre inscription Repero AI' : 'Repero AI waitlist confirmation';
 }
 
 function emailHtml(language) {
   if (language === 'fr') {
     return `
       <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
-        <h1 style="margin: 0 0 12px; font-size: 24px;">Merci, vous êtes sur la liste d’attente.</h1>
+        <h1 style="margin: 0 0 12px; font-size: 24px;">Confirmation de votre inscription.</h1>
         <p style="margin: 0 0 12px;">Nous avons bien reçu votre inscription à Repero AI.</p>
         <p style="margin: 0 0 12px;">Nous allons revenir vers vous dès que nous ouvrirons les prochains accès.</p>
         <p style="margin: 0; color: #475569;">Repero AI</p>
@@ -40,7 +40,7 @@ function emailHtml(language) {
 
   return `
     <div style="font-family: ui-sans-serif, system-ui, sans-serif; color: #0f172a; line-height: 1.6">
-      <h1 style="margin: 0 0 12px; font-size: 24px;">Thanks, you’re on the waitlist.</h1>
+      <h1 style="margin: 0 0 12px; font-size: 24px;">Waitlist confirmation.</h1>
       <p style="margin: 0 0 12px;">We’ve received your Repero AI signup.</p>
       <p style="margin: 0 0 12px;">We’ll be in touch when the next spots open.</p>
       <p style="margin: 0; color: #475569;">Repero AI</p>
