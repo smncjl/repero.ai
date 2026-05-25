@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<BaseLayout lang="fr" title="Repero AI | Votre travail avec l’IA, enfin organisé" description="Espace de travail IA européen pour conserver, organiser et retrouver votre travail IA.">
+  <Header lang="fr" />
+  <main class="mx-auto max-w-6xl px-6">
+    <section class="py-16"><h1 class="text-4xl font-bold">Votre travail avec l’IA, enfin organisé.</h1><p class="mt-4 max-w-2xl text-lg">Repero AI aide à conserver, organiser et retrouver ce que vous cherchez, chargez, générez et décidez avec l’IA.</p><div class="mt-6 flex gap-3"><a class="btn-primary" href="/fr/liste-attente">Rejoindre la bêta</a><a class="btn-secondary" href="/fr/cas-usages">Voir les cas d’usages</a></div></section>
+    <section class="card"><h2 class="text-2xl font-semibold">Problème</h2><p class="mt-2">Le travail utile produit avec l’IA se perd dans de longs historiques.</p></section>
+    <section class="card mt-6"><h2 class="text-2xl font-semibold">Solution</h2><p class="mt-2">Repero AI organise conversations, documents et artefacts générés.</p></section>
+    <section class="card mt-6"><h2 class="text-2xl font-semibold">Orientation européenne</h2><p class="mt-2">Conçu pour celles et ceux qui veulent garder le contrôle de leur travail IA, avec contrôle des données, transparence, portabilité et orientation compatible avec une logique de souveraineté.</p></section>
+  </main>
+  <Footer lang="fr" />
+</BaseLayout>
