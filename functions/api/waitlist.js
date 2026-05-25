@@ -118,7 +118,7 @@ export async function onRequestPost(context) {
   if (inserted && env.EMAIL && env.WAITLIST_FROM_EMAIL) {
     const sendConfirmation = env.EMAIL.send({
       to: email,
-      from: { email: env.WAITLIST_FROM_EMAIL, name: env.WAITLIST_FROM_NAME || 'Repero AI' },
+      from: env.WAITLIST_FROM_EMAIL,
       subject: emailSubject(language),
       html: emailHtml(language),
       text: emailText(language)

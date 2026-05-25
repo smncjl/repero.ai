@@ -3,6 +3,27 @@ interface Props { lang:'en'|'fr' }
 const { lang } = Astro.props;
 const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT || '/api/waitlist';
 const isEn = lang === 'en';
+const profiles = isEn
+  ? [
+      ['personal', 'Personal use'],
+      ['independent', 'Independent / freelancer'],
+      ['founder', 'Founder / small business'],
+      ['developer', 'Developer / technical team'],
+      ['data-ops', 'Data / operations team'],
+      ['field-technician', 'Tradesperson / field technician'],
+      ['student-researcher', 'Student / researcher'],
+      ['other', 'Other']
+    ]
+  : [
+      ['personal', 'Usage personnel'],
+      ['independent', 'Indépendant / freelance'],
+      ['founder', 'Fondateur / petite entreprise'],
+      ['developer', 'Développeur / équipe technique'],
+      ['data-ops', 'Data / opérations'],
+      ['field-technician', 'Technicien / métier terrain'],
+      ['student-researcher', 'Étudiant / recherche'],
+      ['other', 'Autre']
+    ];
 ---
 <form class="grid gap-4" method="POST" action={endpoint}>
   <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
@@ -13,7 +34,10 @@ const isEn = lang === 'en';
     </label>
   </div>
   <input type="hidden" name="language" value={lang} />
-  <select class="form-select" name="profile" required><option value="">{isEn ? 'Profile type' : 'Type de profil'}</option><option>Everyday user</option><option>Developer</option><option>Data team</option><option>Tradesperson / technician</option></select>
+  <select class="form-select" name="profile" required>
+    <option value="">{isEn ? 'Profile type' : 'Type de profil'}</option>
+    {profiles.map(([value, label]) => <option value={value}>{label}</option>)}
+  </select>
   <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
   <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
   <button class="btn-primary" type="submit">{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>

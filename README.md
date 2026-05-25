@@ -48,6 +48,8 @@ Pages deploys the Function automatically. Anything inside `functions/` is publis
 
 You can configure bindings in the Cloudflare dashboard, or copy `wrangler.example.toml` to `wrangler.toml` and fill in the D1 database ID if you prefer repository-managed configuration.
 
+`wrangler.example.toml` is not deployed by Cloudflare. It is intentionally an example so the public repository does not publish project-specific infrastructure IDs. If you do not commit a real `wrangler.toml`, configure `DB`, `EMAIL` and variables directly in the Cloudflare Pages dashboard.
+
 ## Environment variables
 
 The waitlist form endpoint defaults to `/api/waitlist`.
