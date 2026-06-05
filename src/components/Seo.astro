@@ -31,6 +31,8 @@ const {
 const siteBase = Astro.site?.href || SITE_URL;
 const canonicalUrl = absoluteUrl(canonical, siteBase);
 const ogImageUrl = absoluteUrl(ogImage, siteBase);
+const faviconUrl = absoluteUrl('/favicon.svg', siteBase);
+const brandIconUrl = absoluteUrl('/brand/repero-icon.svg', siteBase);
 const hreflangs = [{ lang, href: canonicalUrl }, ...alternates];
 
 const organizationJsonLd = {
@@ -38,7 +40,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: SITE_NAME,
   url: siteBase,
-  logo: ogImageUrl
+  logo: brandIconUrl
 };
 
 const websiteJsonLd = {
@@ -51,9 +53,11 @@ const websiteJsonLd = {
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
+<link rel="icon" href={faviconUrl} type="image/svg+xml" sizes="any" />
 {hreflangs.map((link) => (
   <link rel="alternate" hreflang={link.lang} href={link.href} />
 ))}
+<meta name="theme-color" content="#050a1c" />
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
