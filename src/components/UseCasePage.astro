@@ -8,6 +8,7 @@ interface Props {
   title: string;
   description: string;
   canonical: string;
+  tags?: string[];
   items: string[];
   exampleTitle?: string;
   exampleIntro?: string;
@@ -15,9 +16,10 @@ interface Props {
   alternates?: Array<{ lang: 'en' | 'fr' | 'x-default'; href: string }>;
 }
 
-const { lang, title, description, canonical, items, exampleTitle, exampleIntro, exampleSteps, alternates } = Astro.props;
+const { lang, title, description, canonical, tags = [], items, exampleTitle, exampleIntro, exampleSteps, alternates } = Astro.props;
 const useCaseLabel = lang === 'fr' ? 'Cas d’usage' : 'Use case';
 const characteristicsLabel = lang === 'fr' ? 'Points clés' : 'Characteristics';
+const tagsLabel = lang === 'fr' ? 'Mots-clés' : 'Keywords';
 ---
 <BaseLayout
   lang={lang}
@@ -34,6 +36,16 @@ const characteristicsLabel = lang === 'fr' ? 'Points clés' : 'Characteristics';
         <div>
           <h1 class="text-4xl font-bold text-white md:text-5xl">{title}</h1>
           <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">{description}</p>
+          {tags.length ? (
+            <>
+              <p class="eyebrow mt-8">{tagsLabel}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span class="chip">{tag}</span>
+                ))}
+              </div>
+            </>
+          ) : null}
           <p class="eyebrow mt-8">{characteristicsLabel}</p>
           <ul class="mt-4 flex flex-col gap-3">
             {items.map((item) => (
