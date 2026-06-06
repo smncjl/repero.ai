@@ -5,12 +5,12 @@ import Seo from '../components/Seo.astro';
 interface Props {
   title: string;
   description: string;
-  lang: 'en' | 'fr';
+  lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl';
   canonical: string;
   ogType?: string;
   ogImage?: string;
   twitterCard?: 'summary' | 'summary_large_image';
-  alternates?: Array<{ lang: 'en' | 'fr' | 'x-default'; href: string }>;
+  alternates?: Array<{ lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl' | 'x-default'; href: string }>;
 }
 
 const { title, description, lang, canonical, ogType, ogImage, twitterCard, alternates } = Astro.props;

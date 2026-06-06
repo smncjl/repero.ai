@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import WaitlistForm from '../../components/WaitlistForm.astro';
+import Footer from '../../components/Footer.astro';
+const submitted = Astro.url.searchParams.get('submitted') === '1';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/it/waitlist', site).href;
+const alternates = [
+  { lang: 'en', href: new URL('/en/waitlist', site).href },
+  { lang: 'fr', href: new URL('/fr/liste-attente', site).href },
+  { lang: 'de', href: new URL('/de/waitlist', site).href },
+  { lang: 'es', href: new URL('/es/lista-espera', site).href },
+  { lang: 'nl', href: new URL('/nl/wachtlijst', site).href }
+];
+---
+<BaseLayout
+  lang="it"
+  title="Lista d'attesa | Repero AI"
+  description="Unisciti alla lista d'attesa per Repero AI."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
+  <Header lang="it" />
+  <main class="page-shell py-10">
+    <section class="grid gap-8 md:grid-cols-[1fr_.9fr] md:items-start">
+      <div class="surface">
+        <p class="eyebrow">Accesso anticipato</p>
+        <h1 class="mt-3 text-4xl font-bold text-white md:text-5xl">Unisciti alla beta anticipata.</h1>
+        <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-300">Aiutaci a plasmare uno spazio di lavoro AI first europeo costruito attorno chiarezza, controllo e portabilità.</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="chip">Controllo dati</span>
+          <span class="chip">Trasparenza</span>
+          <span class="chip">Portabilità</span>
+        </div>
+      </div>
+      <div class="surface">
+        <p class="eyebrow">Richiedi accesso</p>
+        <h2 class="mt-3 text-2xl font-semibold text-white">Dicci per cosa lo vorresti usare.</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-300">Useremo questo per dare priorità al giusto onboarding e direzione del prodotto.</p>
+        {submitted ? (
+          <div class="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6">
+            <p class="eyebrow">Inviato</p>
+            <h3 class="mt-3 text-2xl font-semibold text-white">Sei sulla lista d'attesa.</h3>
+            <p class="mt-3 text-sm leading-7 text-emerald-50/90">La tua richiesta è stata ricevuta. Ti contatteremo quando saranno disponibili altri posti.</p>
+          </div>
+        ) : (
+          <div class="mt-6">
+            <WaitlistForm lang="it" />
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer lang="it" />
+</BaseLayout>

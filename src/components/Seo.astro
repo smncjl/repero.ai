@@ -2,7 +2,7 @@
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, absoluteUrl } from '../config/site';
 
 interface AlternateLink {
-  lang: 'en' | 'fr' | 'x-default';
+  lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl' | 'x-default';
   href: string;
 }
 
@@ -10,7 +10,7 @@ interface Props {
   title: string;
   description: string;
   canonical: string;
-  lang: 'en' | 'fr';
+  lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl';
   ogType?: string;
   ogImage?: string;
   twitterCard?: 'summary' | 'summary_large_image';

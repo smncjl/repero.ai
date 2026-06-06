@@ -1,0 +1,32 @@
+---
+import UseCasePage from '../../../components/UseCasePage.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/nl/use-cases/developers', site).href;
+const alternates = [
+  { lang: 'en', href: new URL('/en/use-cases/developers', site).href },
+  { lang: 'fr', href: new URL('/fr/cas-usages/developpeurs', site).href },
+  { lang: 'de', href: new URL('/de/use-cases/developers', site).href },
+  { lang: 'it', href: new URL('/it/use-cases/developers', site).href },
+  { lang: 'es', href: new URL('/es/use-cases/developers', site).href }
+];
+---
+<UseCasePage
+  lang="nl"
+  canonical={canonical}
+  title="Ontwikkelaars"
+  description="Technisch werk gealigneerd houden tussen analyse, documentatie en implementatie."
+  tags={["ontwikkelaars", "technische teams", "architectuur", "debuggen", "technische documentatie", "prompts"]}
+  items={["codesnippets", "vereistenanalyse", "architectuurnotities", "debugsessies", "technische documentatie", "herbruikbare prompts en beslissingen"]}
+  exampleTitle="Concreet voorbeeld"
+  exampleIntro="Een technisch project blijft bruikbaar wanneer de analyse, documentatie en taken allemaal in dezelfde plaats leven."
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+  exampleSteps={[
+    "Ik importeer de zakelijke analyse en maak een project eromheen in Repero AI.",
+    "Ik update de platformdocumentatie met de vereisten, veronderstellingen en open beslissingen.",
+    "Ik vraag Repero AI om een implementatiechecklist voor de volgende sprint voor te bereiden.",
+    "Ik sla die checklist op als een productartefact zodat het team dezelfde context kan hergebruiken.",
+    "Als ik ga coderen, volg ik het artefact in plaats van verspreide gesprekken opnieuw te openen."
+  ]}
+/>
