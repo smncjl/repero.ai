@@ -1,10 +1,16 @@
 ---
-interface Props { lang: 'en' | 'fr'; }
+interface Props { lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl'; }
 const { lang } = Astro.props;
+const isEn = lang === 'en';
+const isFr = lang === 'fr';
+const isDe = lang === 'de';
+const isIt = lang === 'it';
+const isEs = lang === 'es';
+const isNl = lang === 'nl';
 ---
 <footer class="page-shell mt-auto pb-10 pt-16">
   <div class="flex flex-col gap-3 border-t border-slate-800 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-    <p>{lang === 'en' ? 'European-first AI workspace. Built with data control, transparency and portability in mind.' : 'Espace de travail IA européen. Construit pour le contrôle des données, la transparence et la portabilité.'}</p>
+    <p>{isEn ? 'European-first AI workspace. Built with data control, transparency and portability in mind.' : isFr ? 'Espace de travail IA européen. Construit pour le contrôle des données, la transparence et la portabilité.' : isDe ? 'Europe-first KI-Arbeitsbereich. Mit Datenkontrolle, Transparenz und Portabilität im Sinn gebaut.' : isIt ? 'Spazio di lavoro AI first europeo. Costruito con il controllo dei dati, la trasparenza e la portabilità in mente.' : isEs ? 'Espacio de trabajo IA primero europeo. Construido con el control de datos, la transparencia y la portabilidad en mente.' : 'Europees eerste AI werkruimte. Gebouwd met data controle, transparantie en portabiliteit in gedachten.'}</p>
     <p class="text-slate-500">Repero AI</p>
   </div>
 </footer>

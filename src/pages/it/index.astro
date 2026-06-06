@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/it', site).href;
+const alternates = [
+  { lang: 'en', href: new URL('/en', site).href },
+  { lang: 'fr', href: new URL('/fr', site).href },
+  { lang: 'de', href: new URL('/de', site).href },
+  { lang: 'es', href: new URL('/es', site).href },
+  { lang: 'nl', href: new URL('/nl', site).href }
+];
+---
+<BaseLayout
+  lang="it"
+  title="Repero AI"
+  description="Repero AI aiuta gli utenti a conservare, organizzare e recuperare ciò che cercano, caricano, generano e decidono con l'IA."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
+  <Header lang="it" />
+  <main class="page-shell pb-12">
+    <section class="grid gap-8 py-8 md:grid-cols-[1.15fr_.85fr] md:items-center md:py-14">
+      <div class="space-y-6">
+        <p class="eyebrow">Spazio di lavoro AI first europeo</p>
+        <h1 class="headline">Il tuo lavoro con l'IA, finalmente organizzato.</h1>
+        <p class="lead">Repero AI aiuta gli utenti a conservare, organizzare e recuperare ciò che cercano, caricano, generano e decidono con l'IA.</p>
+        <div class="flex flex-wrap gap-3">
+          <a class="btn-primary" href="/it/waitlist">Unisciti alla lista d'attesa</a>
+          <a class="btn-secondary" href="/it/use-cases">Esplora casi d'uso</a>
+        </div>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="chip">Ricerca</span>
+          <span class="chip">Caricamento</span>
+          <span class="chip">Generazione</span>
+          <span class="chip">Decisione</span>
+        </div>
+      </div>
+
+      <div class="surface relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-sky-500/15 blur-3xl"></div>
+        <div class="absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-emerald-400/10 blur-3xl"></div>
+        <div class="relative space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm font-semibold text-slate-100">Panoramica dello spazio di lavoro</p>
+              <p class="text-xs text-slate-400">Una superficie tranquilla per la memoria, le conversazioni e gli artefatti.</p>
+            </div>
+            <span class="chip">Memoria attiva</span>
+          </div>
+          <div class="rounded-2xl border border-sky-500/20 bg-sky-500/10 p-4">
+            <p class="text-sm font-semibold text-sky-100">Cattura ciò che conta</p>
+            <p class="mt-1 text-sm text-slate-300">Ricerche, caricamenti, decisioni e contenuti generati rimangono visibili e riutilizzabili.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div class="metric">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Sessioni</p>
+              <p class="mt-2 text-2xl font-bold text-white">12</p>
+            </div>
+            <div class="metric">
+              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Artefatti</p>
+              <p class="mt-2 text-2xl font-bold text-white">248</p>
+            </div>
+          </div>
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+            <div class="flex items-center justify-between text-xs text-slate-400">
+              <span>Elementi recenti</span>
+              <span>Organizzati per contesto</span>
+            </div>
+            <div class="mt-3 space-y-2">
+              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Nota di progetto · decisioni del prodotto</div>
+              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Set di prompt · workflow riutilizzabile</div>
+              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Documento caricato · indicizzato e ricercabile</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-4 md:grid-cols-3">
+      <article class="feature-card">
+        <p class="eyebrow">Problema</p>
+        <h2 class="mt-3 text-2xl font-semibold text-white">Il lavoro utile con l'IA viene perso.</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-300">Chat lunghe, artefatti misti e note ad-hoc rendono difficile rivisitare ciò che era realmente prezioso.</p>
+      </article>
+      <article class="feature-card">
+        <p class="eyebrow">Soluzione</p>
+        <h2 class="mt-3 text-2xl font-semibold text-white">Un livello calmo e organizzato.</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-300">Repero AI porta conversazioni, documenti e output generati in uno spazio di lavoro strutturato.</p>
+      </article>
+      <article class="feature-card">
+        <p class="eyebrow">Direzione</p>
+        <h2 class="mt-3 text-2xl font-semibold text-white">First europeo per design.</h2>
+        <p class="mt-3 text-sm leading-7 text-slate-300">Costruito intorno al controllo, alla trasparenza e alla portabilità, così il prodotto sembra affidabile e duraturo.</p>
+      </article>
+    </section>
+  </main>
+  <Footer lang="it" />
+</BaseLayout>

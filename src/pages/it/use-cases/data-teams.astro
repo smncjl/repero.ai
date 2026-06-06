@@ -1,0 +1,26 @@
+---
+import UseCasePage from '../../../components/UseCasePage.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/en/use-cases/data-teams', site).href;
+const alternates = [{ lang: 'fr', href: new URL('/fr/cas-usages/data', site).href }];
+---
+<UseCasePage
+  lang="en"
+  canonical={canonical}
+  title="Data teams"
+  description="Structure analysis and transformation knowledge."
+  tags={["data teams", "SQL", "PySpark", "dbt", "business rules", "data analysis"]}
+  items={["datasets", "SQL / PySpark / dbt snippets", "business rules", "transformation logic", "analysis notes"]}
+  exampleTitle="Concrete example"
+  exampleIntro="A data project is easier to ship when the source context, analysis and follow-up work stay together."
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+  exampleSteps={[
+    "I receive a new dataset and create a project in Repero AI with the source context.",
+    "I capture the business analysis, the KPI definitions and the assumptions behind the numbers.",
+    "I ask Repero AI to assemble the follow-up work needed to ship the data model.",
+    "I save the resulting task list as a product artefact so the whole team can reuse it.",
+    "During delivery, I reopen the artefact to check both the rules and the actions already agreed."
+  ]}
+/>

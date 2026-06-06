@@ -1,13 +1,26 @@
 ---
-interface Props { lang:'en'|'fr' }
+interface Props { lang:'en'|'fr'|'de'|'it'|'es'|'nl' }
 const { lang } = Astro.props;
 const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT || '/api/waitlist';
 const isEn = lang === 'en';
-const sendingLabel = isEn ? 'Sending...' : 'Envoi...';
-const successTitle = isEn ? 'You’re on the waitlist.' : 'Vous êtes sur la liste d’attente.';
+const isFr = lang === 'fr';
+const isDe = lang === 'de';
+const isIt = lang === 'it';
+const isEs = lang === 'es';
+const isNl = lang === 'nl';
+const sendingLabel = isEn ? 'Sending...' : isFr ? 'Envoi...' : isDe ? 'Senden...' : isIt ? 'Invio...' : isEs ? 'Enviando...' : 'Verzenden...';
+const successTitle = isEn ? 'You’re on the waitlist.' : isFr ? 'Vous êtes sur la liste d’attente.' : isDe ? 'Sie sind auf der Warteliste.' : isIt ? 'Sei sulla lista d\'attesa.' : isEs ? 'Estás en la lista de espera.' : 'Je staat op de wachtlijst.';
 const successBody = isEn
   ? 'Your request has been received. We’ll follow up when the next spots open.'
-  : 'Votre demande a bien été reçue. Nous vous recontacterons lorsque de nouveaux accès seront ouverts.';
+  : isFr
+  ? 'Votre demande a bien été reçue. Nous vous recontacterons lorsque de nouveaux accès seront ouverts.'
+  : isDe
+  ? 'Ihre Anfrage wurde empfangen. Wir werden uns melden, wenn neue Plätze verfügbar sind.'
+  : isIt
+  ? 'La tua richiesta è stata ricevuta. Ti contatteremo quando saranno disponibili altri posti.'
+  : isEs
+  ? 'Su pedido ha sido recibido. Nos pondremos en contacto cuando haya nuevos accesos disponibles.'
+  : 'Je verzoek is ontvangen. We nemen contact met je op wanneer nieuwe plekken beschikbaar zijn.';
 const profiles = isEn
   ? [
       ['personal', 'Personal use'],
@@ -19,7 +32,8 @@ const profiles = isEn
       ['student-researcher', 'Student / researcher'],
       ['other', 'Other']
     ]
-  : [
+  : isFr
+  ? [
       ['personal', 'Usage personnel'],
       ['independent', 'Indépendant / freelance'],
       ['founder', 'Fondateur / petite entreprise'],
@@ -28,16 +42,59 @@ const profiles = isEn
       ['field-technician', 'Technicien / métier terrain'],
       ['student-researcher', 'Étudiant / recherche'],
       ['other', 'Autre']
-  ];
+    ]
+  : isDe
+  ? [
+      ['personal', 'Persönlicher Gebrauch'],
+      ['independent', 'Unabhängig / Freelancer'],
+      ['founder', 'Gründer / Kleinstbetrieb'],
+      ['developer', 'Entwickler / technisches Team'],
+      ['data-ops', 'Daten / Operations-Team'],
+      ['field-technician', 'Handwerker / Feldtechniker'],
+      ['student-researcher', 'Student / Forscher'],
+      ['other', 'Andere']
+    ]
+  : isIt
+  ? [
+      ['personal', 'Utilizzo personale'],
+      ['independent', 'Indipendente / freelance'],
+      ['founder', 'Fondatore / piccola impresa'],
+      ['developer', 'Sviluppatore / team tecnico'],
+      ['data-ops', 'Dati / team operativo'],
+      ['field-technician', 'Artigiano / tecnico sul campo'],
+      ['student-researcher', 'Studente / ricercatore'],
+      ['other', 'Altro']
+    ]
+  : isEs
+  ? [
+      ['personal', 'Uso personal'],
+      ['independent', 'Independiente / freelance'],
+      ['founder', 'Fundador / pequeña empresa'],
+      ['developer', 'Desarrollador / equipo técnico'],
+      ['data-ops', 'Datos / equipo operativo'],
+      ['field-technician', 'Artesano / técnico de campo'],
+      ['student-researcher', 'Estudiante / investigador'],
+      ['other', 'Otro']
+    ]
+  : [
+      ['personal', 'Persoonlijk gebruik'],
+      ['independent', 'Onafhankelijk / freelancer'],
+      ['founder', 'Oprichter / kleine onderneming'],
+      ['developer', 'Ontwikkelaar / technisch team'],
+      ['data-ops', 'Data / operations team'],
+      ['field-technician', 'Handwerker / veldtechnicus'],
+      ['student-researcher', 'Student / onderzoeker'],
+      ['other', 'Anders']
+    ];
 ---
 <div class="grid gap-4" data-waitlist-widget>
   <div class="hidden rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-5" data-waitlist-success role="status" aria-live="polite">
-    <p class="eyebrow">{isEn ? 'Submitted' : 'Envoyé'}</p>
+    <p class="eyebrow">{isEn ? 'Submitted' : isFr ? 'Envoyé' : isDe ? 'Versendet' : isIt ? 'Inviato' : isEs ? 'Enviado' : 'Verzonden'}</p>
     <h3 class="mt-2 text-xl font-semibold text-white">{successTitle}</h3>
     <p class="mt-2 text-sm leading-7 text-emerald-50/90">{successBody}</p>
   </div>
   <form class="grid gap-4" method="POST" action={endpoint} data-waitlist-form>
-    <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : 'Email'} />
+    <input class="form-field" type="email" name="email" required placeholder={isEn ? 'Email' : isFr ? 'Email' : isDe ? 'E-Mail' : isIt ? 'Email' : isEs ? 'Correo electrónico' : 'E-mail'} />
     <div style="position:absolute;left:-9999px;" aria-hidden="true">
       <label>
         Website
@@ -46,12 +103,12 @@ const profiles = isEn
     </div>
     <input type="hidden" name="language" value={lang} />
     <select class="form-select" name="profile" required>
-      <option value="">{isEn ? 'Profile type' : 'Type de profil'}</option>
+      <option value="">{isEn ? 'Profile type' : isFr ? 'Type de profil' : isDe ? 'Profiltyp' : isIt ? 'Tipo di profilo' : isEs ? 'Tipo de perfil' : 'Profieltype'}</option>
       {profiles.map(([value, label]) => <option value={value}>{label}</option>)}
     </select>
-    <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : 'Usage prévu'} />
-    <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : 'Message optionnel'}></textarea>
-    <button class="btn-primary" type="submit" data-waitlist-submit>{isEn ? 'Join waitlist' : 'Rejoindre la liste'}</button>
+    <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : isFr ? 'Usage prévu' : isDe ? 'Geplanter Gebrauch' : isIt ? 'Utilizzo previsto' : isEs ? 'Uso previsto' : 'Gepland gebruik'} />
+    <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : isFr ? 'Message optionnel' : isDe ? 'Optionale Nachricht' : isIt ? 'Messaggio opzionale' : isEs ? 'Mensaje opcional' : 'Optioneel bericht'}></textarea>
+    <button class="btn-primary" type="submit" data-waitlist-submit>{isEn ? 'Join waitlist' : isFr ? 'Rejoindre la liste' : isDe ? 'Warteliste beitreten' : isIt ? 'Unisciti alla lista' : isEs ? 'Unirse a la lista' : 'Lid worden van wachtlijst'}</button>
   </form>
 </div>
 

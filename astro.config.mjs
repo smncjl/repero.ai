@@ -8,5 +8,9 @@ export default defineConfig({
     format: 'file'
   },
   integrations: [tailwind()],
-  output: 'static'
+  output: 'static',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr', 'de', 'it', 'es', 'nl']
+  }
 });
