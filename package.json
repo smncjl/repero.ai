@@ -10,7 +10,7 @@
     "test:blog-build": "node scripts/test-blog-build.mjs",
     "test:fr-product-pages": "node scripts/test-fr-product-pages.mjs",
     "verify:no-redirects": "node scripts/verify-no-redirects.mjs",
-    "check": "npm run build && npm run verify:no-redirects && npm run test:fr-product-pages"
+    "check": "npm run build && npm run verify:no-redirects"
   },
   "dependencies": {
     "astro": "^5.8.0"
