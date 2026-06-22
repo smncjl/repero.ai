@@ -83,4 +83,36 @@
   .card {
     @apply feature-card;
   }
+
+  .blog-prose {
+    @apply text-base leading-8 text-slate-300;
+  }
+
+  .blog-prose h2 {
+    @apply mt-12 text-3xl font-semibold tracking-tight text-white;
+  }
+
+  .blog-prose p {
+    @apply mt-5;
+  }
+
+  .blog-prose ul {
+    @apply mt-5 list-disc space-y-2 pl-6;
+  }
+
+  .blog-prose li {
+    @apply pl-1;
+  }
+
+  .blog-prose strong {
+    @apply font-semibold text-white;
+  }
+
+  .blog-prose code {
+    @apply rounded bg-slate-950 px-1.5 py-0.5 text-sm text-sky-200;
+  }
+
+  .blog-prose a {
+    @apply text-sky-300 underline decoration-sky-500/40 underline-offset-4 hover:text-sky-200;
+  }
 }

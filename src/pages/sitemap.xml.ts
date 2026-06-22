@@ -1,4 +1,5 @@
 import { SITE_URL, absoluteUrl } from '../config/site';
+import { buildBlogIndexPath, buildBlogPostPath, getPublishedBlogPosts } from '../lib/blog';
 
 interface Entry {
   path: string;
@@ -54,10 +55,16 @@ function escapeXml(value: string) {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
 
-export function GET() {
+export async function GET() {
+  const publishedFrenchPosts = await getPublishedBlogPosts('fr');
+  const dynamicEntries: Entry[] = [
+    { path: buildBlogIndexPath('fr') },
+    ...publishedFrenchPosts.map((post) => ({ path: buildBlogPostPath(post) }))
+  ];
+  const allEntries = [...entries, ...dynamicEntries];
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${entries
+${allEntries
   .map((entry) => {
     const loc = absoluteUrl(entry.path, SITE_URL);
     const alternates = entry.alternates
