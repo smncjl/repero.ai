@@ -34,43 +34,15 @@ const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
         </div>
       </div>
 
-      <div class="surface relative overflow-hidden">
-        <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-sky-500/15 blur-3xl"></div>
-        <div class="absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-emerald-400/10 blur-3xl"></div>
-        <div class="relative space-y-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <p class="text-sm font-semibold text-slate-100">Vue d’ensemble</p>
-              <p class="text-xs text-slate-400">Un espace intelligent pour mémoire, conversations et artefacts.</p>
-            </div>
-            <span class="chip">Mémoire active</span>
-          </div>
-          <div class="rounded-2xl border border-sky-500/20 bg-sky-500/10 p-4">
-            <p class="text-sm font-semibold text-sky-100">Capturer l’essentiel</p>
-            <p class="mt-1 text-sm text-slate-300">Les recherches, imports, décisions et contenus générés restent visibles et réutilisables.</p>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div class="metric">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Sessions</p>
-              <p class="mt-2 text-2xl font-bold text-white">12</p>
-            </div>
-            <div class="metric">
-              <p class="text-xs uppercase tracking-[0.18em] text-slate-500">Artefacts</p>
-              <p class="mt-2 text-2xl font-bold text-white">248</p>
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-            <div class="flex items-center justify-between text-xs text-slate-400">
-              <span>Éléments récents</span>
-              <span>Organisés par contexte</span>
-            </div>
-            <div class="mt-3 space-y-2">
-              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Note projet · décisions produit</div>
-              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Pack de prompts · workflow réutilisable</div>
-              <div class="rounded-xl border border-slate-800 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">Document importé · indexé et recherché</div>
-            </div>
-          </div>
-        </div>
+      <div class="surface relative overflow-hidden p-3">
+        <img
+          src="/vue-artifact-contexte-travail.png"
+          alt="Capture d’écran de Repero AI montrant la vue artefacts, le contexte actif, les sources et la recherche."
+          class="w-full rounded-2xl border border-slate-800 object-cover shadow-[0_22px_60px_rgba(2,132,199,0.18)]"
+          width="1202"
+          height="704"
+          loading="eager"
+        />
       </div>
     </section>
 
