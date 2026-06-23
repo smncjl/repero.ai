@@ -187,4 +187,36 @@
   .product-carousel__description {
     @apply max-w-2xl text-sm leading-7 text-slate-300;
   }
+
+  .product-story-section {
+    @apply grid gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center md:gap-10;
+  }
+
+  .product-story-section[data-reverse='true'] .product-story-section__media {
+    @apply md:order-2;
+  }
+
+  .product-story-section[data-reverse='true'] .product-story-section__content {
+    @apply md:order-1;
+  }
+
+  .product-story-section__frame {
+    @apply overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950/70 shadow-[0_24px_60px_rgba(2,132,199,0.14)];
+  }
+
+  .product-story-section__image {
+    @apply aspect-[16/10] w-full object-cover object-top;
+  }
+
+  .product-story-section__content {
+    @apply min-w-0;
+  }
+
+  .product-story-section__heading {
+    @apply mt-3 text-3xl font-semibold tracking-tight text-white md:text-4xl;
+  }
+
+  .product-story-section__body {
+    @apply mt-4 space-y-4 text-base leading-8 text-slate-300;
+  }
 }

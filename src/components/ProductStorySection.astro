@@ -1,0 +1,37 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  body: string[];
+  image: string;
+  alt: string;
+  reverse?: boolean;
+}
+
+const { eyebrow, heading, body, image, alt, reverse = false } = Astro.props;
+---
+
+<section class="product-story-section" data-reverse={reverse ? 'true' : undefined}>
+  <div class="product-story-section__media">
+    <div class="product-story-section__frame">
+      <img
+        src={image}
+        alt={alt}
+        class="product-story-section__image"
+        width="1440"
+        height="960"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <div class="product-story-section__content">
+    {eyebrow ? <p class="eyebrow">{eyebrow}</p> : null}
+    <h2 class="product-story-section__heading">{heading}</h2>
+    <div class="product-story-section__body">
+      {body.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </div>
+</section>
