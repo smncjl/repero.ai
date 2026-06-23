@@ -7,6 +7,8 @@ import { frProductScreens } from '../../data/frProductScreens';
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr', site).href;
 const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
+const heroScreenIds = ['artifacts', 'active-context', 'search-context'];
+const heroScreens = frProductScreens.filter((screen) => heroScreenIds.includes(screen.id));
 ---
 <BaseLayout
   lang="fr"
@@ -26,8 +28,7 @@ const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
         <p class="lead">Repero AI aide à centraliser, structurer et retrouver vos recherches, vos imports, vos contenus générés et vos décisions.</p>
         <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
           <a class="btn-primary" href="https://app.repero.ai" target="_blank">Accès anticipé à Repero</a>
-          <a class="text-sm font-medium text-sky-300 underline decoration-sky-500/50 underline-offset-4 hover:text-sky-200" href="/fr/comment-ca-marche">Voir comment ça marche</a>
-          <a class="text-sm font-medium text-slate-300 underline decoration-slate-500/50 underline-offset-4 hover:text-white" href="/fr/cas-usages">Voir les cas d’usage</a>
+          <a class="btn-secondary" href="/fr/comment-ca-marche">Voir comment ça marche</a>
         </div>
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="chip">Recherche</span>
@@ -35,9 +36,12 @@ const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
           <span class="chip">Génération</span>
           <span class="chip">Décision</span>
         </div>
+        <p class="text-sm text-slate-300">
+          <a class="underline decoration-slate-500/50 underline-offset-4 hover:text-white" href="/fr/cas-usages">Voir les cas d’usage</a>
+        </p>
       </div>
 
-      <ProductCarousel id="fr-home-hero" screens={frProductScreens} />
+      <ProductCarousel id="fr-home-hero" screens={heroScreens} />
     </section>
 
     <section class="grid gap-4 md:grid-cols-3">
