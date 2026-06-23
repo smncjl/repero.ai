@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import ProductCarousel from '../../components/ProductCarousel.astro';
+import { frProductScreens } from '../../data/frProductScreens';
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr', site).href;
 const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
@@ -22,9 +24,10 @@ const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
         <p class="eyebrow">Espace de travail IA européen</p>
         <h1 class="headline">Votre travail avec l’IA, enfin organisé.</h1>
         <p class="lead">Repero AI aide à centraliser, structurer et retrouver vos recherches, vos imports, vos contenus générés et vos décisions.</p>
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
           <a class="btn-primary" href="https://app.repero.ai" target="_blank">Accès anticipé à Repero</a>
-          <a class="btn-secondary" href="/fr/cas-usages">Voir les cas d’usages</a>
+          <a class="text-sm font-medium text-sky-300 underline decoration-sky-500/50 underline-offset-4 hover:text-sky-200" href="/fr/comment-ca-marche">Voir comment ça marche</a>
+          <a class="text-sm font-medium text-slate-300 underline decoration-slate-500/50 underline-offset-4 hover:text-white" href="/fr/cas-usages">Voir les cas d’usage</a>
         </div>
         <div class="flex flex-wrap gap-2 pt-2">
           <span class="chip">Recherche</span>
@@ -34,16 +37,7 @@ const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
         </div>
       </div>
 
-      <div class="surface relative overflow-hidden p-3">
-        <img
-          src="/vue-artifact-contexte-travail.png"
-          alt="Capture d’écran de Repero AI montrant la vue artefacts, le contexte actif, les sources et la recherche."
-          class="w-full rounded-2xl border border-slate-800 object-cover shadow-[0_22px_60px_rgba(2,132,199,0.18)]"
-          width="1202"
-          height="704"
-          loading="eager"
-        />
-      </div>
+      <ProductCarousel id="fr-home-hero" screens={frProductScreens} />
     </section>
 
     <section class="grid gap-4 md:grid-cols-3">
