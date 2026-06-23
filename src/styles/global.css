@@ -201,11 +201,11 @@
   }
 
   .product-story-section__frame {
-    @apply overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950/70 shadow-[0_24px_60px_rgba(2,132,199,0.14)];
+    @apply flex items-center justify-center overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950/70 p-3 shadow-[0_24px_60px_rgba(2,132,199,0.14)] sm:p-4;
   }
 
   .product-story-section__image {
-    @apply aspect-[16/10] w-full object-cover object-top;
+    @apply h-auto max-h-[42rem] w-full object-contain;
   }
 
   .product-story-section__content {
