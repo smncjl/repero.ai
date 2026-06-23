@@ -24,8 +24,8 @@ const howItWorks = readExpectedFile(howItWorksPath);
 
 assertIncludes(frHome, 'Retrouvez vos artefacts sans perdre le contexte', 'fr homepage');
 assertIncludes(frHome, '/fr/comment-ca-marche', 'fr homepage');
-assertIncludes(howItWorks, 'Comment ca marche', 'fr how-it-works page');
-assertIncludes(howItWorks, 'Centraliser le travail dans un projet', 'fr how-it-works page');
-assertIncludes(howItWorks, 'Retrouver documents, web et artefacts', 'fr how-it-works page');
+assertIncludes(howItWorks, '<title>Comment ça marche | Repero AI</title>', 'fr how-it-works page');
+assertIncludes(howItWorks, 'href="https://repero.ai/fr/comment-ca-marche"', 'fr how-it-works page canonical');
+assertIncludes(howItWorks, 'Aller plus loin', 'fr how-it-works page');
 
 console.log('French homepage and how-it-works build artifacts look valid.');
