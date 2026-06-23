@@ -17,7 +17,7 @@ function assertIncludes(content, needle, label) {
 
 const distDir = join(process.cwd(), 'dist');
 const frHomePath = join(distDir, 'fr.html');
-const howItWorksPath = join(distDir, 'fr', 'comment-ca-marche', 'index.html');
+const howItWorksPath = join(distDir, 'fr', 'comment-ca-marche.html');
 
 const frHome = readExpectedFile(frHomePath);
 const howItWorks = readExpectedFile(howItWorksPath);
