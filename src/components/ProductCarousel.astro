@@ -2,78 +2,76 @@
 import type { ProductScreen } from '../data/frProductScreens';
 
 interface Props {
+  id?: string;
   screens: ProductScreen[];
 }
 
-const { screens } = Astro.props;
-const instanceId = `product-carousel-${Math.random().toString(36).slice(2, 10)}`;
+const { id, screens } = Astro.props;
 
-const checkedSelectors = screens
-  .map(
-    (_, index) => `
-#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__panel:nth-of-type(${index + 1}) {
-  display: block;
-}
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
-#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) {
-  border-color: rgba(56, 189, 248, 0.8);
-  background: rgba(14, 165, 233, 0.16);
-  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.22);
-}
-
-#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) .product-carousel__tab-title {
-  color: #f8fafc;
-}
-
-#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) .product-carousel__tab-copy {
-  color: rgb(191 219 254 / 0.95);
-}`
-  )
-  .join('\n');
+const derivedId = screens.map((screen) => slugify(screen.id)).filter(Boolean).join('-');
+const fallbackId = `product-carousel-${derivedId || 'screens'}`;
+const baseId = slugify(id ?? fallbackId) || fallbackId;
 ---
 
 {
   screens.length > 0 && (
-    <div class="product-carousel-shell">
-      {screens.map((screen, index) => (
-        <input
-          id={`${instanceId}-tab-${index + 1}`}
-          class="product-carousel__input"
-          type="radio"
-          name={instanceId}
-          checked={index === 0}
-        />
-      ))}
+    <section class="product-carousel surface" data-product-carousel data-carousel-id={baseId}>
+      <div class="product-carousel__tabs" role="tablist" aria-label="Captures produit">
+        {screens.map((screen, index) => {
+          const panelId = `${baseId}-panel-${index + 1}`;
+          const tabId = `${baseId}-tab-${index + 1}`;
+          const isActive = index === 0;
 
-      <div class="product-carousel surface">
-        <ul class="product-carousel__tabs" aria-label="Captures produit">
-          {screens.map((screen, index) => (
-            <li>
-              <label class="product-carousel__tab" for={`${instanceId}-tab-${index + 1}`}>
-                <img
-                  src={screen.image}
-                  alt=""
-                  aria-hidden="true"
-                  class="product-carousel__thumb"
-                  width="96"
-                  height="64"
-                  loading="lazy"
-                />
-                <div class="product-carousel__tab-body">
-                  <span class="product-carousel__tab-title">{screen.title}</span>
-                  <span class="product-carousel__tab-copy">{screen.description}</span>
-                </div>
-              </label>
-            </li>
-          ))}
-        </ul>
+          return (
+            <button
+              id={tabId}
+              class="product-carousel__tab"
+              type="button"
+              role="tab"
+              aria-selected={isActive ? 'true' : 'false'}
+              aria-controls={panelId}
+              tabindex={isActive ? '0' : '-1'}
+              data-carousel-tab
+            >
+              <img
+                src={screen.image}
+                alt=""
+                aria-hidden="true"
+                class="product-carousel__thumb"
+                width="96"
+                height="64"
+                loading="lazy"
+              />
+              <span class="product-carousel__tab-body">
+                <span class="product-carousel__tab-title">{screen.title}</span>
+                <span class="product-carousel__tab-copy">{screen.description}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
 
-        <div class="product-carousel__panels">
-          {screens.map((screen, index) => (
+      <div class="product-carousel__panels">
+        {screens.map((screen, index) => {
+          const panelId = `${baseId}-panel-${index + 1}`;
+          const tabId = `${baseId}-tab-${index + 1}`;
+          const isActive = index === 0;
+
+          return (
             <article
-              id={`${instanceId}-panel-${index + 1}`}
+              id={panelId}
               class="product-carousel__panel"
-              aria-label={screen.title}
+              role="tabpanel"
+              aria-labelledby={tabId}
+              tabindex={0}
+              hidden={!isActive}
+              data-carousel-panel
             >
               <div class="product-carousel__frame">
                 <img
@@ -82,7 +80,7 @@ const checkedSelectors = screens
                   class="product-carousel__image"
                   width="1440"
                   height="960"
-                  loading={index === 0 ? 'eager' : 'lazy'}
+                  loading={isActive ? 'eager' : 'lazy'}
                 />
               </div>
               <div class="product-carousel__content">
@@ -90,13 +88,74 @@ const checkedSelectors = screens
                 <p class="product-carousel__description">{screen.description}</p>
               </div>
             </article>
-          ))}
-        </div>
+          );
+        })}
       </div>
-
-      <style is:inline>
-        {checkedSelectors}
-      </style>
-    </div>
+    </section>
   )
 }
+
+<script>
+  const selectTab = (tabs, panels, nextIndex, moveFocus) => {
+    tabs.forEach((tab, index) => {
+      const isActive = index === nextIndex;
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.setAttribute('tabindex', isActive ? '0' : '-1');
+
+      if (moveFocus && isActive) {
+        tab.focus();
+      }
+    });
+
+    panels.forEach((panel, index) => {
+      panel.hidden = index !== nextIndex;
+    });
+  };
+
+  const bindCarousel = (root) => {
+    if (root.dataset.carouselBound === 'true') {
+      return;
+    }
+
+    const tabs = Array.from(root.querySelectorAll('[data-carousel-tab]'));
+    const panels = Array.from(root.querySelectorAll('[data-carousel-panel]'));
+
+    if (tabs.length === 0 || tabs.length !== panels.length) {
+      return;
+    }
+
+    root.dataset.carouselBound = 'true';
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        selectTab(tabs, panels, index, false);
+      });
+
+      tab.addEventListener('keydown', (event) => {
+        const lastIndex = tabs.length - 1;
+        let nextIndex = null;
+
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          nextIndex = index === lastIndex ? 0 : index + 1;
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          nextIndex = index === 0 ? lastIndex : index - 1;
+        } else if (event.key === 'Home') {
+          nextIndex = 0;
+        } else if (event.key === 'End') {
+          nextIndex = lastIndex;
+        }
+
+        if (nextIndex === null) {
+          return;
+        }
+
+        event.preventDefault();
+        selectTab(tabs, panels, nextIndex, true);
+      });
+    });
+  };
+
+  document.querySelectorAll('[data-product-carousel]').forEach((root) => {
+    bindCarousel(root);
+  });
+</script>
