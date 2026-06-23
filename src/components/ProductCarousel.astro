@@ -1,0 +1,102 @@
+---
+import type { ProductScreen } from '../data/frProductScreens';
+
+interface Props {
+  screens: ProductScreen[];
+}
+
+const { screens } = Astro.props;
+const instanceId = `product-carousel-${Math.random().toString(36).slice(2, 10)}`;
+
+const checkedSelectors = screens
+  .map(
+    (_, index) => `
+#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__panel:nth-of-type(${index + 1}) {
+  display: block;
+}
+
+#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) {
+  border-color: rgba(56, 189, 248, 0.8);
+  background: rgba(14, 165, 233, 0.16);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.22);
+}
+
+#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) .product-carousel__tab-title {
+  color: #f8fafc;
+}
+
+#${instanceId}-tab-${index + 1}:checked ~ .product-carousel .product-carousel__tab:nth-of-type(${index + 1}) .product-carousel__tab-copy {
+  color: rgb(191 219 254 / 0.95);
+}`
+  )
+  .join('\n');
+---
+
+{
+  screens.length > 0 && (
+    <div class="product-carousel-shell">
+      {screens.map((screen, index) => (
+        <input
+          id={`${instanceId}-tab-${index + 1}`}
+          class="product-carousel__input"
+          type="radio"
+          name={instanceId}
+          checked={index === 0}
+        />
+      ))}
+
+      <div class="product-carousel surface">
+        <ul class="product-carousel__tabs" aria-label="Captures produit">
+          {screens.map((screen, index) => (
+            <li>
+              <label class="product-carousel__tab" for={`${instanceId}-tab-${index + 1}`}>
+                <img
+                  src={screen.image}
+                  alt=""
+                  aria-hidden="true"
+                  class="product-carousel__thumb"
+                  width="96"
+                  height="64"
+                  loading="lazy"
+                />
+                <div class="product-carousel__tab-body">
+                  <span class="product-carousel__tab-title">{screen.title}</span>
+                  <span class="product-carousel__tab-copy">{screen.description}</span>
+                </div>
+              </label>
+            </li>
+          ))}
+        </ul>
+
+        <div class="product-carousel__panels">
+          {screens.map((screen, index) => (
+            <article
+              id={`${instanceId}-panel-${index + 1}`}
+              class="product-carousel__panel"
+              aria-label={screen.title}
+            >
+              <div class="product-carousel__frame">
+                <img
+                  src={screen.image}
+                  alt={screen.alt}
+                  class="product-carousel__image"
+                  width="1440"
+                  height="960"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+              <div class="product-carousel__content">
+                <h3 class="product-carousel__title">{screen.title}</h3>
+                <p class="product-carousel__description">{screen.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <style is:inline>
+        {checkedSelectors}
+      </style>
+    </div>
+  )
+}
