@@ -164,6 +164,10 @@
     display: none;
   }
 
+  .product-carousel__panel:focus-visible {
+    @apply outline-none ring-2 ring-sky-400/60 ring-offset-2 ring-offset-slate-950;
+  }
+
   .product-carousel__frame {
     @apply overflow-hidden rounded-[1.5rem] border border-slate-800 bg-slate-950/70 shadow-[0_22px_60px_rgba(2,132,199,0.14)];
   }

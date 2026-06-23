@@ -16,13 +16,18 @@ const slugify = (value: string) =>
 
 const derivedId = screens.map((screen) => slugify(screen.id)).filter(Boolean).join('-');
 const fallbackId = `product-carousel-${derivedId || 'screens'}`;
-const baseId = slugify(id ?? fallbackId) || fallbackId;
+const baseId = id ? slugify(id) || fallbackId : fallbackId;
 ---
 
 {
   screens.length > 0 && (
     <section class="product-carousel surface" data-product-carousel data-carousel-id={baseId}>
-      <div class="product-carousel__tabs" role="tablist" aria-label="Captures produit">
+      <div
+        class="product-carousel__tabs"
+        role="tablist"
+        aria-label="Captures produit"
+        aria-orientation="vertical"
+      >
         {screens.map((screen, index) => {
           const panelId = `${baseId}-panel-${index + 1}`;
           const tabId = `${baseId}-tab-${index + 1}`;
@@ -69,7 +74,8 @@ const baseId = slugify(id ?? fallbackId) || fallbackId;
               class="product-carousel__panel"
               role="tabpanel"
               aria-labelledby={tabId}
-              tabindex={0}
+              aria-hidden={isActive ? 'false' : 'true'}
+              tabindex={isActive ? 0 : -1}
               hidden={!isActive}
               data-carousel-panel
             >
@@ -108,7 +114,10 @@ const baseId = slugify(id ?? fallbackId) || fallbackId;
     });
 
     panels.forEach((panel, index) => {
-      panel.hidden = index !== nextIndex;
+      const isActive = index === nextIndex;
+      panel.hidden = !isActive;
+      panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      panel.setAttribute('tabindex', isActive ? '0' : '-1');
     });
   };
 
@@ -125,6 +134,12 @@ const baseId = slugify(id ?? fallbackId) || fallbackId;
     }
 
     root.dataset.carouselBound = 'true';
+    const activeIndex = Math.max(
+      tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true'),
+      0
+    );
+
+    selectTab(tabs, panels, activeIndex, false);
 
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => {
