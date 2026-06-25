@@ -1,0 +1,487 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/guide', site).href;
+
+const faqItems = [
+{
+question: 'Repero AI remplace-t-il ChatGPT, Claude ou Copilot ?',
+answer:
+'Pas directement. ChatGPT, Claude et Copilot sont des assistants IA généralistes. Repero se concentre sur un autre problème : organiser, conserver et retrouver le travail produit avec l’IA. Pour beaucoup d’usages ponctuels, un assistant classique suffit. Pour un usage régulier, projet, documentaire ou professionnel, Repero apporte une couche de mémoire et d’organisation qui devient rapidement essentielle.'
+},
+{
+question: 'Mes données sont-elles utilisées pour entraîner un modèle public ?',
+answer:
+'Repero AI ne vend pas vos données et n’a pas pour objectif de les utiliser pour entraîner un modèle public. Certaines interactions peuvent toutefois être transmises à des fournisseurs IA externes selon le modèle utilisé. Dans ce cas, leur traitement dépend aussi des conditions du fournisseur concerné. L’objectif de Repero est de rendre cette réalité claire et contrôlable.'
+},
+{
+question: 'Quels modèles d’IA sont mentionnés par Repero ?',
+answer:
+'Repero peut fonctionner avec plusieurs familles de modèles : open source, Mistral, OpenAI et Anthropic. Le mode automatique vise à arbitrer entre qualité, coût et budget de tokens selon la configuration disponible. Le choix précis d’une famille de modèles ou d’un modèle particulier peut dépendre du plan d’abonnement.'
+},
+{
+question: 'La fonctionnalité multi-utilisateur est-elle déjà disponible ?',
+answer:
+'La collaboration multi-utilisateur fait partie de la roadmap, mais elle ne doit pas être présentée comme une fonctionnalité pleinement disponible si elle n’est pas encore activée dans votre espace. L’objectif est clair : permettre à terme à une équipe de partager une mémoire de travail autour de projets, documents, sources et artifacts.'
+},
+{
+question: 'Pourquoi utiliser Repero si j’ai déjà un assistant IA ?',
+answer:
+'Parce qu’un assistant IA produit des réponses, mais ne suffit pas toujours à organiser votre travail. Si vous utilisez l’IA une fois de temps en temps, ce n’est pas forcément un problème. Si vous l’utilisez pour travailler, documenter, chercher, décider ou produire régulièrement, la mémoire devient critique. Repero est pensé pour ce deuxième cas.'
+},
+{
+question: 'Où trouver une présentation plus pratique ?',
+answerParts: [
+'La page ',
+'comment ça marche',
+' est la meilleure suite si vous voulez voir le déroulé de base.'
+] as const
+}
+] as const;
+
+
+const faqAnswerText = (item: (typeof faqItems)[number]) =>
+  'answer' in item ? item.answer : item.answerParts.join('');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faqAnswerText(item)
+    }
+  }))
+};
+---
+
+<BaseLayout
+  lang="fr"
+  title="Tout savoir sur Repero AI : fonctionnalités, sécurité, données et IA"
+  description="Comprenez comment Repero AI organise vos conversations, documents, sources et artifacts pour éviter que le travail produit avec l’IA se perde dans des chats impossibles à retrouver."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  schema={faqSchema}
+>
+  <Header lang="fr" />
+  <main class="page-shell pb-12">
+    <section class="section-shell px-6 py-10 md:px-10 md:py-14">
+      <div class="max-w-4xl space-y-5">
+        <p class="eyebrow">Guide</p>
+        <h1 class="headline text-4xl md:text-5xl">Tout savoir sur Repero AI</h1>
+        <p class="lead max-w-3xl text-lg md:text-xl">
+          L’IA produit vite. Le vrai problème commence après : retrouver ce qui compte, reprendre
+          un travail commencé, comprendre d’où venait une réponse, récupérer une source ou
+          retrouver la bonne version d’un document.
+        </p>
+        <p class="max-w-3xl text-base leading-8 text-slate-300 md:text-lg">
+          Repero AI est conçu pour garder une trace organisée de vos conversations, documents,
+          sources, artifacts et décisions. L’objectif est simple : que le travail produit avec
+          l’IA reste exploitable, même plusieurs jours ou plusieurs semaines plus tard.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a class="btn-primary" href="https://app.repero.ai" target="_blank">Accès à Repero</a>
+          <a class="btn-secondary" href="/fr/comment-ca-marche">Voir comment ça marche</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="space-y-8 md:space-y-12">
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="a-quoi-sert-repero-ai">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            À quoi sert Repero AI ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero AI sert à résoudre un problème très concret : aujourd’hui, beaucoup de
+            personnes utilisent l’IA pour chercher, écrire, résumer, analyser ou décider, mais
+            une grande partie de ce travail finit dispersée dans des chats, des fichiers, des
+            captures d’écran ou des notes impossibles à retrouver.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Un bon prompt ne suffit pas. Une bonne réponse IA ne vaut pas grand-chose si elle
+            devient introuvable au moment où vous en avez besoin.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero rassemble les conversations, les artifacts, les sources et le contexte de
+            projet dans un même espace. Le but n’est pas de produire encore plus de contenu. Le
+            but est de rendre ce contenu retrouvable, réutilisable et relié au bon contexte.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Pour voir le déroulé de base, consultez aussi la page
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            et les
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/cas-usages">
+              cas d’usage
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="ce-que-repero-permet-deja-de-faire">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Ce que Repero permet déjà de faire
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Les bases de Repero sont pensées pour une chose : éviter que votre travail avec l’IA
+            se perde.
+          </p>
+          <ul class="grid gap-4 md:grid-cols-2">
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Conserver des artifacts</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Une réponse utile ne doit pas rester enfermée dans une conversation. Avec Repero,
+                les contenus importants peuvent devenir des artifacts : documents, synthèses,
+                notes, brouillons, analyses ou livrables réutilisables.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                L’idée est de pouvoir reprendre un résultat, l’améliorer, le rattacher à un projet
+                et éviter de recommencer le même travail plus tard.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Garder le contexte</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Une réponse IA sans contexte perd vite sa valeur. Repero vise à conserver autour du
+                travail les éléments qui comptent : le sujet, les sources, les décisions, les
+                documents liés et les échanges qui ont permis d’arriver au résultat.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Ce n’est pas seulement du stockage. C’est une façon de garder le fil.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Trier et retrouver</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Le problème n’est pas de générer une réponse. Le problème est souvent de la
+                retrouver trois semaines plus tard.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Repero organise les éléments de travail pour qu’ils ne disparaissent pas dans une
+                suite de conversations oubliées. L’objectif est de retrouver une réponse, une
+                source, un document ou une décision sans devoir reconstruire toute l’histoire.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Travailler par projet</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                La plupart des usages sérieux de l’IA ne sont pas isolés. Ils appartiennent à un
+                dossier, un client, une mission, un chantier, un développement, une analyse ou une
+                décision.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Repero est pensé pour travailler par projet, afin que les conversations, les
+                sources et les artifacts restent liés au bon sujet.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="quelle-difference-avec-chatgpt-claude-ou-copilot">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Quelle différence avec ChatGPT, Claude ou Copilot ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            ChatGPT, Claude et Copilot sont excellents pour produire. Ils répondent vite,
+            reformulent, codent, expliquent et résument. Mais pour beaucoup d’usages
+            professionnels, produire ne suffit pas.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Le vrai besoin est souvent ailleurs : garder une mémoire du travail, retrouver les
+            bonnes réponses, conserver les sources, organiser les documents, rattacher les
+            décisions à un projet et reprendre un livrable sans repartir de zéro.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero ne cherche pas à être le modèle le plus spectaculaire. Repero cherche à rendre
+            le travail avec l’IA durable, structuré et réutilisable.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Pour un usage ponctuel, un assistant IA classique peut suffire. Pour un usage régulier,
+            métier ou projet, l’organisation devient vite aussi importante que la génération.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="comment-les-donnees-sont-organisees">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Comment les données sont organisées ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero organise le travail autour d’un principe simple : chaque information doit rester
+            liée à son contexte.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Une conversation seule ne suffit pas toujours. Un document seul ne raconte pas
+            forcément pourquoi il existe. Une source isolée ne dit pas toujours dans quelle
+            décision elle a été utilisée.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero présente les projets comme un cadre pour regrouper conversations, sources,
+            artifacts et documents. L’objectif est d’éviter le mélange permanent entre les sujets
+            et de conserver une mémoire lisible du travail.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Un projet peut représenter un dossier client, une mission data, un développement
+            logiciel, une analyse juridique, une recherche, un chantier, une documentation
+            technique ou n’importe quel sujet qui mérite d’être suivi dans le temps.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Pour voir l’organisation côté expérience, la page
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            donne le déroulé principal.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="securite-et-confidentialite">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Sécurité et confidentialité
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Un outil qui centralise vos documents, vos conversations et vos productions IA doit
+            être clair sur ce qu’il fait avec vos données.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            La sécurité n’est pas un argument marketing secondaire pour Repero. C’est une
+            contrainte de conception.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero vise un positionnement européen, avec une attention particulière portée au
+            contrôle des données, à la portabilité et à la transparence. L’objectif est que
+            l’utilisateur comprenne ce qui est stocké, ce qui est transmis à un modèle IA, ce qui
+            peut être supprimé et ce qui reste sous son contrôle.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Nous ne voulons pas vendre une illusion de sécurité absolue. Nous voulons documenter
+            clairement les choix effectués, les limites existantes et les évolutions prévues.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Quand des fournisseurs IA externes sont utilisés, certaines interactions peuvent
+            dépendre de leurs propres conditions. Repero doit donc rendre cette réalité
+            compréhensible au lieu de la cacher derrière un slogan.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="comment-repero-utilise-l-ia">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Comment Repero utilise l’IA ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero utilise l’IA comme un moteur de travail, pas comme une boîte noire magique.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            L’IA peut aider à produire une réponse, structurer un document, reformuler un contenu,
+            synthétiser une source, analyser une information ou transformer une conversation en
+            artifact exploitable.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero peut s’appuyer sur plusieurs modèles selon les besoins et la configuration :
+            modèles open source, Mistral, OpenAI ou Anthropic. L’objectif n’est pas de dépendre
+            d’un seul fournisseur, mais de garder une logique flexible selon la qualité attendue,
+            le coût, le contexte et les options disponibles.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Le mode automatique vise à aider à arbitrer entre qualité, budget de tokens et type de
+            tâche. Certaines options avancées peuvent dépendre du plan d’abonnement ou de la
+            configuration disponible.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Le point important est ailleurs : Repero ne considère pas la réponse IA comme une fin.
+            La réponse doit pouvoir devenir un élément de travail que l’on retrouve, que l’on
+            reprend et que l’on rattache à un projet.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="exemples-d-usage">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Exemples d’usage
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Des cas concrets où une couche d’organisation change la donne.
+          </p>
+          <ul class="grid gap-4 md:grid-cols-2">
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Recherche</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Vous explorez un sujet, consultez plusieurs sources, posez plusieurs questions à
+                l’IA, obtenez des synthèses et prenez des décisions intermédiaires.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Sans organisation, tout se mélange. Avec Repero, le travail peut rester attaché au
+                bon projet, avec les sources et les résultats importants.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Production</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Vous générez une note, un document, une analyse, un plan, une réponse client ou
+                une synthèse.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Repero permet de garder ce contenu comme un artifact, au lieu de le laisser
+                disparaître dans une conversation. Vous pouvez ensuite le reprendre, le modifier ou
+                vous en servir comme base.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Projet</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Vous travaillez sur une mission, un dossier ou un chantier qui dure plusieurs jours
+                ou plusieurs semaines.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Repero aide à garder le fil : ce qui a été demandé, ce qui a été produit, quelles
+                sources ont été utilisées et quels éléments doivent être repris.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Équipe</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Quand plusieurs personnes travaillent autour d’un même sujet, le problème n’est pas
+                seulement de produire plus vite. Le problème est que chacun retrouve le bon
+                contexte.
+              </p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                La collaboration multi-utilisateur fait partie de la direction produit. L’objectif
+                est de permettre à terme une mémoire de travail plus lisible pour les équipes.
+              </p>
+            </li>
+          </ul>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Pour découvrir d’autres scénarios, explorez aussi les
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/cas-usages">
+              cas d’usage
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="fonctionnalites-en-cours-et-roadmap">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Fonctionnalités en cours et roadmap
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero est un produit en construction. Certaines bases existent déjà, d’autres
+            fonctionnalités sont en cours ou prévues.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">Les évolutions importantes incluent notamment :</p>
+          <ul class="list-disc space-y-2 pl-6 text-base leading-8 text-slate-300 md:text-lg">
+            <li>le versioning des artifacts ;</li>
+            <li>l’édition enrichie de documents ;</li>
+            <li>une bibliothèque documentaire plus visuelle ;</li>
+            <li>une recherche plus avancée dans les projets ;</li>
+            <li>l’intégration de sources web ;</li>
+            <li>l’export de documents ;</li>
+            <li>les templates réutilisables ;</li>
+            <li>les demandes ou votes de fonctionnalités ;</li>
+            <li>la collaboration multi-utilisateur ;</li>
+            <li>un meilleur contrôle des modèles IA et du budget de tokens.</li>
+          </ul>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Nous préférons être clairs : tout n’est pas encore disponible. Mais la direction est
+            assumée. Repero vise à devenir la mémoire organisée du travail produit avec l’IA.
+          </p>
+          <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
+            <h3 class="text-lg font-medium text-amber-100">À garder en tête</h3>
+            <p class="mt-2 text-sm leading-7 text-amber-50/90">
+              Le multi-utilisateur, certains choix avancés de modèles, l’optimisation automatique
+              et plusieurs fonctions de gouvernance sont des directions de roadmap. Elles ne
+              doivent pas être comprises comme des promesses déjà livrées partout.
+            </p>
+            <p class="mt-2 text-sm leading-7 text-amber-50/90">
+              Pour suivre l’évolution produit, la
+              <a class="text-white underline decoration-amber-200 underline-offset-4" href="/fr/liste-attente">
+                liste d’attente
+              </a>
+              reste le point d’entrée le plus direct.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="questions-frequentes">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Questions fréquentes
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Les réponses rapides aux questions les plus courantes.
+          </p>
+          <div class="space-y-4">
+            {
+              faqItems.map((item) => (
+                <details class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+                  <summary class="cursor-pointer text-lg font-medium text-white">
+                    {item.question}
+                  </summary>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">
+                    {'answer' in item ? (
+                      item.answer
+                    ) : (
+                      <>
+                        {item.answerParts[0]}
+                        <a
+                          class="text-white underline decoration-slate-500 underline-offset-4"
+                          href="/fr/comment-ca-marche"
+                        >
+                          {item.answerParts[1]}
+                        </a>
+                        {item.answerParts[2]}
+                      </>
+                    )}
+                  </p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            Continuer la découverte
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Si vous voulez approfondir le fonctionnement global, la page
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            complète ce guide. Pour suivre l’évolution, la
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/liste-attente">
+              liste d’attente
+            </a>
+            est le point d’entrée le plus direct.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a class="btn-primary" href="/fr">Retour à l’accueil</a>
+            <a class="btn-secondary" href="/fr/cas-usages">Explorer les cas d’usage</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer lang="fr" />
+</BaseLayout>

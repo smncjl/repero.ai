@@ -11,9 +11,17 @@ interface Props {
   ogImage?: string;
   twitterCard?: 'summary' | 'summary_large_image';
   alternates?: Array<{ lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl' | 'x-default'; href: string }>;
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const { title, description, lang, canonical, ogType, ogImage, twitterCard, alternates } = Astro.props;
+const { title, description, lang, canonical, ogType, ogImage, twitterCard, alternates, article, schema } = Astro.props;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -29,6 +37,8 @@ const { title, description, lang, canonical, ogType, ogImage, twitterCard, alter
       ogImage={ogImage}
       twitterCard={twitterCard}
       alternates={alternates}
+      article={article}
+      schema={schema}
     />
   </head>
   <body>

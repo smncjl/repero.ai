@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductStorySection from '../../components/ProductStorySection.astro';
+import { frProductScreens } from '../../data/frProductScreens';
+
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/comment-ca-marche', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
+
+const projectScreen = frProductScreens.find((screen) => screen.id === 'projects-conversations');
+const contextScreen = frProductScreens.find((screen) => screen.id === 'active-context');
+const retrievalScreen = frProductScreens.find((screen) => screen.id === 'sources-documents');
+const artifactScreen = frProductScreens.find((screen) => screen.id === 'artifacts');
+const searchScreen = frProductScreens.find((screen) => screen.id === 'search-context');
+---
+
+<BaseLayout
+  lang="fr"
+  title="Comment ça marche | Repero AI"
+  description="Découvrez comment Repero AI centralise projets, conversations, documents, sources et artefacts pour retrouver votre travail avec l’IA."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  alternates={alternates}
+>
+  <Header lang="fr" />
+  <main class="page-shell pb-12">
+    <section class="section-shell px-6 py-10 md:px-10 md:py-14">
+      <div class="max-w-3xl space-y-5">
+        <p class="eyebrow">Comment ça marche</p>
+        <h1 class="headline text-4xl md:text-5xl">
+          Gardez vos conversations, documents et artefacts dans le même fil de travail.
+        </h1>
+        <p class="lead max-w-3xl text-lg md:text-xl">
+          Repero AI organise le travail avec l’IA pour que le contexte, les sorties générées et les
+          décisions restent trouvables plus tard.
+        </p>
+      </div>
+    </section>
+
+    <div class="mt-8 space-y-8 md:space-y-12">
+      {projectScreen && (
+        <ProductStorySection
+          id={projectScreen.id}
+          eyebrow="Étape 1"
+          heading={projectScreen.pageHeading}
+          body={[
+            ...projectScreen.pageBody,
+            'Le projet devient le point de repère pour regrouper les conversations, les documents et les sorties utiles.'
+          ]}
+          image={projectScreen.image}
+          alt={projectScreen.alt}
+        />
+      )}
+
+      {contextScreen && (
+        <ProductStorySection
+          id={contextScreen.id}
+          eyebrow="Étape 2"
+          heading={contextScreen.pageHeading}
+          body={[
+            ...contextScreen.pageBody,
+            'Vous avancez sans jongler entre plusieurs vues parce que les éléments actifs restent attachés à la discussion en cours.'
+          ]}
+          image={contextScreen.image}
+          alt={contextScreen.alt}
+          reverse
+        />
+      )}
+
+      {retrievalScreen && (
+        <ProductStorySection
+          id={retrievalScreen.id}
+          eyebrow="Étape 3"
+          heading={retrievalScreen.pageHeading}
+          body={[
+            ...retrievalScreen.pageBody,
+            'Le travail ne se disperse pas entre dossiers, liens et chats séparés : tout reste récupérable depuis le même espace.'
+          ]}
+          image={retrievalScreen.image}
+          alt={retrievalScreen.alt}
+        />
+      )}
+
+      {artifactScreen && (
+        <ProductStorySection
+          id={artifactScreen.id}
+          eyebrow="Étape 4"
+          heading={artifactScreen.pageHeading}
+          body={[
+            ...artifactScreen.pageBody,
+            'Quand un livrable doit être relu ou repris, son origine reste claire et le chemin de travail reste visible.'
+          ]}
+          image={artifactScreen.image}
+          alt={artifactScreen.alt}
+          reverse
+        />
+      )}
+
+      {searchScreen && (
+        <ProductStorySection
+          id={searchScreen.id}
+          eyebrow="Étape 5"
+          heading={searchScreen.pageHeading}
+          body={[
+            ...searchScreen.pageBody,
+            'C’est ce qui permet de revenir plus tard sur une recherche, une décision ou une conversation sans repartir de zéro.'
+          ]}
+          image={searchScreen.image}
+          alt={searchScreen.alt}
+        />
+      )}
+    </div>
+
+    <section class="section-shell mt-8 px-6 py-8 md:px-8 md:py-10">
+      <p class="eyebrow">Aller plus loin</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-white">
+        Passez de la conversation à un espace de travail IA structuré.
+      </h2>
+      <p class="mt-4 max-w-3xl text-base leading-8 text-slate-300">
+        Si vous cherchez une façon plus claire de centraliser vos projets, vos sources et vos
+        contenus générés, vous pouvez découvrir les cas d’usage ou demander un accès anticipé.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a class="btn-primary" href="https://app.repero.ai" target="_blank">Accès anticipé à Repero</a>
+        <a class="btn-secondary" href="/fr/cas-usages">Voir les cas d’usage</a>
+      </div>
+    </section>
+  </main>
+  <Footer lang="fr" />
+</BaseLayout>

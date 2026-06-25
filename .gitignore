@@ -144,3 +144,7 @@ vite.config.ts.timestamp-*
 
 # Astro build/dev cache
 .astro/
+
+# Local planning and brainstorming artifacts
+.superpowers/
+docs/plans/

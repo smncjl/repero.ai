@@ -1,0 +1,54 @@
+---
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  heading: string;
+  body: string[];
+  image: string;
+  alt: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  reverse?: boolean;
+}
+
+const { id, eyebrow, heading, body, image, alt, imageWidth = 1440, imageHeight = 960, reverse = false } = Astro.props;
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const sectionId = id ? slugify(id) || undefined : undefined;
+const headingId = `${sectionId || slugify(heading) || 'product-story-section'}-heading`;
+---
+
+<section
+  id={sectionId}
+  class="product-story-section"
+  data-reverse={reverse ? 'true' : undefined}
+  aria-labelledby={headingId}
+>
+  <div class="product-story-section__media">
+    <div class="product-story-section__frame">
+      <img
+        src={image}
+        alt={alt}
+        class="product-story-section__image"
+        width={imageWidth}
+        height={imageHeight}
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <div class="product-story-section__content">
+    {eyebrow ? <p class="eyebrow">{eyebrow}</p> : null}
+    <h2 id={headingId} class="product-story-section__heading">{heading}</h2>
+    <div class="product-story-section__body">
+      {body.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </div>
+</section>
