@@ -2,13 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import ProductCarousel from '../../components/ProductCarousel.astro';
 import { frProductScreens } from '../../data/frProductScreens';
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr', site).href;
 const alternates = [{ lang: 'en', href: new URL('/en', site).href }];
-const heroScreenIds = ['artifacts', 'active-context', 'search-context'];
-const heroScreens = frProductScreens.filter((screen) => heroScreenIds.includes(screen.id));
+const heroScreen = frProductScreens.find((screen) => screen.id === 'active-context');
 ---
 <BaseLayout
   lang="fr"
@@ -41,7 +39,20 @@ const heroScreens = frProductScreens.filter((screen) => heroScreenIds.includes(s
         </p>
       </div>
 
-      <ProductCarousel id="fr-home-hero" screens={heroScreens} />
+      {heroScreen && (
+        <div class="surface p-4 md:p-5">
+          <div class="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950/70 shadow-[0_24px_60px_rgba(2,132,199,0.14)]">
+            <img
+              src={heroScreen.image}
+              alt={heroScreen.alt}
+              class="aspect-[16/10] w-full object-cover object-top"
+              width="1440"
+              height="960"
+              loading="eager"
+            />
+          </div>
+        </div>
+      )}
     </section>
 
     <section class="grid gap-4 md:grid-cols-3">
