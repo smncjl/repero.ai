@@ -1,0 +1,365 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/fr/guide', site).href;
+
+const faqItems = [
+  {
+    question: 'Repero AI remplace-t-il ChatGPT, Claude ou Copilot ?',
+    answer:
+      'Non. Repero AI est un espace de travail pour organiser des artefacts, du contexte, des sources et des conversations autour d’un projet. Il peut s’appuyer sur plusieurs modèles selon la configuration, mais il ne se présente pas comme un remplacement direct de ces assistants.'
+  },
+  {
+    question: 'Mes données sont-elles utilisées pour entraîner un modèle public ?',
+    answer:
+      'Repero AI vise à séparer vos données de travail du reste du produit et à garder un contrôle explicite sur leur usage. Les détails dépendent de la configuration et des services choisis, mais la page décrit un cadre de confidentialité et de contrôle, pas un entraînement public par défaut.'
+  },
+  {
+    question: 'Quels modèles d’IA sont mentionnés par Repero ?',
+    answer:
+      'Repero peut fonctionner avec des modèles open source, Mistral, OpenAI et Anthropic. Le mode automatique sert à arbitrer la qualité et le budget de tokens selon la configuration disponible.'
+  },
+  {
+    question: 'La fonctionnalité multi-utilisateur est-elle déjà disponible ?',
+    answer:
+      'La collaboration multi-utilisateur est présentée comme une évolution de roadmap, pas comme une promesse de disponibilité immédiate sur cette page.'
+  },
+  {
+    question: 'Où trouver une présentation plus pratique ?',
+    answerParts: [
+      'La page ',
+      'comment ça marche',
+      ' est la meilleure suite si vous voulez voir le déroulé de base.'
+    ] as const
+  }
+] as const;
+
+const faqAnswerText = (item: (typeof faqItems)[number]) =>
+  'answer' in item ? item.answer : item.answerParts.join('');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faqAnswerText(item)
+    }
+  }))
+};
+---
+
+<BaseLayout
+  lang="fr"
+  title="Tout savoir sur Repero AI : fonctionnalités, sécurité, données et IA"
+  description="Découvrez ce que Repero AI permet de faire, comment vos données sont organisées, comment l’IA est utilisée, quelles fonctionnalités existent déjà et ce qui arrive ensuite."
+  canonical={canonical}
+  ogType="website"
+  twitterCard="summary_large_image"
+  schema={faqSchema}
+>
+  <Header lang="fr" />
+  <main class="page-shell pb-12">
+    <section class="section-shell px-6 py-10 md:px-10 md:py-14">
+      <div class="max-w-4xl space-y-5">
+        <p class="eyebrow">Guide</p>
+        <h1 class="headline text-4xl md:text-5xl">Tout savoir sur Repero AI</h1>
+        <p class="lead max-w-3xl text-lg md:text-xl">
+          Une vue claire de ce que Repero AI fait déjà, de la façon dont les données sont
+          structurées, de l’usage de l’IA et de ce qui est en cours de construction.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a class="btn-primary" href="/fr/liste-attente">Rejoindre la liste d’attente</a>
+          <a class="btn-secondary" href="/fr/comment-ca-marche">Voir comment ça marche</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="space-y-8 md:space-y-12">
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="a-quoi-sert-repero-ai">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            À quoi sert Repero AI ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero AI sert à rassembler des artefacts, des conversations, des sources et du
+            contexte de projet dans un même cadre. L’objectif est simple: éviter que le travail
+            généré par l’IA se disperse entre plusieurs chats, fichiers ou outils.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            La promesse ici n’est pas de tout faire, mais de rendre le travail autour de l’IA plus
+            lisible. Pour un aperçu orienté parcours, consultez aussi
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            et les
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/cas-usages">
+              cas d’usage
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="ce-que-repero-permet-deja-de-faire">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Ce que Repero permet déjà de faire
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Les bases sont là pour organiser le travail et garder le contexte utile.
+          </p>
+          <ul class="grid gap-4 md:grid-cols-2">
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Conserver des artefacts</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Les sorties utiles ne restent pas coincées dans une conversation isolée. Elles sont
+                pensées pour être relues, reprises et reliées à un projet.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Garder le contexte</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Le contexte, les sources et les décisions restent attachés au travail en cours pour
+                limiter les aller-retours et les pertes d’information.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Trier et retrouver</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                L’organisation vise à rendre les éléments de travail trouvables plus tard, plutôt
+                que de les laisser se dissoudre dans une suite de chats.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Travailler par projet</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Le cadre est pensé pour des usages structurés, là où les références et livrables ont
+                besoin d’un fil conducteur clair.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="quelle-difference-avec-chatgpt-claude-ou-copilot">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Quelle différence avec ChatGPT, Claude ou Copilot ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            ChatGPT, Claude ou Copilot sont des assistants puissants. Repero se positionne plutôt
+            comme une couche d’organisation autour du travail généré par l’IA: les artefacts, les
+            sources, le contexte et les échanges restent structurés dans un même espace.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            En pratique, cela signifie que Repero peut compléter ces outils sans prétendre les
+            remplacer. Il met l’accent sur la continuité du travail, la lisibilité du projet et la
+            réutilisation des éléments produits.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="comment-les-donnees-sont-organisees">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Comment les données sont organisées ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Les données de travail sont pensées pour rester compréhensibles et délimitées.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            La page présente Repero comme un espace où les projets structurent les conversations,
+            les sources et les artefacts. L’idée est de conserver un périmètre clair pour chaque
+            bloc de travail afin que l’information reste exploitable sans mélange inutile.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Si vous voulez voir l’organisation côté expérience, la page
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            donne le déroulé principal.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="securite-et-confidentialite">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Sécurité et confidentialité
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Une approche centrée sur le contrôle des données et la transparence.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero vise un positionnement européen, avec une attention particulière portée au
+            contrôle des données, à la portabilité et à la clarté du fonctionnement. Cette page ne
+            promet pas une conformité universelle ou des garanties absolues: elle décrit une
+            intention produit et une direction de conception.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Autrement dit, la sécurité et la confidentialité ne sont pas traitées comme un slogan,
+            mais comme un ensemble de choix de produit à documenter et à faire évoluer.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="comment-repero-utilise-l-ia">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Comment Repero utilise l’IA ?
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Repero peut s’appuyer sur plusieurs modèles selon le besoin et la configuration.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Concrètement, Repero mentionne des modèles open source, Mistral, OpenAI et Anthropic.
+            L’objectif n’est pas de figer une seule IA, mais d’ouvrir la porte à plusieurs options
+            selon les contraintes de qualité, de coût et de contexte.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            En mode automatique, la logique vise à adapter la sélection au budget de tokens et au
+            type de tâche. Cette page reste volontairement prudente: le comportement exact dépend
+            de la configuration disponible au moment de l’usage.
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="exemples-d-usage">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Exemples d’usage
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Des cas concrets où une couche d’organisation change la donne.
+          </p>
+          <ul class="grid gap-4 md:grid-cols-3">
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Recherche</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Centraliser les sources, les notes et les sorties pour reprendre un sujet sans tout
+                reconstruire.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Production</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Garder les artefacts alignés avec le contexte du projet pour faciliter les relectures
+                et les itérations.
+              </p>
+            </li>
+            <li class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+              <h3 class="text-lg font-medium text-white">Équipe</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-300">
+                Partager un cadre de travail lisible pour que chacun retrouve le fil du projet au
+                même endroit.
+              </p>
+            </li>
+          </ul>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Pour découvrir d’autres scénarios, explorez aussi les
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/cas-usages">
+              cas d’usage
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="fonctionnalites-en-cours-et-roadmap">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Fonctionnalités en cours et roadmap
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Certaines fonctions sont disponibles, d’autres restent en construction.
+          </p>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Cette page ne surestime pas l’état produit. Le travail multi-LLM, l’optimisation
+            automatique selon le budget de tokens et la collaboration multi-utilisateur font partie
+            de l’évolution attendue, mais la disponibilité exacte peut varier selon la version.
+          </p>
+          <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5">
+            <h3 class="text-lg font-medium text-amber-100">À garder en tête</h3>
+            <p class="mt-2 text-sm leading-7 text-amber-50/90">
+              Le multi-utilisateur est présenté ici comme une direction de roadmap, pas comme une
+              fonctionnalité surpromue. Pour suivre l’évolution produit, le meilleur point d’entrée
+              reste la
+              <a class="text-white underline decoration-amber-200 underline-offset-4" href="/fr/liste-attente">
+                liste d’attente
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10" id="questions-frequentes">
+        <div class="max-w-4xl space-y-5">
+          <h2 class="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            Questions fréquentes
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Les réponses rapides aux questions les plus courantes.
+          </p>
+          <div class="space-y-4">
+            {
+              faqItems.map((item) => (
+                <details class="rounded-2xl border border-slate-800 bg-slate-950/60 p-5">
+                  <summary class="cursor-pointer text-lg font-medium text-white">
+                    {item.question}
+                  </summary>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">
+                    {'answer' in item ? (
+                      item.answer
+                    ) : (
+                      <>
+                        {item.answerParts[0]}
+                        <a
+                          class="text-white underline decoration-slate-500 underline-offset-4"
+                          href="/fr/comment-ca-marche"
+                        >
+                          {item.answerParts[1]}
+                        </a>
+                        {item.answerParts[2]}
+                      </>
+                    )}
+                  </p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell px-6 py-8 md:px-8 md:py-10">
+        <div class="max-w-4xl space-y-4">
+          <h2 class="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+            Continuer la découverte
+          </h2>
+          <p class="text-base leading-8 text-slate-300 md:text-lg">
+            Si vous voulez approfondir le fonctionnement global, la page
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/comment-ca-marche">
+              comment ça marche
+            </a>
+            complète ce guide. Pour suivre l’évolution, la
+            <a class="text-white underline decoration-slate-500 underline-offset-4" href="/fr/liste-attente">
+              liste d’attente
+            </a>
+            est le point d’entrée le plus direct.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a class="btn-primary" href="/fr">Retour à l’accueil</a>
+            <a class="btn-secondary" href="/fr/cas-usages">Explorer les cas d’usage</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer lang="fr" />
+</BaseLayout>

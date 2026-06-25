@@ -48,7 +48,8 @@ const entries: Entry[] = [
   { path: '/de/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
   { path: '/it/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
   { path: '/es/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
-  { path: '/nl/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }] }
+  { path: '/nl/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }] },
+  { path: '/fr/guide' }
 ];
 
 function escapeXml(value: string) {
