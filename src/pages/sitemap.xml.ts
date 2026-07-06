@@ -49,7 +49,10 @@ const entries: Entry[] = [
   { path: '/it/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
   { path: '/es/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
   { path: '/nl/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }] },
-  { path: '/fr/guide' }
+  { path: '/fr/guide' },
+  { path: '/fr/blog/chatgpt-claude-conversations-bordel' },
+  { path: '/fr/blog/ia-produire-rien-retrouver' },
+  { path: '/fr/blog/outils-ia-non-techniques' },
 ];
 
 function escapeXml(value: string) {
