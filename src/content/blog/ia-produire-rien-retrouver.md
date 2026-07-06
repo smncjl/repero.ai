@@ -11,7 +11,7 @@ tags:
   - "recherche"
   - "workflow IA"
 lang: "fr"
-draft: true
+draft: false
 ---
 
 ## L’IA nous fait produire plus vite. C’est une bonne nouvelle. Et un problème.
