@@ -11,7 +11,7 @@ tags:
   - "recherche"
   - "productivité"
 lang: "fr"
-draft: true
+draft: false
 ---
 
 ## L’IA est devenue accessible. Mais l’organisation autour ne l’est pas encore.
