@@ -14,6 +14,8 @@ lang: "fr"
 draft: false
 ---
 
+![Illustration : une interface IA simple pour des utilisateurs non techniques.](/blog/outils-ia-non-tech.svg)
+
 ## L’IA est devenue accessible. Mais l’organisation autour ne l’est pas encore.
 
 On dit souvent que ChatGPT a rendu l’IA accessible à tout le monde.

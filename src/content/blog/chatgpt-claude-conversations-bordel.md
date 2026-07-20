@@ -14,6 +14,8 @@ lang: "fr"
 draft: false
 ---
 
+![Illustration : des conversations IA désordonnées reliées à une bibliothèque de travail.](/blog/conversations-ia-bordel.svg)
+
 ## Le problème n’est pas que l’IA ne répond pas. Le problème, c’est ce qu’on fait après.
 
 Aujourd’hui, tout le monde ou presque commence à utiliser ChatGPT, Claude, Gemini ou d’autres outils IA. On pose une question, on obtient une réponse, on reformule, on demande une version plus courte, puis une version plus claire, puis un tableau, puis un email, puis une structure de projet.
