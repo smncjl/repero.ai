@@ -9,18 +9,18 @@ const isIt = lang === 'it';
 const isEs = lang === 'es';
 const isNl = lang === 'nl';
 const sendingLabel = isEn ? 'Sending...' : isFr ? 'Envoi...' : isDe ? 'Senden...' : isIt ? 'Invio...' : isEs ? 'Enviando...' : 'Verzenden...';
-const successTitle = isEn ? 'You’re on the waitlist.' : isFr ? 'Vous êtes sur la liste d’attente.' : isDe ? 'Sie sind auf der Warteliste.' : isIt ? 'Sei sulla lista d\'attesa.' : isEs ? 'Estás en la lista de espera.' : 'Je staat op de wachtlijst.';
+const successTitle = isEn ? 'Access request received.' : isFr ? 'Demande d’accès reçue.' : isDe ? 'Zugangsanfrage erhalten.' : isIt ? 'Richiesta di accesso ricevuta.' : isEs ? 'Solicitud de acceso recibida.' : 'Toegangsaanvraag ontvangen.';
 const successBody = isEn
-  ? 'Your request has been received. We’ll follow up when the next spots open.'
+  ? 'Your request has been received. We’ll follow up with the next access details.'
   : isFr
-  ? 'Votre demande a bien été reçue. Nous vous recontacterons lorsque de nouveaux accès seront ouverts.'
+  ? 'Votre demande a bien été reçue. Nous vous recontacterons avec les prochaines informations d’accès.'
   : isDe
-  ? 'Ihre Anfrage wurde empfangen. Wir werden uns melden, wenn neue Plätze verfügbar sind.'
+  ? 'Ihre Anfrage wurde empfangen. Wir melden uns mit den nächsten Zugangsinformationen.'
   : isIt
-  ? 'La tua richiesta è stata ricevuta. Ti contatteremo quando saranno disponibili altri posti.'
+  ? 'La tua richiesta è stata ricevuta. Ti ricontatteremo con le prossime informazioni di accesso.'
   : isEs
-  ? 'Su pedido ha sido recibido. Nos pondremos en contacto cuando haya nuevos accesos disponibles.'
-  : 'Je verzoek is ontvangen. We nemen contact met je op wanneer nieuwe plekken beschikbaar zijn.';
+  ? 'Su solicitud ha sido recibida. Nos pondremos en contacto con la próxima información de acceso.'
+  : 'Je verzoek is ontvangen. We nemen contact met je op met de volgende toegangsgegevens.';
 const profiles = isEn
   ? [
       ['personal', 'Personal use'],
@@ -108,7 +108,7 @@ const profiles = isEn
     </select>
     <input class="form-field" name="intendedUse" required placeholder={isEn ? 'Intended use' : isFr ? 'Usage prévu' : isDe ? 'Geplanter Gebrauch' : isIt ? 'Utilizzo previsto' : isEs ? 'Uso previsto' : 'Gepland gebruik'} />
     <textarea class="form-field min-h-32" name="message" placeholder={isEn ? 'Optional message' : isFr ? 'Message optionnel' : isDe ? 'Optionale Nachricht' : isIt ? 'Messaggio opzionale' : isEs ? 'Mensaje opcional' : 'Optioneel bericht'}></textarea>
-    <button class="btn-primary" type="submit" data-waitlist-submit>{isEn ? 'Join waitlist' : isFr ? 'Rejoindre la liste' : isDe ? 'Warteliste beitreten' : isIt ? 'Unisciti alla lista' : isEs ? 'Unirse a la lista' : 'Lid worden van wachtlijst'}</button>
+    <button class="btn-primary" type="submit" data-waitlist-submit>{isEn ? 'Request access' : isFr ? 'Demander l’accès' : isDe ? 'Zugang anfragen' : isIt ? 'Richiedi accesso' : isEs ? 'Solicitar acceso' : 'Toegang aanvragen'}</button>
   </form>
 </div>
 

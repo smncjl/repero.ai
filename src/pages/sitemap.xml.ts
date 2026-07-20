@@ -13,12 +13,12 @@ const entries: Entry[] = [
   { path: '/it', alternates: [{ lang: 'en', path: '/en' }, { lang: 'fr', path: '/fr' }, { lang: 'de', path: '/de' }, { lang: 'es', path: '/es' }, { lang: 'nl', path: '/nl' }] },
   { path: '/es', alternates: [{ lang: 'en', path: '/en' }, { lang: 'fr', path: '/fr' }, { lang: 'de', path: '/de' }, { lang: 'it', path: '/it' }, { lang: 'nl', path: '/nl' }] },
   { path: '/nl', alternates: [{ lang: 'en', path: '/en' }, { lang: 'fr', path: '/fr' }, { lang: 'de', path: '/de' }, { lang: 'it', path: '/it' }, { lang: 'es', path: '/es' }] },
-  { path: '/en/waitlist', alternates: [{ lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/lista-attesa' }, { lang: 'es', path: '/es/lista-espera' }, { lang: 'nl', path: '/nl/wachtlijst' }] },
-  { path: '/fr/liste-attente', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/lista-attesa' }, { lang: 'es', path: '/es/lista-espera' }, { lang: 'nl', path: '/nl/wachtlijst' }] },
-  { path: '/de/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'it', path: '/it/lista-attesa' }, { lang: 'es', path: '/es/lista-espera' }, { lang: 'nl', path: '/nl/wachtlijst' }] },
-  { path: '/it/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'es', path: '/es/lista-espera' }, { lang: 'nl', path: '/nl/wachtlijst' }] },
-  { path: '/es/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/lista-attesa' }, { lang: 'nl', path: '/nl/wachtlijst' }] },
-  { path: '/nl/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/lista-attesa' }, { lang: 'es', path: '/es/lista-espera' }] },
+  { path: '/en/waitlist', alternates: [{ lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/waitlist' }, { lang: 'es', path: '/es/waitlist' }, { lang: 'nl', path: '/nl/waitlist' }] },
+  { path: '/fr/liste-attente', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/waitlist' }, { lang: 'es', path: '/es/waitlist' }, { lang: 'nl', path: '/nl/waitlist' }] },
+  { path: '/de/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'it', path: '/it/waitlist' }, { lang: 'es', path: '/es/waitlist' }, { lang: 'nl', path: '/nl/waitlist' }] },
+  { path: '/it/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'es', path: '/es/waitlist' }, { lang: 'nl', path: '/nl/waitlist' }] },
+  { path: '/es/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/waitlist' }, { lang: 'nl', path: '/nl/waitlist' }] },
+  { path: '/nl/waitlist', alternates: [{ lang: 'en', path: '/en/waitlist' }, { lang: 'fr', path: '/fr/liste-attente' }, { lang: 'de', path: '/de/waitlist' }, { lang: 'it', path: '/it/waitlist' }, { lang: 'es', path: '/es/waitlist' }] },
   { path: '/en/use-cases', alternates: [{ lang: 'fr', path: '/fr/cas-usages' }, { lang: 'de', path: '/de/use-cases' }, { lang: 'it', path: '/it/use-cases' }, { lang: 'es', path: '/es/use-cases' }, { lang: 'nl', path: '/nl/use-cases' }] },
   { path: '/fr/cas-usages', alternates: [{ lang: 'en', path: '/en/use-cases' }, { lang: 'de', path: '/de/use-cases' }, { lang: 'it', path: '/it/use-cases' }, { lang: 'es', path: '/es/use-cases' }, { lang: 'nl', path: '/nl/use-cases' }] },
   { path: '/de/use-cases', alternates: [{ lang: 'en', path: '/en/use-cases' }, { lang: 'fr', path: '/fr/cas-usages' }, { lang: 'it', path: '/it/use-cases' }, { lang: 'es', path: '/es/use-cases' }, { lang: 'nl', path: '/nl/use-cases' }] },
@@ -50,9 +50,6 @@ const entries: Entry[] = [
   { path: '/es/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'nl', path: '/nl/use-cases/tradespeople' }] },
   { path: '/nl/use-cases/tradespeople', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }, { lang: 'fr', path: '/fr/cas-usages/techniciens' }, { lang: 'de', path: '/de/use-cases/tradespeople' }, { lang: 'it', path: '/it/use-cases/tradespeople' }, { lang: 'es', path: '/es/use-cases/tradespeople' }] },
   { path: '/fr/guide' },
-  { path: '/fr/blog/chatgpt-claude-conversations-bordel' },
-  { path: '/fr/blog/ia-produire-rien-retrouver' },
-  { path: '/fr/blog/outils-ia-non-techniques' },
 ];
 
 function escapeXml(value: string) {
@@ -65,7 +62,11 @@ export async function GET() {
     { path: buildBlogIndexPath('fr') },
     ...publishedFrenchPosts.map((post) => ({ path: buildBlogPostPath(post) }))
   ];
-  const allEntries = [...entries, ...dynamicEntries];
+  const uniqueEntries = new Map<string, Entry>();
+  for (const entry of [...entries, ...dynamicEntries]) {
+    uniqueEntries.set(entry.path, entry);
+  }
+  const allEntries = [...uniqueEntries.values()];
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${allEntries

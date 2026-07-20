@@ -24,6 +24,7 @@ const { Content } = await post.render();
 const site = Astro.site?.href || 'https://repero.ai';
 const canonicalPath = buildBlogPostPath(post);
 const canonical = new URL(canonicalPath, site).href;
+const postImage = post.data.image ? new URL(post.data.image, site).href : undefined;
 const relatedPosts = getRelatedPosts(post, posts);
 const readingTime = getReadingTimeMinutes(post.body);
 const publishedTime = post.data.pubDate.toISOString();
@@ -38,6 +39,7 @@ const schema = {
   inLanguage: post.data.lang,
   articleSection: post.data.category,
   keywords: post.data.tags,
+  image: postImage,
   author: {
     '@type': 'Person',
     name: post.data.author
@@ -61,6 +63,7 @@ const schema = {
   canonical={canonical}
   ogType="article"
   twitterCard="summary_large_image"
+  ogImage={post.data.image}
   article={{
     publishedTime,
     modifiedTime,

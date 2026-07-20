@@ -4,6 +4,7 @@ description: "ChatGPT et Claude sont puissants, mais les conversations deviennen
 pubDate: 2026-06-22
 author: "Repero AI"
 category: "Organisation IA"
+image: "/blog/conversations-ia-bordel.svg"
 tags:
   - "ChatGPT"
   - "Claude"
