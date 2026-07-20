@@ -14,6 +14,8 @@ lang: "fr"
 draft: false
 ---
 
+![Illustration : des productions IA à retrouver dans une mémoire organisée.](/blog/ia-produire-retrouver.svg)
+
 ## L’IA nous fait produire plus vite. C’est une bonne nouvelle. Et un problème.
 
 Avec ChatGPT, Claude ou d’autres assistants IA, on peut produire énormément de choses en très peu de temps.

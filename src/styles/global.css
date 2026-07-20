@@ -116,6 +116,10 @@
     @apply text-sky-300 underline decoration-sky-500/40 underline-offset-4 hover:text-sky-200;
   }
 
+  .blog-prose img {
+    @apply my-8 w-full rounded-3xl border border-slate-700/80 bg-slate-950/70 shadow-2xl shadow-sky-950/30;
+  }
+
   .product-story-section {
     @apply grid gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:items-center md:gap-10;
   }

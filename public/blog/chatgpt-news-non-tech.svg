@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">ChatGPT devient un espace de travail</title>
+  <desc id="desc">Illustration abstraite montrant un assistant IA au centre de documents, d'une mémoire et de sources organisées.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#020617"/><stop offset="0.52" stop-color="#0f172a"/><stop offset="1" stop-color="#075985"/></linearGradient><linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38bdf8" stop-opacity="0.28"/><stop offset="1" stop-color="#818cf8" stop-opacity="0.18"/></linearGradient><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="930" cy="115" r="150" fill="#38bdf8" opacity="0.12"/><circle cx="180" cy="560" r="210" fill="#818cf8" opacity="0.12"/>
+  <g transform="translate(135 115)"><rect width="930" height="445" rx="42" fill="#0f172a" stroke="#38bdf8" stroke-opacity="0.35"/><path d="M465 72v301" stroke="#38bdf8" stroke-opacity="0.2" stroke-width="2"/>
+    <g filter="url(#glow)"><circle cx="465" cy="224" r="92" fill="#0ea5e9" opacity="0.3"/><circle cx="465" cy="224" r="58" fill="#38bdf8" opacity="0.34"/></g>
+    <path d="M430 205c0-19 15-35 35-35s35 16 35 35-15 35-35 35h-35v-35Z" fill="none" stroke="#e0f2fe" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><path d="M500 242c0 19-15 35-35 35s-35-16-35-35" fill="none" stroke="#e0f2fe" stroke-width="14" stroke-linecap="round"/>
+    <g fill="url(#card)" stroke="#7dd3fc" stroke-opacity="0.36"><rect x="68" y="72" width="250" height="92" rx="24"/><rect x="68" y="196" width="250" height="92" rx="24"/><rect x="68" y="320" width="250" height="72" rx="22"/><rect x="612" y="72" width="250" height="92" rx="24"/><rect x="612" y="196" width="250" height="92" rx="24"/><rect x="612" y="320" width="250" height="72" rx="22"/></g>
+    <g stroke="#bae6fd" stroke-width="6" stroke-linecap="round" opacity="0.72"><path d="M104 112h146M104 134h98M104 236h164M104 258h112M104 350h130M648 112h150M648 134h92M648 236h158M648 258h120M648 350h132"/></g>
+    <g stroke="#38bdf8" stroke-opacity="0.42" stroke-width="3" fill="none"><path d="M318 118c60 0 82 38 113 68"/><path d="M318 242c54 0 82-8 117-20"/><path d="M612 118c-60 0-82 38-113 68"/><path d="M612 242c-54 0-82-8-117-20"/></g>
+  </g>
+  <text x="135" y="625" fill="#e0f2fe" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">ChatGPT : plus puissant, mais plus complexe à organiser</text>
+</svg>
