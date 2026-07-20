@@ -4,6 +4,7 @@ description: "ChatGPT évolue vers un assistant plus puissant, vocal, mémoriel 
 pubDate: 2026-07-20
 author: "Repero AI"
 category: "Actualités IA"
+image: "/blog/chatgpt-news-non-tech.svg"
 tags:
   - "ChatGPT"
   - "OpenAI"

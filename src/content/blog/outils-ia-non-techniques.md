@@ -4,6 +4,7 @@ description: "Les assistants IA sont puissants, mais souvent pensés pour des ut
 pubDate: 2026-06-29
 author: "Repero AI"
 category: "Organisation IA"
+image: "/blog/outils-ia-non-tech.svg"
 tags:
   - "non-tech"
   - "documents"

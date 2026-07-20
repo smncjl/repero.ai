@@ -4,6 +4,7 @@ description: "Avec l’IA, on produit plus vite que jamais. Mais sans organisati
 pubDate: 2026-07-06
 author: "Repero AI"
 category: "Mémoire IA"
+image: "/blog/ia-produire-retrouver.svg"
 tags:
   - "mémoire"
   - "organisation"
