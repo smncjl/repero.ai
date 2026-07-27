@@ -50,7 +50,11 @@ const {
 const siteBase = Astro.site?.href || SITE_URL;
 const canonicalUrl = absoluteUrl(canonical, siteBase);
 const ogImageUrl = absoluteUrl(ogImage, siteBase);
-const faviconUrl = absoluteUrl('/favicon.svg', siteBase);
+const faviconUrl = absoluteUrl('/brand/generated/favicon.ico', siteBase);
+const svgFaviconUrl = absoluteUrl('/brand/repero-icon.svg', siteBase);
+const favicon16Url = absoluteUrl('/brand/generated/favicon-16x16.png', siteBase);
+const favicon32Url = absoluteUrl('/brand/generated/favicon-32x32.png', siteBase);
+const appleTouchIconUrl = absoluteUrl('/brand/generated/apple-touch-icon-180x180.png', siteBase);
 const brandIconUrl = absoluteUrl('/brand/repero-icon.svg', siteBase);
 const hreflangs = [{ lang, href: canonicalUrl }, ...alternates];
 
@@ -77,7 +81,11 @@ const schemaList = [
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonicalUrl} />
-<link rel="icon" href={faviconUrl} type="image/svg+xml" sizes="any" />
+<link rel="icon" href={svgFaviconUrl} type="image/svg+xml" sizes="any" />
+<link rel="icon" href={faviconUrl} sizes="any" />
+<link rel="icon" href={favicon32Url} type="image/png" sizes="32x32" />
+<link rel="icon" href={favicon16Url} type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href={appleTouchIconUrl} sizes="180x180" />
 {hreflangs.map((link) => (
   <link rel="alternate" hreflang={link.lang} href={link.href} />
 ))}
