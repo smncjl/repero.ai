@@ -2,7 +2,7 @@
 title: "Faut-il avoir peur de l’IA ? Le vrai risque est peut-être ailleurs"
 description: "L’IA peut améliorer notre travail sans garantir le progrès social. Le véritable enjeu est d’organiser son usage, ses bénéfices et le pouvoir qu’elle concentre."
 pubDate: 2026-07-28
-author: "Repero AI"
+author: "Cédric Simon"
 category: "Société et IA"
 image: "/blog/faut-il-avoir-peur-ia.svg"
 tags:
