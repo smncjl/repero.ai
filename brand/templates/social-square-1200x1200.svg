@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title">
+  <title id="title">Repero editable square social template</title>
+  <rect width="1200" height="1200" fill="#F8FCFF"/>
+  <rect x="72" y="72" width="1056" height="1056" rx="36" fill="#FFFFFF" stroke="#D8E4EE" stroke-width="2"/>
+  <text x="120" y="168" fill="#0B1531" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="600" letter-spacing="-2">Repero AI</text>
+  <text x="120" y="610" fill="#0B1531" font-family="Inter, Arial, sans-serif" font-size="112" font-weight="600" letter-spacing="-6">Your message</text>
+  <text x="120" y="732" fill="#0B1531" font-family="Inter, Arial, sans-serif" font-size="112" font-weight="600" letter-spacing="-6">goes here.</text>
+  <rect x="120" y="828" width="80" height="12" rx="6" fill="#22D3EE"/>
+  <text x="120" y="1008" fill="#52617A" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="500">Keep this supporting line concise.</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 96" role="img" aria-labelledby="title">
+  <title id="title">Repero typographic R for dark backgrounds</title>
+  <path fill="#F4FBFF" fill-rule="evenodd" d="M10 8h31.5C59 8 70 19.1 70 34.1c0 11.2-6.2 20.2-16.4 24.2L70 88H54.8L39.2 61H22v27H10V8Zm12 12v29h19.1c10.2 0 16.2-5.4 16.2-14.8S51.3 20 41.1 20H22Z"/>
+  <circle cx="68" cy="86" r="5" fill="#67E8F9"/>
+</svg>
