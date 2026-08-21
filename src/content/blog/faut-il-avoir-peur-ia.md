@@ -29,7 +29,7 @@ Le vrai risque n’est donc peut-être pas l’existence de l’IA. Il réside p
 
 ## Pourquoi je reste enthousiaste
 
-Je suis data engineer et développeur principal de la plateforme Repero AI. Du point de vue de mon confort de travail et de ma productivité, je ne peux qu’être enthousiaste face aux outils déjà disponibles.
+Je travaille dans la data et je développe Repero AI. À titre personnel, je suis très enthousiaste face aux outils déjà disponibles.
 
 Ils m’aident à explorer une base de code, à formuler une première hypothèse, à documenter un choix ou à accélérer une tâche dont je comprends les enjeux. Ils ne remplacent ni mon expérience ni ma responsabilité, mais ils peuvent réduire la distance entre une idée et sa mise en œuvre.
 

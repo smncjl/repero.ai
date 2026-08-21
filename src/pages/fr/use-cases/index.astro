@@ -4,13 +4,7 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr/use-cases', site).href;
-const alternates = [
-  { lang: 'en', href: new URL('/en/use-cases', site).href },
-  { lang: 'de', href: new URL('/de/use-cases', site).href },
-  { lang: 'it', href: new URL('/it/use-cases', site).href },
-  { lang: 'es', href: new URL('/es/use-cases', site).href },
-  { lang: 'nl', href: new URL('/nl/use-cases', site).href }
-];
+const alternates = [{ lang: 'en', href: new URL('/en/use-cases', site).href }];
 ---
 <BaseLayout
   lang="fr"

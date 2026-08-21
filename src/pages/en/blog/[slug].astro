@@ -6,10 +6,10 @@ import Footer from '../../../components/Footer.astro';
 import { buildBlogIndexPath, buildBlogPostPath, formatBlogDate, getPublishedBlogPosts, getReadingTimeMinutes, getRelatedPosts } from '../../../lib/blog';
 
 export async function getStaticPaths() {
-  const posts = await getPublishedBlogPosts();
+  const posts = await getPublishedBlogPosts('en');
 
-  return posts.filter((post) => post.data.lang === 'fr').map((post) => ({
-    params: { slug: post.slug },
+  return posts.map((post) => ({
+    params: { slug: post.data.publicSlug ?? post.slug },
     props: { post, posts }
   }));
 }
@@ -24,10 +24,10 @@ const { Content } = await post.render();
 const site = Astro.site?.href || 'https://repero.ai';
 const canonicalPath = buildBlogPostPath(post);
 const canonical = new URL(canonicalPath, site).href;
-const englishPost = posts.find((candidate) => candidate.data.lang === 'en' && candidate.data.translationOf === post.slug);
-const alternates = englishPost ? [{ lang: 'en' as const, href: new URL(buildBlogPostPath(englishPost), site).href }] : [];
+const frenchPath = post.data.translationOf ? `/fr/blog/${post.data.translationOf}` : undefined;
+const alternates = frenchPath ? [{ lang: 'fr' as const, href: new URL(frenchPath, site).href }] : [];
 const postImage = post.data.image ? new URL(post.data.image, site).href : undefined;
-const relatedPosts = getRelatedPosts(post, posts.filter((candidate) => candidate.data.lang === 'fr'));
+const relatedPosts = getRelatedPosts(post, posts);
 const readingTime = getReadingTimeMinutes(post.body);
 const publishedTime = post.data.pubDate.toISOString();
 const modifiedTime = (post.data.updatedDate ?? post.data.pubDate).toISOString();
@@ -59,7 +59,7 @@ const schema = {
 };
 ---
 <BaseLayout
-  lang="fr"
+  lang="en"
   title={`${post.data.title} | Repero AI`}
   description={post.data.description}
   canonical={canonical}
@@ -76,18 +76,19 @@ const schema = {
   }}
   schema={schema}
 >
-  <Header lang="fr" />
+  <Header lang="en" />
+  <p class="page-shell pt-2 text-sm text-slate-400">Translated and adapted from French by AI.</p>
   <main class="page-shell pb-12">
     <section class="section-shell px-6 py-8 md:px-10 md:py-10">
-      <a class="inline-flex items-center text-sm font-medium text-sky-300 hover:text-sky-200" href={buildBlogIndexPath('fr')}>
-        ← Retour au blog
+      <a class="inline-flex items-center text-sm font-medium text-sky-300 hover:text-sky-200" href={buildBlogIndexPath('en')}>
+        ← Back to the blog
       </a>
 
       <div class="mt-6 max-w-3xl">
         <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
           <span class="chip">{post.data.category}</span>
-          <span>{formatBlogDate(post.data.pubDate)}</span>
-          <span>{readingTime} min de lecture</span>
+          <span>{formatBlogDate(post.data.pubDate, 'en-US')}</span>
+          <span>{readingTime} min read</span>
         </div>
         <h1 class="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">{post.data.title}</h1>
         <p class="mt-5 text-lg leading-8 text-slate-300">{post.data.description}</p>
@@ -103,15 +104,15 @@ const schema = {
     {relatedPosts.length > 0 && (
       <section class="mt-8">
         <div class="mb-4">
-          <p class="eyebrow">À lire ensuite</p>
-          <h2 class="mt-2 text-2xl font-semibold text-white">Articles liés</h2>
+          <p class="eyebrow">Read next</p>
+          <h2 class="mt-2 text-2xl font-semibold text-white">Related articles</h2>
         </div>
         <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {relatedPosts.map((relatedPost) => (
             <article class="feature-card">
               <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
                 <span class="chip">{relatedPost.data.category}</span>
-                <span>{formatBlogDate(relatedPost.data.pubDate)}</span>
+                <span>{formatBlogDate(relatedPost.data.pubDate, 'en-US')}</span>
               </div>
               <h3 class="mt-4 text-xl font-semibold text-white">
                 <a class="hover:text-sky-300" href={buildBlogPostPath(relatedPost)}>{relatedPost.data.title}</a>
@@ -123,5 +124,5 @@ const schema = {
       </section>
     )}
   </main>
-  <Footer lang="fr" />
+  <Footer lang="en" />
 </BaseLayout>

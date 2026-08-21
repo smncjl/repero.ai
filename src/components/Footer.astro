@@ -1,21 +1,17 @@
 ---
-interface Props { lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl'; }
+interface Props { lang: 'en' | 'fr'; }
 const { lang } = Astro.props;
 const isEn = lang === 'en';
-const isFr = lang === 'fr';
-const isDe = lang === 'de';
-const isIt = lang === 'it';
-const isEs = lang === 'es';
-const isNl = lang === 'nl';
 ---
 <footer class="page-shell mt-auto pb-10 pt-16">
   <div class="flex flex-col gap-3 border-t border-slate-800 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
-    <p>{isEn ? 'European-first AI workspace. Built with data control, transparency and portability in mind.' : isFr ? 'Espace de travail IA européen. Construit pour le contrôle des données, la transparence et la portabilité.' : isDe ? 'Europe-first KI-Arbeitsbereich. Mit Datenkontrolle, Transparenz und Portabilität im Sinn gebaut.' : isIt ? 'Spazio di lavoro AI first europeo. Costruito con il controllo dei dati, la trasparenza e la portabilità in mente.' : isEs ? 'Espacio de trabajo IA primero europeo. Construido con el control de datos, la transparencia y la portabilidad en mente.' : 'Europees eerste AI werkruimte. Gebouwd met data controle, transparantie en portabiliteit in gedachten.'}</p>
+    <p>{isEn ? 'European-first AI workspace. Built with data control, transparency and portability in mind.' : 'Espace de travail IA européen. Construit pour le contrôle des données, la transparence et la portabilité.'}</p>
     <div class="flex flex-col items-center md:flex-row md:gap-4">
       <p class="text-slate-500">Repero AI</p>
       <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-        <a href={`/${lang}/privacy`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Privacy' : isFr ? 'Confidentialité' : isDe ? 'Datenschutz' : isIt ? 'Privacy' : isEs ? 'Privacidad' : 'Privacy'}</a>
-        <a href={`/${lang}/terms`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Terms' : isFr ? 'Conditions' : isDe ? 'Bedingungen' : isIt ? 'Termini' : isEs ? 'Términos' : 'Voorwaarden'}</a>
+        <a href={`/${lang}/trust/ai`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'AI transparency' : 'Transparence IA'}</a>
+        <a href={`/${lang}/privacy`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Privacy' : 'Confidentialité'}</a>
+        <a href={`/${lang}/terms`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Terms' : 'Conditions'}</a>
       </div>
     </div>
   </div>

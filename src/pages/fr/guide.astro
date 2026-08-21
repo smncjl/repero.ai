@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr/guide', site).href;
+const alternates = [{ lang: 'en', href: new URL('/en/guide', site).href }];
 
 const faqItems = [
 {
@@ -65,6 +66,7 @@ const faqSchema = {
   title="Tout savoir sur Repero AI : fonctionnalités, sécurité, données et IA"
   description="Comprenez comment Repero AI organise vos conversations, documents, sources et artifacts pour éviter que le travail produit avec l’IA se perde dans des chats impossibles à retrouver."
   canonical={canonical}
+  alternates={alternates}
   ogType="website"
   twitterCard="summary_large_image"
   schema={faqSchema}

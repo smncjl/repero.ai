@@ -23,7 +23,7 @@ export function buildBlogIndexPath(lang: BlogEntry['data']['lang']) {
 }
 
 export function buildBlogPostPath(entry: Pick<BlogEntry, 'slug' | 'data'>) {
-  return `${buildBlogIndexPath(entry.data.lang)}/${entry.slug}`;
+  return `${buildBlogIndexPath(entry.data.lang)}/${entry.data.publicSlug ?? entry.slug}`;
 }
 
 export function getBlogCanonicalUrl(entry: Pick<BlogEntry, 'slug' | 'data'>, baseUrl: string = SITE_URL) {

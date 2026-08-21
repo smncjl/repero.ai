@@ -5,15 +5,15 @@ import Footer from '../../../components/Footer.astro';
 import { buildBlogIndexPath, buildBlogPostPath, formatBlogDate, getPublishedBlogPosts, getReadingTimeMinutes } from '../../../lib/blog';
 
 const site = Astro.site?.href || 'https://repero.ai';
-const posts = await getPublishedBlogPosts('fr');
-const canonical = new URL(buildBlogIndexPath('fr'), site).href;
-const alternates = [{ lang: 'en', href: new URL(buildBlogIndexPath('en'), site).href }];
+const posts = await getPublishedBlogPosts('en');
+const canonical = new URL(buildBlogIndexPath('en'), site).href;
+const alternates = [{ lang: 'fr', href: new URL(buildBlogIndexPath('fr'), site).href }];
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  name: 'Le blog Repero AI',
-  description: 'Analyses et retours d’expérience sur l’IA au travail, la mémoire documentaire, les conversations et les artefacts à ne pas perdre.',
-  inLanguage: 'fr-FR',
+  name: 'The Repero AI blog',
+  description: 'Practical perspectives on AI at work, knowledge organization, conversations, and reusable artifacts.',
+  inLanguage: 'en-US',
   url: canonical,
   publisher: {
     '@type': 'Organization',
@@ -39,23 +39,24 @@ const schema = {
 };
 ---
 <BaseLayout
-  lang="fr"
-  title="Le blog Repero AI | IA, mémoire de travail et organisation"
-  description="Analyses et retours d’expérience sur l’IA au travail, la mémoire documentaire, les conversations et les artefacts à ne pas perdre."
+  lang="en"
+  title="The Repero AI blog | AI, work, and knowledge organization"
+  description="Practical perspectives on AI at work, knowledge organization, conversations, and reusable artifacts."
   canonical={canonical}
   alternates={alternates}
   ogType="website"
   twitterCard="summary_large_image"
   schema={schema}
 >
-  <Header lang="fr" />
+  <Header lang="en" />
+  <p class="page-shell pt-2 text-sm text-slate-400">Translated and adapted from French by AI.</p>
   <main class="page-shell pb-12">
     <section class="section-shell px-6 py-10 md:px-10 md:py-14">
       <div class="max-w-3xl space-y-5">
         <p class="eyebrow">Blog</p>
-        <h1 class="headline text-4xl md:text-5xl">Le blog Repero AI</h1>
+        <h1 class="headline text-4xl md:text-5xl">The Repero AI blog</h1>
         <p class="lead max-w-3xl text-lg md:text-xl">
-        IA, productivité et gestion des connaissances : guides pratiques pour mieux organiser, retrouver et exploiter vos informations.
+        AI, productivity, and knowledge management: practical perspectives for organizing, finding, and using information.
         </p>
       </div>
     </section>
@@ -69,20 +70,20 @@ const schema = {
           <article class="feature-card">
             <div class="flex flex-wrap items-center gap-3 text-sm text-slate-400">
               <span class="chip">{post.data.category}</span>
-              <span>{formatBlogDate(post.data.pubDate)}</span>
-              <span>{readingTime} min de lecture</span>
+              <span>{formatBlogDate(post.data.pubDate, 'en-US')}</span>
+              <span>{readingTime} min read</span>
             </div>
             <h2 class="mt-4 text-2xl font-semibold text-white">
               <a class="hover:text-sky-300" href={href}>{post.data.title}</a>
             </h2>
             <p class="mt-3 max-w-3xl text-base leading-7 text-slate-300">{post.data.description}</p>
             <div class="mt-5">
-              <a class="btn-secondary" href={href}>Lire l’article</a>
+              <a class="btn-secondary" href={href}>Read article</a>
             </div>
           </article>
         );
       })}
     </section>
   </main>
-  <Footer lang="fr" />
+  <Footer lang="en" />
 </BaseLayout>

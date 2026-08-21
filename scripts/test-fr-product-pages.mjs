@@ -22,7 +22,7 @@ const howItWorksPath = join(distDir, 'fr', 'comment-ca-marche.html');
 const frHome = readExpectedFile(frHomePath);
 const howItWorks = readExpectedFile(howItWorksPath);
 
-assertIncludes(frHome, 'Retrouvez vos artefacts sans perdre le contexte', 'fr homepage');
+assertIncludes(frHome, 'Votre travail avec l’IA, enfin organisé.', 'fr homepage');
 assertIncludes(frHome, '/fr/comment-ca-marche', 'fr homepage');
 assertIncludes(howItWorks, '<title>Comment ça marche | Repero AI</title>', 'fr how-it-works page');
 assertIncludes(howItWorks, 'href="https://repero.ai/fr/comment-ca-marche"', 'fr how-it-works page canonical');
