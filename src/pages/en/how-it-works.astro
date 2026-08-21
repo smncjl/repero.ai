@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ProductStorySection from '../../components/ProductStorySection.astro';
+import { frProductScreens } from '../../data/frProductScreens';
+
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/en/how-it-works', site).href;
+const alternates = [{ lang: 'fr', href: new URL('/fr/comment-ca-marche', site).href }];
+const screens = Object.fromEntries(frProductScreens.map((screen) => [screen.id, screen]));
+const steps = [
+  { id: 'projects-conversations', heading: 'Bring each project and conversation together', body: ['Projects give your conversations, documents, and useful outputs a stable home.', 'You can return to the work later without rebuilding its context.'] },
+  { id: 'active-context', heading: 'Keep useful context close to the conversation', body: ['Active documents, sources, and artifacts stay connected to the discussion as the work moves forward.', 'You spend less time switching between disconnected tools and views.'], reverse: true },
+  { id: 'sources-documents', heading: 'Work with sources and documents in one place', body: ['Repero keeps the material used for a task visible and retrievable in the same workspace.', 'Your work does not disappear across separate folders, links, and chats.'] },
+  { id: 'artifacts', heading: 'Turn useful outputs into reusable artifacts', body: ['Keep the deliverables that matter instead of leaving them buried in a long conversation.', 'Their origin and working context remain understandable when you review or reuse them.'], reverse: true },
+  { id: 'search-context', heading: 'Find the right context when you need it', body: ['Search helps you reopen the relevant project, conversation, source, or artifact.', 'You can continue from earlier work rather than starting again from zero.'] }
+];
+---
+<BaseLayout lang="en" title="How it works | Repero AI" description="See how Repero AI keeps projects, conversations, documents, sources, and artifacts together so your AI work remains easy to find." canonical={canonical} alternates={alternates}>
+  <Header lang="en" />
+  <main class="page-shell pb-12">
+    <p class="mb-4 text-sm text-slate-400">Translated and adapted from French by AI.</p>
+    <section class="section-shell px-6 py-10 md:px-10 md:py-14">
+      <div class="max-w-3xl space-y-5">
+        <p class="eyebrow">How it works</p>
+        <h1 class="headline text-4xl md:text-5xl">Keep conversations, documents, and artifacts in the same thread of work.</h1>
+        <p class="lead max-w-3xl text-lg md:text-xl">Repero AI organizes AI-assisted work so its context, generated outputs, and decisions remain easy to find later.</p>
+      </div>
+    </section>
+    <div class="mt-8 space-y-8 md:space-y-12">
+      {steps.map((step, index) => {
+        const screen = screens[step.id];
+        return screen && <ProductStorySection id={step.id} eyebrow={`Step ${index + 1}`} heading={step.heading} body={step.body} image={screen.image} alt={step.heading} reverse={step.reverse} />;
+      })}
+    </div>
+    <section class="section-shell mt-8 px-6 py-8 md:px-8 md:py-10">
+      <p class="eyebrow">Go further</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight text-white">Move from isolated conversations to a structured AI workspace.</h2>
+      <p class="mt-4 max-w-3xl text-base leading-8 text-slate-300">Explore common use cases or request access to Repero AI.</p>
+      <div class="mt-6 flex flex-wrap gap-3"><a class="btn-primary" href="https://app.repero.ai" target="_blank">Access Repero AI</a><a class="btn-secondary" href="/en/use-cases">View use cases</a></div>
+    </section>
+  </main>
+  <Footer lang="en" />
+</BaseLayout>

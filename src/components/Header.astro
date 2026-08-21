@@ -18,6 +18,9 @@ const isEn = lang === 'en';
     </a>
     <nav class="flex w-full flex-wrap items-center gap-2 text-sm text-slate-300 md:w-auto md:justify-end">
       <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/use-cases' : '/fr/cas-usages'}>{isEn ? 'Use cases' : 'Cas d’usage'}</a>
+      {isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/en/how-it-works">How it works</a>}
+      {isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/en/guide">Guide</a>}
+      {isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/en/blog">Blog</a>}
       {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/comment-ca-marche">Comment ça marche</a>}
       {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/guide">Guide</a>}
       {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/blog">Blog</a>}

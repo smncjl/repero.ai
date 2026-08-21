@@ -23,7 +23,11 @@ const entries: Entry[] = [
   { path: '/fr/cas-usages/data', alternates: [{ lang: 'en', path: '/en/use-cases/data-teams' }] },
   { path: '/en/use-cases/tradespeople', alternates: [{ lang: 'fr', path: '/fr/cas-usages/techniciens' }] },
   { path: '/fr/cas-usages/techniciens', alternates: [{ lang: 'en', path: '/en/use-cases/tradespeople' }] },
-  { path: '/fr/guide' },
+  { path: '/en/how-it-works', alternates: [{ lang: 'fr', path: '/fr/comment-ca-marche' }] },
+  { path: '/fr/comment-ca-marche', alternates: [{ lang: 'en', path: '/en/how-it-works' }] },
+  { path: '/en/guide', alternates: [{ lang: 'fr', path: '/fr/guide' }] },
+  { path: '/fr/guide', alternates: [{ lang: 'en', path: '/en/guide' }] },
+  { path: '/en/blog', alternates: [{ lang: 'fr', path: '/fr/blog' }] },
 ];
 
 function escapeXml(value: string) {
@@ -31,10 +35,17 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
-  const publishedFrenchPosts = await getPublishedBlogPosts('fr');
+  const publishedPosts = await getPublishedBlogPosts();
   const dynamicEntries: Entry[] = [
     { path: buildBlogIndexPath('fr') },
-    ...publishedFrenchPosts.map((post) => ({ path: buildBlogPostPath(post) }))
+    ...publishedPosts.map((post) => {
+      const alternate = post.data.lang === 'en' && post.data.translationOf
+        ? { lang: 'fr' as const, path: `/fr/blog/${post.data.translationOf}` }
+        : post.data.lang === 'fr'
+          ? publishedPosts.find((candidate) => candidate.data.translationOf === post.slug)
+          : undefined;
+      return { path: buildBlogPostPath(post), alternates: alternate ? [alternate.data ? { lang: 'en' as const, path: buildBlogPostPath(alternate) } : alternate] : undefined };
+    })
   ];
   const uniqueEntries = new Map<string, Entry>();
   for (const entry of [...entries, ...dynamicEntries]) {

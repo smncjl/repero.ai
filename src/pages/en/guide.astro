@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const site = Astro.site?.href || 'https://repero.ai';
+const canonical = new URL('/en/guide', site).href;
+const alternates = [{ lang: 'fr', href: new URL('/fr/guide', site).href }];
+const sections = [
+  ['Start with a project', 'Create a project for a goal, client, topic, or recurring area of work. It becomes the stable place where related conversations and materials remain connected.'],
+  ['Add the context you need', 'Bring in documents, useful web sources, notes, and earlier outputs. Keep only the context that helps with the current task.'],
+  ['Work through conversations', 'Use conversations to explore, compare, draft, and refine. Clear requests and relevant context help the AI produce more useful answers.'],
+  ['Keep useful artifacts', 'Save reports, checklists, drafts, code, and other deliverables as artifacts so they do not disappear inside a long chat.'],
+  ['Find and reuse earlier work', 'Search projects, conversations, sources, and artifacts before starting again. Reopen the context, check what still applies, and continue from there.'],
+  ['Review important information', 'AI output can contain errors or outdated information. Check important facts, figures, and decisions before relying on them.']
+];
+---
+<BaseLayout lang="en" title="Repero AI guide | Organize and retrieve your AI work" description="A practical guide to using projects, conversations, sources, and artifacts in Repero AI." canonical={canonical} alternates={alternates}>
+  <Header lang="en" />
+  <main class="page-shell pb-12">
+    <p class="mb-4 text-sm text-slate-400">Translated and adapted from French by AI.</p>
+    <section class="section-shell px-6 py-10 md:px-10 md:py-14"><div class="max-w-3xl space-y-5"><p class="eyebrow">Guide</p><h1 class="headline text-4xl md:text-5xl">Organize your AI work without losing the thread.</h1><p class="lead">A practical introduction to projects, conversations, sources, and artifacts in Repero AI.</p></div></section>
+    <div class="mt-8 grid gap-5 md:grid-cols-2">{sections.map(([title, body], index) => <section class="feature-card"><p class="eyebrow">Step {index + 1}</p><h2 class="mt-3 text-2xl font-semibold text-white">{title}</h2><p class="mt-4 text-base leading-8 text-slate-300">{body}</p></section>)}</div>
+    <section class="section-shell mt-8 px-6 py-8 md:px-8 md:py-10"><h2 class="text-3xl font-semibold text-white">Ready to put it into practice?</h2><div class="mt-6 flex flex-wrap gap-3"><a class="btn-primary" href="https://app.repero.ai" target="_blank">Access Repero AI</a><a class="btn-secondary" href="/en/how-it-works">See how it works</a></div></section>
+  </main>
+  <Footer lang="en" />
+</BaseLayout>
