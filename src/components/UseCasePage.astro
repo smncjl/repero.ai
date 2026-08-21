@@ -4,7 +4,7 @@ import Header from './Header.astro';
 import Footer from './Footer.astro';
 
 interface Props {
-  lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl';
+  lang: 'en' | 'fr';
   title: string;
   description: string;
   canonical: string;
@@ -13,19 +13,14 @@ interface Props {
   exampleTitle?: string;
   exampleIntro?: string;
   exampleSteps?: string[];
-  alternates?: Array<{ lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl' | 'x-default'; href: string }>;
+  alternates?: Array<{ lang: 'en' | 'fr' | 'x-default'; href: string }>;
 }
 
 const { lang, title, description, canonical, tags = [], items, exampleTitle, exampleIntro, exampleSteps, alternates } = Astro.props;
 const isEn = lang === 'en';
-const isFr = lang === 'fr';
-const isDe = lang === 'de';
-const isIt = lang === 'it';
-const isEs = lang === 'es';
-const isNl = lang === 'nl';
-const useCaseLabel = isEn ? 'Use case' : isFr ? 'Cas d’usage' : isDe ? 'Anwendungsfall' : isIt ? 'Caso d’uso' : isEs ? 'Caso de uso' : 'Gebruikscase';
-const characteristicsLabel = isEn ? 'Characteristics' : isFr ? 'Points clés' : isDe ? 'Eigenschaften' : isIt ? 'Caratteristiche' : isEs ? 'Características' : 'Kenmerken';
-const tagsLabel = isEn ? 'Keywords' : isFr ? 'Mots-clés' : isDe ? 'Schlüsselwörter' : isIt ? 'Parole chiave' : isEs ? 'Palabras clave' : 'Sleutelwoorden';
+const useCaseLabel = isEn ? 'Use case' : 'Cas d’usage';
+const characteristicsLabel = isEn ? 'Characteristics' : 'Points clés';
+const tagsLabel = isEn ? 'Keywords' : 'Mots-clés';
 ---
 <BaseLayout
   lang={lang}

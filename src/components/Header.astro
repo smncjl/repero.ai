@@ -1,16 +1,11 @@
 ---
-interface Props { lang: 'en' | 'fr' | 'de' | 'it' | 'es' | 'nl'; }
+interface Props { lang: 'en' | 'fr'; }
 const { lang } = Astro.props;
 const isEn = lang === 'en';
-const isFr = lang === 'fr';
-const isDe = lang === 'de';
-const isIt = lang === 'it';
-const isEs = lang === 'es';
-const isNl = lang === 'nl';
 ---
 <header class="page-shell py-5">
   <div class="flex flex-col gap-3 rounded-2xl border border-slate-800/80 bg-slate-950/60 px-4 py-3 shadow-[0_14px_40px_rgba(0,0,0,0.18)] backdrop-blur md:flex-row md:items-center md:justify-between">
-    <a href={isEn ? '/en' : isFr ? '/fr' : isDe ? '/de' : isIt ? '/it' : isEs ? '/es' : '/nl'} class="flex items-center gap-3 self-start text-lg font-bold tracking-tight">
+    <a href={isEn ? '/en' : '/fr'} class="flex items-center gap-3 self-start text-lg font-bold tracking-tight">
       <img
         src="/brand/repero-icon.svg"
         alt=""
@@ -22,12 +17,12 @@ const isNl = lang === 'nl';
       <span>Repero AI</span>
     </a>
     <nav class="flex w-full flex-wrap items-center gap-2 text-sm text-slate-300 md:w-auto md:justify-end">
-      <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/use-cases' : isFr ? '/fr/cas-usages' : isDe ? '/de/use-cases' : isIt ? '/it/use-cases' : isEs ? '/es/use-cases' : '/nl/use-cases'}>{isEn ? 'Use cases' : isFr ? 'Cas d’usage' : isDe ? 'Anwendungsfälle' : isIt ? 'Casi d’uso' : isEs ? 'Casos de uso' : 'Gebruiksscenario’s'}</a>
-      {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/comment-ca-marche">Comment ça marche</a>}
-      {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/guide">Guide</a>}
-      {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/blog">Blog</a>}
-      <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/waitlist' : isFr ? '/fr/liste-attente' : isDe ? '/de/waitlist' : isIt ? '/it/waitlist' : isEs ? '/es/waitlist' : '/nl/waitlist'}>{isEn ? 'Access' : isFr ? 'Accès' : isDe ? 'Zugang' : isIt ? 'Accesso' : isEs ? 'Acceso' : 'Toegang'}</a>
-      <a class="chip whitespace-nowrap md:ml-1" href={isEn ? '/fr' : isFr ? '/de' : isDe ? '/it' : isIt ? '/es' : isEs ? '/nl' : '/en'}>{isEn ? 'FR' : isFr ? 'DE' : isDe ? 'IT' : isIt ? 'ES' : isEs ? 'NL' : 'EN'}</a>
+      <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/use-cases' : '/fr/cas-usages'}>{isEn ? 'Use cases' : 'Cas d’usage'}</a>
+      {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/comment-ca-marche">Comment ça marche</a>}
+      {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/guide">Guide</a>}
+      {!isEn && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/blog">Blog</a>}
+      <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/waitlist' : '/fr/liste-attente'}>{isEn ? 'Access' : 'Accès'}</a>
+      <a class="chip whitespace-nowrap md:ml-1" href={isEn ? '/fr' : '/en'}>{isEn ? 'FR' : 'EN'}</a>
     </nav>
   </div>
 </header>

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang: 'en' | 'fr';
+}
+
+const { lang } = Astro.props;
+const isFr = lang === 'fr';
+const site = Astro.site?.href || 'https://repero.ai';
+const path = `/${lang}/trust/ai`;
+const alternatePath = isFr ? '/en/trust/ai' : '/fr/trust/ai';
+const canonical = new URL(path, site).href;
+const alternates = [{ lang: isFr ? 'en' as const : 'fr' as const, href: new URL(alternatePath, site).href }];
+
+const copy = isFr ? {
+  title: "Comment Repero utilise l'intelligence artificielle",
+  metaTitle: "Comment Repero utilise l'intelligence artificielle | Repero AI",
+  description: "Découvrez comment Repero utilise et orchestre des modèles d'IA, leurs limites, le contrôle humain et notre approche de la transparence et des données.",
+  eyebrow: 'Transparence IA',
+  intro: "Repero utilise l'intelligence artificielle pour vous aider à rechercher, organiser, résumer et créer des contenus dans un même espace de travail.",
+  noticeTitle: 'Vous gardez le contrôle',
+  notice: "Repero assiste votre travail sans remplacer votre jugement. Vérifiez les informations importantes avant de les utiliser ou de prendre une décision.",
+  sections: [
+    {
+      title: "Comment Repero utilise l'IA",
+      body: ["Repero utilise des modèles d'intelligence artificielle pour générer des réponses et certains contenus, ainsi que pour rechercher, résumer ou transformer des informations.", "Comme tous les modèles d'IA, ils peuvent produire des erreurs, des réponses incomplètes ou des informations obsolètes. Une vérification reste donc utile lorsque l'exactitude compte."]
+    },
+    {
+      title: 'Plusieurs fournisseurs et modèles',
+      body: ["Repero peut sélectionner et orchestrer différents fournisseurs et modèles selon la tâche, leurs capacités et la configuration du service. Cette approche permet de réunir ces technologies dans une expérience cohérente, sans vous demander de gérer leur complexité."]
+    },
+    {
+      title: 'Contenus et contexte',
+      body: ["Repero organise les conversations, documents et artefacts dans leur contexte afin de permettre à l'utilisateur de les retrouver et de comprendre leur origine dans son espace de travail."]
+    },
+    {
+      title: 'Données et confidentialité',
+      body: ["Vos données sont traitées pour fournir les fonctions que vous demandez. Certaines fonctions nécessitent de transmettre aux fournisseurs concernés le contexte utile à la demande. Repero applique des mesures destinées à protéger ces données."],
+      links: [{ href: '/fr/privacy', label: 'Consulter la politique de confidentialité' }]
+    },
+    {
+      title: 'Usages sensibles',
+      body: ["Repero est un outil généraliste d'assistance. Il n'est pas conçu pour prendre de manière autonome des décisions produisant des effets juridiques ou significatifs sur une personne, notamment dans le recrutement, le crédit, l'assurance ou les services essentiels."],
+      links: [{ href: '/fr/terms', label: "Lire les conditions d'utilisation" }]
+    },
+    {
+      title: 'Une question ou un problème ?',
+      body: ["Pour une question sur notre utilisation de l'IA, un problème concernant un résultat ou une demande de transparence, contactez-nous. Vos retours nous aident à améliorer Repero."],
+      links: [{ href: 'mailto:contact@repero.ai', label: 'Écrire à contact@repero.ai' }]
+    }
+  ]
+} : {
+  title: 'How Repero uses artificial intelligence',
+  metaTitle: 'How Repero uses artificial intelligence | Repero AI',
+  description: 'Learn how Repero uses and orchestrates AI models, their limitations, human oversight, and our approach to transparency and data.',
+  eyebrow: 'AI transparency',
+  intro: 'Repero uses artificial intelligence to help you search, organize, summarize, and create content in one workspace.',
+  noticeTitle: 'You remain in control',
+  notice: 'Repero assists your work without replacing your judgement. Check important information before using it or making a decision.',
+  sections: [
+    {
+      title: 'How Repero uses AI',
+      body: ['Repero uses artificial intelligence models to generate answers and some content, and to search, summarize, or transform information.', 'Like all AI models, they can produce errors, incomplete answers, or outdated information. Checking the result remains useful when accuracy matters.']
+    },
+    {
+      title: 'Multiple providers and models',
+      body: ['Repero can select and orchestrate different providers and models according to the task, their capabilities, and the service configuration. This approach brings these technologies together in a consistent experience without asking you to manage their complexity.']
+    },
+    {
+      title: 'Content and context',
+      body: ['Repero organizes conversations, documents, and artifacts in context so users can find them again and understand their origin within their workspace.']
+    },
+    {
+      title: 'Data and privacy',
+      body: ['Your data is processed to provide the features you request. Some features require sending the relevant providers the context needed for your request. Repero applies measures designed to protect this data.'],
+      links: [{ href: '/en/privacy', label: 'Read the Privacy Policy' }]
+    },
+    {
+      title: 'Sensitive uses',
+      body: ['Repero is a general-purpose assistive tool. It is not designed to make autonomous decisions that produce legal or similarly significant effects on a person, including in recruitment, credit, insurance, or essential services.'],
+      links: [{ href: '/en/terms', label: 'Read the Terms of Service' }]
+    },
+    {
+      title: 'Have a question or found a problem?',
+      body: ['For a question about our use of AI, a problem with an output, or a transparency request, contact us. Your feedback helps us improve Repero.'],
+      links: [{ href: 'mailto:contact@repero.ai', label: 'Email contact@repero.ai' }]
+    }
+  ]
+};
+---
+<BaseLayout lang={lang} title={copy.metaTitle} description={copy.description} canonical={canonical} alternates={alternates}>
+  <Header lang={lang} />
+  <main class="page-shell pb-12">
+    <article class="mx-auto max-w-4xl py-8 md:py-14">
+      <header class="max-w-3xl">
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h1 class="mt-4 text-balance text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl">{copy.title}</h1>
+        <p class="lead mt-6">{copy.intro}</p>
+      </header>
+
+      <aside class="mt-10 rounded-2xl border border-sky-500/30 bg-sky-500/10 p-6" aria-labelledby="trust-notice-title">
+        <h2 id="trust-notice-title" class="text-lg font-semibold text-sky-100">{copy.noticeTitle}</h2>
+        <p class="mt-2 leading-7 text-slate-200">{copy.notice}</p>
+      </aside>
+
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        {copy.sections.map((section) => (
+          <section class="feature-card">
+            <h2 class="text-2xl font-semibold tracking-tight text-white">{section.title}</h2>
+            <div class="mt-4 space-y-4 text-base leading-7 text-slate-300">
+              {section.body.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+            {section.links && (
+              <div class="mt-5 flex flex-wrap gap-3">
+                {section.links.map((link) => <a class="font-semibold text-sky-300 underline decoration-sky-500/40 underline-offset-4 hover:text-sky-200" href={link.href}>{link.label}</a>)}
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

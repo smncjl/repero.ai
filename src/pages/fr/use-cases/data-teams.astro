@@ -2,13 +2,7 @@
 import UseCasePage from '../../../components/UseCasePage.astro';
 const site = Astro.site?.href || 'https://repero.ai';
 const canonical = new URL('/fr/use-cases/data-teams', site).href;
-const alternates = [
-  { lang: 'en', href: new URL('/en/use-cases/data-teams', site).href },
-  { lang: 'de', href: new URL('/de/use-cases/data-teams', site).href },
-  { lang: 'it', href: new URL('/it/use-cases/data-teams', site).href },
-  { lang: 'es', href: new URL('/es/use-cases/data-teams', site).href },
-  { lang: 'nl', href: new URL('/nl/use-cases/data-teams', site).href }
-];
+const alternates = [{ lang: 'en', href: new URL('/en/use-cases/data-teams', site).href }];
 ---
 <UseCasePage
   lang="fr"
