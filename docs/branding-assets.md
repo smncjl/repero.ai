@@ -10,7 +10,7 @@ The source of truth is:
 public/brand/repero-icon.svg
 ```
 
-Do not redraw the logo when generating raster assets. The transparent variant at `public/brand/repero-icon-transparent.svg` can be used for special design contexts, but generated favicons and distribution icons must be rendered from `public/brand/repero-icon.svg`.
+Do not redraw the logo when generating raster assets. Generated favicons and distribution icons must be rendered from `public/brand/repero-icon.svg`.
 
 ## Official background color
 

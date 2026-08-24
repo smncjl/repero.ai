@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 6.5.3</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 532 534)"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(248,250,252); fill-rule: nonzero; opacity: 1;"  x="-310" y="-95" rx="0" ry="0" width="620" height="190" />
+</g>
+<g transform="matrix(0.4102 0 0 0.4102 279.1777 523.0781)"  >
+<path style="stroke: rgb(5,10,28); stroke-width: 44; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;"  transform=" translate(-273.5, -244)" d="M 196 352 L 196 160 C 196 146.745 206.745 136 220 136 L 274 136 C 316.467 136 350 169.533 350 212 C 350 251.187 319.756 283.988 281 287.587 L 351 352" stroke-linecap="round" />
+</g>
+<g transform="matrix(0.4102 0 0 0.4102 310.5547 589.5234)"  >
+<circle style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(34,211,238); fill-rule: nonzero; opacity: 1;"  cx="0" cy="0" r="24" />
+</g>
+<g transform="matrix(1 0 0 1 451.391 531.4193)" style=""  >
+		<text xml:space="preserve" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="104" font-style="normal" font-weight="700" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(5,10,28); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-132.391" y="32.6706" >e</tspan><tspan x="-80.3254" y="32.6706" >p</tspan><tspan x="-20.0332" y="32.6706" >e</tspan><tspan x="32.0324" y="32.6706" >r</tspan><tspan x="68.8129" y="32.6706" >o</tspan></text>
+</g>
+<g transform="matrix(1 0 0 1 652.0703 531.4193)" style=""  >
+		<text xml:space="preserve" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="104" font-style="normal" font-weight="500" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(5,10,28); fill-rule: nonzero; opacity: 1; white-space: pre;" ><tspan x="-48.0703" y="32.6706" >A</tspan><tspan x="17.7539" y="32.6706" >I</tspan></text>
+</g>
+</svg>

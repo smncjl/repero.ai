@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Repero AI LinkedIn — chat temporaire, travail durable</title>
+  <desc id="desc">French LinkedIn visual based on the final left-aligned Repero AI composition. The official Repero AI wordmark is kept unchanged as the footer signature.</desc>
+  <rect width="1200" height="1200" fill="#050A1C"/>
+  <rect x="56" y="56" width="1088" height="1088" rx="56" fill="#0B1531" stroke="#334155" stroke-width="2"/>
+  <rect x="136" y="164" width="64" height="4" rx="2" fill="#22D3EE"/>
+  <g fill="#F1F5F9" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="56" font-weight="700" letter-spacing="-2.5">
+    <text x="136" y="326">Votre chat est temporaire.</text>
+    <text x="136" y="416">Votre travail ne devrait pas</text>
+    <text x="136" y="506">l’être.</text>
+  </g>
+  <rect x="112" y="820" width="976" height="2" rx="1" fill="#334155"/>
+  <image x="80" y="648" width="600" height="600" href="repero-wordmark-white-cyan.png" xlink:href="repero-wordmark-white-cyan.png"/>
+  <text x="212" y="1028" fill="#94A3B8" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="26" font-weight="500" letter-spacing="-.5">repero.ai</text>
+</svg>
