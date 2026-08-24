@@ -5,8 +5,7 @@
     "status": "audit-only; not applied",
     "date": "2026-08-08",
     "sources": [
-      "brand/app/brand-audit.md",
-      "brand/app/brand-tokens.proposed.json",
+      "historical application-audit material (repository history)",
       "src/styles/global.css",
       "src/components/Header.astro",
       "public/brand/repero-icon.svg",

@@ -1,6 +1,6 @@
 # Repero consolidated brand audit
 
-Status: evidence and consolidation only. Prepared from the application audit in `brand/app/` (the supplied audit material is present there rather than at the brief's `brand/audit/app/` path), the implemented public website, and the logo assets in this repository. No production UI or logo asset was changed.
+Status: evidence and consolidation only. Prepared from the application audit preserved in repository history, the implemented public website, and the logo assets in this repository. No production UI or logo asset was changed.
 
 # Executive Summary
 
@@ -17,8 +17,6 @@ The most important consolidation decision is therefore one of *roles*, not force
 | Asset | Role / status | Evidence |
 | --- | --- | --- |
 | `public/brand/repero-icon.svg` | **Canonical official source**: dark rounded-square app icon containing the R-like mark and locator dot | Explicitly named source of truth in `docs/branding-assets.md`; header, SEO favicon links, Organization JSON-LD, and generator use this file. |
-| `public/brand/repero-icon-transparent.svg` | Approved transparent-context variant of the same mark | Documented as a special-context variant; same foreground geometry but no container/background. |
-| `public/favicon.svg` | Duplicate packaged favicon SVG, not the documented source | Byte-for-byte visual duplicate of `repero-icon.svg`; website SEO instead references the canonical icon and generated derivatives. |
 | `brand/logo/repero-r*.svg` and `brand/wordmark/repero-wordmark*.svg` | Existing typographic/wordmark artifacts, **not canonical for this audit** and not referenced by the public site | `brand/README.md`/guidelines describe a different typographic R; `rg` finds no site use. They should not be adopted, changed, or treated as a replacement for the official app icon under this brief. |
 
 ### Geometry of the frozen official icon
@@ -32,13 +30,13 @@ The canonical SVG has a `512 × 512` viewBox. A dark rounded-square container st
 - **Endpoint dot:** a detached outer cyan disc is centred at `(350,384)` with radius `32`; its near-white inner highlight disc has radius `14`. It visually touches/overlaps the leg's rounded lower end, but remains a separate path. The dot is roughly 1.45× the stroke radius and is the mark's locator/arrival cue.
 - **Negative space:** the open bowl/counter, the gap around the diagonal, and the dark surround are active parts of recognition. Filling the counter, attaching the dot as a generic period, or tightening the mark into a text glyph would change the silhouette.
 - **Colour and gradient:** the container uses `#0B1531 → #050A1C` from `(80,56)` to `(440,456)`, with a `#38BDF8` 18%-opaque, 10-unit border. The stroke gradient runs from `#A5F3FC` (0%) through `#38BDF8` (50%) to `#22D3EE` (100%), along `(168,128) → (350,392)`. This makes the mark brighter at the rounded entry and more saturated toward the leg/dot. The dot is `#22D3EE` at 95% opacity.
-- **Internal highlights:** translucent `#E0F2FE` strokes add depth without changing the silhouette: a 18-unit vertical line at `x=220` (14% opacity) and a 18-unit horizontal line from `(196,240)` to `(276,240)` (12% opacity). The transparent variant raises these to 18% and 14%, respectively. The dot also contains a near-white `#E0F2FE` inner circle at 95% opacity.
+- **Internal highlights:** translucent `#E0F2FE` strokes add depth without changing the silhouette: a 18-unit vertical line at `x=220` (14% opacity) and a 18-unit horizontal line from `(196,240)` to `(276,240)` (12% opacity). The dot also contains a near-white `#E0F2FE` inner circle at 95% opacity.
 
 Conclusion: the rounded upper-left transition is a distinctive, frozen feature and directly supports the brand's broader preference for continuous, softened geometry. The open stroke, internal negative space, directional diagonal, and endpoint dot are equally distinctive. Do not redraw, simplify, convert to a generic typographic R, or use it to construct a wordmark in this audit.
 
 # app.repero.ai Visual Language
 
-This section consolidates observations from `brand/app/brand-audit.md` and its paired proposed-token file; these are observations, not final brand decisions.
+This section consolidates historical application-audit observations; these are observations, not final brand decisions.
 
 | Area | Observed implementation | Deliberate vs. incidental |
 | --- | --- | --- |
@@ -79,10 +77,10 @@ The public site has a centralized visual layer in `src/styles/global.css`, appli
 
 # Inconsistencies
 
-1. **Accent hue and role differ.** The application uses solid Tailwind sky (`#0284C7` action; `#0EA5E9`/`#38BDF8` support), while the icon culminates at cyan `#22D3EE`, and the site combines both. Evidence: `brand/app/brand-audit.md`, `src/styles/global.css`, and `public/brand/repero-icon.svg`. This is compatible as a family, but not yet a documented mapping.
+1. **Accent hue and role differ.** The application uses solid Tailwind sky (`#0284C7` action; `#0EA5E9`/`#38BDF8` support), while the icon culminates at cyan `#22D3EE`, and the site combines both. Evidence: historical application-audit observations, `src/styles/global.css`, and `public/brand/repero-icon.svg`. This is compatible as a family, but not yet a documented mapping.
 2. **Typography is materially different.** The product has no loaded brand font; the website deliberately loads Space Grotesk; icon/OG/blog assets use Inter or Arial. Evidence: application audit typography section, `src/styles/global.css`, `public/og-default.svg`. A single official typeface cannot be inferred.
 3. **Default environmental tone differs.** Product chat defaults to a light workspace with a dark composer, whereas the public site is exclusively dark-first and atmospheric. Evidence: application audit surface/composer observations; body and surface rules in `src/styles/global.css`.
-4. **Radius scale is shared in direction but not exact value.** Product controls start at 6/8/12/16px and expand to 24–32px; site controls/cards start at 8/12/16/24px with a 28px screenshot frame. Evidence: `brand/app/brand-audit.md`; `src/styles/global.css`.
+4. **Radius scale is shared in direction but not exact value.** Product controls start at 6/8/12/16px and expand to 24–32px; site controls/cards start at 8/12/16/24px with a 28px screenshot frame. Evidence: historical application-audit observations and `src/styles/global.css`.
 5. **Logo deployment is uneven.** The public site uses the canonical icon but pairs it with plain text “Repero AI”; app audit evidence reports no product logo/favicons at all. Evidence: `Header.astro`, `Seo.astro`, and application audit “Existing Logo Language.”
 6. **Non-canonical typographic assets create decision ambiguity.** `brand/logo/` and `brand/wordmark/` include an alternate filled R and finished wordmarks, but the documented canonical source is the open-stroke app icon and no website component references those files. Evidence: `brand/README.md`, `docs/branding-assets.md`, and repository reference search. This audit does not legitimize or alter the alternate files.
 7. **Marketing illustration palette is broader.** Blog SVGs introduce indigo, emerald and pink beyond the product/website interface palette. Evidence: `public/blog/*.svg`. These should remain editorial/art-direction choices unless formally promoted.
@@ -90,7 +88,6 @@ The public site has a centralized visual layer in `src/styles/global.css`, appli
 # Elements That Should Be Frozen
 
 - `public/brand/repero-icon.svg` as the canonical official source, including its `512 × 512` proportions, rounded container, upper-left stem-to-bowl transition, 44-unit stroke, open negative space, diagonal, detached endpoint dot, gradient, and highlights.
-- The transparent variant's shared foreground geometry. It may vary only in the documented removal of its container/background and associated opacity values; it is not a new drawing.
 - Sky/blue as the application’s action, focus and user-intent signal, and slate as its structural neutral system (application audit evidence).
 - Semantic role separation for emerald positive, amber warning and rose destructive states (application audit evidence).
 - Stepped soft-containment logic: small controls, medium panels, large containers, and pill-only compact metadata (both implementations).
