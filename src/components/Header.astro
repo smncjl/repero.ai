@@ -25,7 +25,7 @@ const isNl = lang === 'nl';
       <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/use-cases' : isFr ? '/fr/cas-usages' : isDe ? '/de/use-cases' : isIt ? '/it/use-cases' : isEs ? '/es/use-cases' : '/nl/use-cases'}>{isEn ? 'Use cases' : isFr ? 'Cas d’usage' : isDe ? 'Anwendungsfälle' : isIt ? 'Casi d’uso' : isEs ? 'Casos de uso' : 'Gebruiksscenario’s'}</a>
       {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/comment-ca-marche">Comment ça marche</a>}
       {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/guide">Guide</a>}
-      {isFr && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href="/fr/blog">Blog</a>}
+      {(isEn || isFr) && <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/blog' : '/fr/blog'}>Blog</a>}
       <a class="whitespace-nowrap rounded-full px-3 py-2 hover:bg-slate-800/70 hover:text-white" href={isEn ? '/en/waitlist' : isFr ? '/fr/liste-attente' : isDe ? '/de/waitlist' : isIt ? '/it/waitlist' : isEs ? '/es/waitlist' : '/nl/waitlist'}>{isEn ? 'Access' : isFr ? 'Accès' : isDe ? 'Zugang' : isIt ? 'Accesso' : isEs ? 'Acceso' : 'Toegang'}</a>
       <a class="chip whitespace-nowrap md:ml-1" href={isEn ? '/fr' : isFr ? '/de' : isDe ? '/it' : isIt ? '/es' : isEs ? '/nl' : '/en'}>{isEn ? 'FR' : isFr ? 'DE' : isDe ? 'IT' : isIt ? 'ES' : isEs ? 'NL' : 'EN'}</a>
     </nav>

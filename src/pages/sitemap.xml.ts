@@ -57,8 +57,13 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
-  const publishedFrenchPosts = await getPublishedBlogPosts('fr');
+  const [publishedEnglishPosts, publishedFrenchPosts] = await Promise.all([
+    getPublishedBlogPosts('en'),
+    getPublishedBlogPosts('fr')
+  ]);
   const dynamicEntries: Entry[] = [
+    { path: buildBlogIndexPath('en') },
+    ...publishedEnglishPosts.map((post) => ({ path: buildBlogPostPath(post) })),
     { path: buildBlogIndexPath('fr') },
     ...publishedFrenchPosts.map((post) => ({ path: buildBlogPostPath(post) }))
   ];
