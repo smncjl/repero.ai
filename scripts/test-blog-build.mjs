@@ -20,6 +20,8 @@ function assertIncludes(content, expected, label) {
 const blogIndex = readFile('fr/blog.html');
 const articlePage = readFile('fr/blog/chatgpt-claude-conversations-bordel.html');
 const societyArticlePage = readFile('fr/blog/faut-il-avoir-peur-ia.html');
+const securityArticlePage = readFile('fr/blog/ce-qui-arrive-a-vos-donnees-repero-ai.html');
+const englishSecurityArticlePage = readFile('en/blog/what-happens-to-your-data-repero-ai.html');
 const rssFeed = readFile('fr/rss.xml');
 const sitemap = readFile('sitemap.xml');
 const englishBlogIndex = readFile('en/blog.html');
@@ -35,6 +37,9 @@ assertIncludes(articlePage, 'article:published_time', 'article published time me
 assertIncludes(articlePage, 'Retour au blog', 'article back link');
 assertIncludes(societyArticlePage, 'Le progrès technique ne garantit pas le progrès social', 'society article content');
 assertIncludes(societyArticlePage, 'Société et IA', 'society article category');
+assertIncludes(securityArticlePage, 'La sécurité de Repero AI n’est pas terminée', 'French security article content');
+assertIncludes(securityArticlePage, '/blog/repero-ai-securite-donnees.png', 'French security article image');
+assertIncludes(englishSecurityArticlePage, 'Repero AI’s security is not finished', 'English security article content');
 
 assertIncludes(rssFeed, '<rss', 'rss root');
 assertIncludes(rssFeed, '<title>Repero AI Blog (FR)</title>', 'rss title');
@@ -48,5 +53,6 @@ assertIncludes(englishBlogIndex, 'Translated and adapted from French by AI.', 'E
 assertIncludes(englishArticlePage, 'Why I remain enthusiastic', 'English article content');
 assertIncludes(englishArticlePage, 'hreflang="fr"', 'English article French alternate');
 assertIncludes(sitemap, '/en/blog/should-we-be-afraid-of-ai', 'sitemap English article');
+assertIncludes(sitemap, '/en/blog/what-happens-to-your-data-repero-ai', 'English security article sitemap entry');
 
 console.log('Blog build output assertions passed.');

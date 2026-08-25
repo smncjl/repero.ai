@@ -35,17 +35,15 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
-  const publishedPosts = await getPublishedBlogPosts();
+  const [publishedEnglishPosts, publishedFrenchPosts] = await Promise.all([
+    getPublishedBlogPosts('en'),
+    getPublishedBlogPosts('fr')
+  ]);
   const dynamicEntries: Entry[] = [
+    { path: buildBlogIndexPath('en') },
+    ...publishedEnglishPosts.map((post) => ({ path: buildBlogPostPath(post) })),
     { path: buildBlogIndexPath('fr') },
-    ...publishedPosts.map((post) => {
-      const alternate = post.data.lang === 'en' && post.data.translationOf
-        ? { lang: 'fr' as const, path: `/fr/blog/${post.data.translationOf}` }
-        : post.data.lang === 'fr'
-          ? publishedPosts.find((candidate) => candidate.data.translationOf === post.slug)
-          : undefined;
-      return { path: buildBlogPostPath(post), alternates: alternate ? [alternate.data ? { lang: 'en' as const, path: buildBlogPostPath(alternate) } : alternate] : undefined };
-    })
+    ...publishedFrenchPosts.map((post) => ({ path: buildBlogPostPath(post) }))
   ];
   const uniqueEntries = new Map<string, Entry>();
   for (const entry of [...entries, ...dynamicEntries]) {
