@@ -1,0 +1,13 @@
+---
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('en', '/cookies', '/cookies');
+---
+<LegalDocument lang="en" title="Cookies Policy" metaTitle="Cookies Policy | Repero AI" description="Current use of cookies and similar technologies on repero.ai." canonical={canonical} alternate={alternate} lastUpdated={legalDates.en} eyebrow="Cookies">
+  <p>This policy concerns the public website at <strong>repero.ai</strong>. It does not describe product-side technologies at <strong>app.repero.ai</strong>, which must be assessed separately before they are introduced.</p>
+  <h2>1. Current implementation</h2><p>The audited public-site code does not intentionally deploy analytics or marketing cookies, local storage, session storage, marketing pixels, or a consent-management platform. No cookie-consent banner is deployed because the audited code contains no non-essential tracking requiring preferences.</p>
+  <h2>2. Essential security and edge technologies</h2><p>The public site is delivered through Cloudflare. Cloudflare edge and security technologies may be used where necessary to deliver, protect, or defend the site. Depending on runtime or dashboard configuration, those technologies may use strictly necessary identifiers or cookies. This policy does not state that Cloudflare never issues cookies.</p>
+  <h2>3. Analytics and marketing</h2><p>No intentionally deployed analytics or marketing cookies were identified in the audited site code. Cloudflare dashboard settings, including Web Analytics or Zaraz, must remain reviewed separately. If non-essential analytics, marketing, or comparable technologies are introduced, Repero will update this policy and implement the required prior consent and withdrawal controls before they run.</p>
+  <h2>4. Fonts and third parties</h2><p>The site uses the visitor’s system UI font stack and does not load Google-hosted fonts. It does not intentionally embed third-party video, social, advertising, or analytics scripts in the audited code.</p>
+  <h2>5. Changes</h2><p>We will update this policy before introducing non-essential tracking or materially changing the technologies described above.</p>
+</LegalDocument>

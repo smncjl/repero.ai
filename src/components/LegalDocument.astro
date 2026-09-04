@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang: 'en' | 'fr';
+  title: string;
+  metaTitle: string;
+  description: string;
+  canonical: string;
+  alternate: { lang: 'en' | 'fr'; href: string };
+  lastUpdated: string;
+  eyebrow: string;
+}
+
+const { lang, title, metaTitle, description, canonical, alternate, lastUpdated, eyebrow } = Astro.props;
+---
+<BaseLayout
+  lang={lang}
+  title={metaTitle}
+  description={description}
+  canonical={canonical}
+  alternates={[alternate]}
+>
+  <Header lang={lang} />
+  <main class="page-shell pb-12">
+    <article class="legal-document mx-auto max-w-4xl py-8 md:py-14" aria-labelledby="legal-document-title">
+      <header class="legal-document__header">
+        <p class="eyebrow">{eyebrow}</p>
+        <h1 id="legal-document-title" class="mt-4 text-balance text-4xl font-bold tracking-tight text-white md:text-5xl">{title}</h1>
+        <p class="mt-4 text-sm text-slate-400">
+          {lang === 'fr' ? 'Dernière mise à jour :' : 'Last updated:'} <time datetime="2026-09-04">{lastUpdated}</time>
+        </p>
+      </header>
+      <div class="legal-document__content mt-10">
+        <slot />
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
