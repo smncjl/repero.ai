@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "test:blog-build": "node scripts/test-blog-build.mjs",
     "test:fr-product-pages": "node scripts/test-fr-product-pages.mjs",
+    "test:legal-publication": "node scripts/test-legal-publication.mjs",
     "verify:no-redirects": "node scripts/verify-no-redirects.mjs",
     "check": "npm run build && npm run verify:no-redirects",
     "brand:generate": "node scripts/generate-brand-assets.mjs",

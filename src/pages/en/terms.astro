@@ -1,160 +1,19 @@
 ---
-const lastUpdated = "June 2026";
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('en', '/terms', '/terms');
 ---
-
-<main class="legal-page">
-  <section class="legal-container">
-    <h1>Terms of Service</h1>
-    <p class="muted">Last updated: {lastUpdated}</p>
-
-    <p>
-      These Terms of Service govern your access to and use of Repero AI, a software service designed to help users preserve, organize, retrieve, and reuse information, documents, AI-generated outputs, and related work.
-    </p>
-
-    <p>
-      By creating an account or using Repero AI, you agree to these Terms. If you do not agree, you must not use the service.
-    </p>
-
-    <h2>1. Service provider</h2>
-    <p>
-      Repero AI is operated by Data Saas Lab, located in Belgium.
-    </p>
-    <p>
-      Contact: <a href="mailto:contact@repero.ai">contact@repero.ai</a>
-    </p>
-    <p>
-      Business registration number: [Coming soon]
-    </p>
-
-    <h2>2. Description of the service</h2>
-    <p>
-      Repero AI allows users to store, index, search, and retrieve content such as documents, notes, AI conversations, generated artifacts, code snippets, lists, reports, and other user-provided or AI-assisted materials.
-    </p>
-    <p>
-      The service may include AI-powered features, including summarization, semantic search, content extraction, content generation, classification, and retrieval-assisted responses.
-    </p>
-
-    <h2>3. Account registration</h2>
-    <p>
-      You may need an account to use Repero AI. You are responsible for keeping your login credentials secure and for all activity performed through your account.
-    </p>
-    <p>
-      Repero AI may support authentication through email, Google, Microsoft, or other identity providers. Your use of those providers is also subject to their own terms and policies.
-    </p>
-
-    <h2>4. Acceptable use</h2>
-    <p>
-      You agree not to use Repero AI to:
-    </p>
-    <ul>
-      <li>Violate applicable laws or regulations;</li>
-      <li>Upload or process content that you do not have the right to use;</li>
-      <li>Infringe intellectual property, privacy, confidentiality, or contractual rights;</li>
-      <li>Store or distribute malware, harmful code, or abusive content;</li>
-      <li>Attempt to gain unauthorized access to the service, infrastructure, or other users’ data;</li>
-      <li>Use the service to generate or facilitate harmful, fraudulent, or illegal activity.</li>
-    </ul>
-
-    <h2>5. User content</h2>
-    <p>
-      You retain ownership of the content you upload, create, or store in Repero AI.
-    </p>
-    <p>
-      By using the service, you grant Repero AI the limited rights necessary to host, process, index, analyze, display, and retrieve your content for the purpose of providing the service to you.
-    </p>
-    <p>
-      You are responsible for the legality, accuracy, and rights associated with the content you upload or process through Repero AI.
-    </p>
-
-    <h2>6. AI-generated content</h2>
-    <p>
-      Repero AI may generate, summarize, transform, or retrieve content using artificial intelligence systems. AI-generated outputs may be incomplete, inaccurate, outdated, or unsuitable for your specific purpose.
-    </p>
-    <p>
-      You are responsible for reviewing and validating AI-generated outputs before relying on them, especially for legal, financial, medical, safety-critical, professional, or business-critical decisions.
-    </p>
-    <p>
-      Repero AI does not provide legal, financial, medical, or professional advice.
-    </p>
-
-    <h2>7. Beta and MVP status</h2>
-    <p>
-      Repero AI may currently be offered as a beta, MVP, preview, or early-stage service. Features may change, be added, removed, limited, interrupted, or modified at any time.
-    </p>
-    <p>
-      We aim to provide a reliable service, but we do not guarantee uninterrupted availability, error-free operation, or permanent availability of all features during this stage.
-    </p>
-
-    <h2>8. Plans, subscriptions, and payments</h2>
-    <p>
-      Repero AI may offer free and paid plans. Paid plans, pricing, limits, and included features may be displayed on the website or inside the application.
-    </p>
-    <p>
-      If paid subscriptions are introduced or used, billing terms, renewal conditions, cancellation rules, and applicable taxes will be presented before purchase.
-    </p>
-    <p>
-      Unless otherwise stated, fees are non-refundable except where required by applicable law.
-    </p>
-
-    <h2>9. Service limits and fair use</h2>
-    <p>
-      Repero AI may apply limits to storage, document uploads, indexing, AI usage, retrieval, API calls, or other features depending on the selected plan.
-    </p>
-    <p>
-      We may temporarily restrict or suspend usage that degrades the service, creates security risks, causes excessive cost, or violates these Terms.
-    </p>
-
-    <h2>10. Third-party services</h2>
-    <p>
-      Repero AI may rely on third-party providers for hosting, authentication, analytics, payment processing, email delivery, AI processing, infrastructure, observability, or other technical services.
-    </p>
-    <p>
-      We are not responsible for third-party services outside our control, but we aim to choose providers appropriate for the operation and security of the service.
-    </p>
-
-    <h2>11. Intellectual property</h2>
-    <p>
-      Repero AI, including its software, design, branding, name, interface, and related materials, is owned by or licensed to [Legal owner name].
-    </p>
-    <p>
-      These Terms do not grant you ownership of Repero AI or any related intellectual property.
-    </p>
-
-    <h2>12. Termination</h2>
-    <p>
-      You may stop using Repero AI at any time. We may suspend or terminate access if you violate these Terms, create security or legal risks, or misuse the service.
-    </p>
-    <p>
-      Where reasonably possible, we will provide notice before suspension or termination, unless immediate action is required for security, legal, or operational reasons.
-    </p>
-
-    <h2>13. Disclaimer of warranties</h2>
-    <p>
-      Repero AI is provided on an “as is” and “as available” basis. To the maximum extent permitted by law, we make no warranties regarding availability, accuracy, reliability, suitability, or fitness for a particular purpose.
-    </p>
-
-    <h2>14. Limitation of liability</h2>
-    <p>
-      To the maximum extent permitted by applicable law, Repero AI and [Legal owner name] shall not be liable for indirect, incidental, consequential, special, punitive, or business losses, including loss of data, profits, revenue, goodwill, or business opportunities.
-    </p>
-    <p>
-      Nothing in these Terms limits liability where such limitation is prohibited by law.
-    </p>
-
-    <h2>15. Changes to these Terms</h2>
-    <p>
-      We may update these Terms from time to time. If changes are material, we will take reasonable steps to notify users, such as by updating the website, sending an email, or displaying a notice in the application.
-    </p>
-
-    <h2>16. Governing law</h2>
-    <p>
-      These Terms are governed by the laws of Belgium, unless mandatory consumer protection laws provide otherwise.
-    </p>
-
-    <h2>17. Contact</h2>
-    <p>
-      For questions about these Terms, contact us at:
-      <a href="mailto:contact@repero.ai">contact@repero.ai</a>
-    </p>
-  </section>
-</main>
+<LegalDocument lang="en" title="Terms of Service" metaTitle="Terms of Service | Repero AI" description="Terms governing use of Repero AI, subject to the commercial clauses still to be finalized." canonical={canonical} alternate={alternate} lastUpdated={legalDates.en} eyebrow="Terms">
+  <aside class="legal-document__notice" aria-label="Publication status"><p><strong>Commercial terms are not final.</strong> The contracting identity, customer regime, payment terms, consumer information, liability terms, and post-termination arrangements require owner and legal review before payment opening. This page intentionally does not invent them.</p></aside>
+  <h2>1. Scope and service</h2><p>These Terms govern access to Repero AI, a workspace intended to help users keep, organize, retrieve, and reuse AI-assisted work, including conversations, documents, sources, and generated artefacts. The public website is informational; product use takes place through the application.</p>
+  <h2>2. Eligibility and account access</h2><p>You may use the service only where you can lawfully enter into these Terms and comply with applicable law. Account access may require registration and authentication. You are responsible for safeguarding your credentials and for activity carried out through your account, to the extent permitted by applicable law.</p>
+  <h2>3. Acceptable use</h2><p>You must not use Repero to violate law or third-party rights; upload content you are not entitled to use; introduce malware or harmful code; attempt unauthorized access; interfere with service security; or facilitate harmful, fraudulent, or unlawful activity.</p>
+  <h2>4. User content and permissions</h2><p>You remain responsible for the content you submit, including having the necessary rights, permissions, and lawful basis to upload, process, or share it. You retain your rights in that content. You grant the service operator the limited, non-exclusive rights necessary to host, store, process, index, display, retrieve, and transmit the content solely to operate and improve the requested service functionality, subject to applicable law and the Privacy Policy.</p>
+  <h2>5. Repero intellectual property</h2><p>Repero’s software, interface, branding, and related materials are owned by or licensed to the final contracting entity. These Terms do not transfer ownership of those materials to users. The final contracting entity must be supplied before commercial publication.</p>
+  <h2>6. AI-assisted output</h2><p>Repero uses AI systems and generative models. Output may be incomplete, incorrect, misleading, or unsuitable for a particular context. Repero does not present AI output as inherently authoritative. You must review output as appropriate before relying on it, especially for legal, financial, medical, safety-critical, professional, or other material decisions. Repero does not provide professional advice.</p>
+  <h2>7. Service protection and fair use</h2><p>Repero may apply reasonable technical, security, storage, usage, or rate limits to protect the service and other users. It may investigate and address activity that creates a security, legal, or material operational risk.</p>
+  <h2>8. Suspension and termination</h2><p>You may stop using the service at any time. Repero may suspend or restrict access where reasonably necessary for security, legal compliance, protection of others, or a material breach of these Terms. Notice will be provided where appropriate and practicable, except where immediate action is needed.</p>
+  <h2>9. Service changes</h2><p>The service may evolve, including features, limits, and availability. Material changes should be communicated through an appropriate channel where required by law or contract.</p>
+  <h2>10. Clauses pending commercial decisions</h2><p>The following are deliberately reserved for finalization before payment opening: contracting identity; B2C/B2B treatment; prices, VAT and invoices; subscription, renewal and cancellation mechanics; consumer withdrawal; refunds or credits; liability limitations; post-termination export period; and controller/processor or DPA terms for organizational customers.</p>
+  <h2>11. Governing law and contact</h2><p>The governing-law, jurisdiction, consumer-protection, and contact clauses must be completed after the contracting identity and customer approach are confirmed. Mandatory consumer protections will apply where applicable.</p>
+</LegalDocument>

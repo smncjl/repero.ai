@@ -1,0 +1,13 @@
+---
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('fr', '/cookies', '/cookies');
+---
+<LegalDocument lang="fr" title="Politique relative aux cookies" metaTitle="Politique relative aux cookies | Repero AI" description="Utilisation actuelle des cookies et technologies similaires sur repero.ai." canonical={canonical} alternate={alternate} lastUpdated={legalDates.fr} eyebrow="Cookies">
+  <p>Cette politique concerne le site public <strong>repero.ai</strong>. Elle ne décrit pas les technologies du produit <strong>app.repero.ai</strong>, qui devront faire l’objet d’une évaluation distincte avant leur mise en place.</p>
+  <h2>1. Mise en œuvre actuelle</h2><p>Le code audité du site public ne déploie pas intentionnellement de cookies d’analyse ou marketing, de stockage local, de stockage de session, de pixels marketing ni de plateforme de gestion du consentement. Aucune bannière de consentement n’est déployée car le code audité ne contient pas de suivi non essentiel nécessitant des préférences.</p>
+  <h2>2. Technologies essentielles de sécurité et edge</h2><p>Le site public est diffusé via Cloudflare. Des technologies edge et de sécurité Cloudflare peuvent être utilisées lorsqu’elles sont nécessaires à la diffusion, à la protection ou à la défense du site. Selon la configuration d’exécution ou du tableau de bord, ces technologies peuvent utiliser des identifiants ou cookies strictement nécessaires. Cette politique n’affirme pas que Cloudflare ne dépose jamais de cookies.</p>
+  <h2>3. Analyse et marketing</h2><p>Aucun cookie d’analyse ou marketing intentionnellement déployé n’a été identifié dans le code audité. Les réglages Cloudflare, y compris Web Analytics ou Zaraz, doivent rester contrôlés séparément. Si des technologies d’analyse, marketing ou comparables non essentielles sont introduites, Repero mettra à jour cette politique et mettra en place les contrôles requis de consentement préalable et de retrait avant leur exécution.</p>
+  <h2>4. Polices et tiers</h2><p>Le site utilise la pile de polices système de l’appareil et ne charge pas de polices hébergées par Google. Le code audité n’intègre pas intentionnellement de scripts vidéo, sociaux, publicitaires ou d’analyse tiers.</p>
+  <h2>5. Modifications</h2><p>Cette politique sera mise à jour avant l’introduction d’un suivi non essentiel ou une modification importante des technologies décrites ci-dessus.</p>
+</LegalDocument>

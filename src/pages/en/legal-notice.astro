@@ -1,0 +1,11 @@
+---
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('en', '/legal-notice', '/mentions-legales');
+---
+<LegalDocument lang="en" title="Legal Notice" metaTitle="Legal Notice | Repero AI" description="Publisher and hosting information for repero.ai." canonical={canonical} alternate={alternate} lastUpdated={legalDates.en} eyebrow="Legal notice">
+  <aside class="legal-document__notice" aria-label="Publication status"><p><strong>Not ready for commercial publication.</strong> The publisher facts required to complete this notice have not been supplied. No legal name, address, enterprise number, VAT number, or contact detail is invented on this page.</p></aside>
+  <h2>Publisher information required before publication</h2><ul><li>Exact legal or trading name and legal form, where applicable;</li><li>Registered or business address;</li><li>Belgian BCE/KBO enterprise number;</li><li>VAT number/status, where applicable;</li><li>Legal contact email and publication/contact person where required;</li><li>Any legally required hosting-provider disclosure details.</li></ul>
+  <h2>Hosting</h2><p>The public website is deployed through Cloudflare Pages. The exact hosting disclosure wording and any provider address/details required for the final legal notice must be verified by the owner before publication.</p>
+  <h2>Contact and applicable terms</h2><p>Contact, consumer, jurisdiction, and complaint-handling details must be completed after the contracting entity and customer approach are confirmed. See the <a href="/en/terms">Terms of Service</a> and <a href="/en/privacy">Privacy Policy</a>.</p>
+</LegalDocument>

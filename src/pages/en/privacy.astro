@@ -1,195 +1,38 @@
 ---
-const lastUpdated = "June 2026";
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('en', '/privacy', '/privacy');
 ---
-
-<main class="legal-page">
-  <section class="legal-container">
-    <h1>Privacy Policy</h1>
-    <p class="muted">Last updated: {lastUpdated}</p>
-
-    <p>
-      This Privacy Policy explains how Repero AI collects, uses, stores, and protects personal data when you use our website, application, and related services.
-    </p>
-
-    <p>
-      Repero AI is designed to help users preserve, organize, retrieve, and reuse information, documents, AI-generated outputs, and related work. Because the service may process user-uploaded content and AI-assisted outputs, privacy and data protection are important parts of the product.
-    </p>
-
-    <h2>1. Data controller</h2>
-    <p>
-      Repero AI is operated by Data Saas Lab, located in Belgium.
-    </p>
-    <p>
-      Contact: <a href="mailto:privacy@repero.ai">privacy@repero.ai</a>
-    </p>
-    <p>
-      Business registration number: [Coming soon]
-    </p>
-
-    <h2>2. Personal data we collect</h2>
-    <p>
-      Depending on how you use Repero AI, we may collect and process the following categories of personal data:
-    </p>
-
-    <h3>Account data</h3>
-    <ul>
-      <li>Name or display name;</li>
-      <li>Email address;</li>
-      <li>Authentication provider identifier, such as Google or Microsoft account ID;</li>
-      <li>Account settings, plan information, and user preferences.</li>
-    </ul>
-
-    <h3>Authentication data</h3>
-    <ul>
-      <li>Login method, such as email, Google, or Microsoft;</li>
-      <li>Session data and security tokens required to keep you signed in;</li>
-      <li>Basic profile data provided by identity providers, depending on the permissions granted.</li>
-    </ul>
-
-    <h3>User content</h3>
-    <ul>
-      <li>Documents, files, notes, text, links, snippets, lists, generated artifacts, and other content you upload or create;</li>
-      <li>AI conversations, prompts, outputs, summaries, metadata, and retrieval history;</li>
-      <li>Project, workspace, tenant, or conversation-level organization data.</li>
-    </ul>
-
-    <h3>Technical and usage data</h3>
-    <ul>
-      <li>IP address, browser type, device information, operating system, and approximate location derived from technical data;</li>
-      <li>Logs, timestamps, request metadata, error reports, performance data, and security events;</li>
-      <li>Feature usage, indexing activity, search activity, and service interactions.</li>
-    </ul>
-
-    <h3>Payment and billing data</h3>
-    <p>
-      If paid plans are used, we may process billing-related information such as plan selection, invoices, payment status, tax information, and billing contact details. Payment card details may be processed by a third-party payment provider and may not be stored directly by Repero AI.
-    </p>
-
-    <h2>3. How we use personal data</h2>
-    <p>
-      We process personal data to:
-    </p>
-    <ul>
-      <li>Create and manage user accounts;</li>
-      <li>Authenticate users through email, Google, Microsoft, or other supported providers;</li>
-      <li>Provide document storage, indexing, semantic search, retrieval, and AI-assisted features;</li>
-      <li>Generate, summarize, classify, transform, and retrieve content at the user’s request;</li>
-      <li>Maintain security, prevent abuse, detect incidents, and protect the service;</li>
-      <li>Monitor performance, debug issues, and improve reliability;</li>
-      <li>Manage plans, subscriptions, payments, and invoices where applicable;</li>
-      <li>Communicate important service, legal, or security information;</li>
-      <li>Comply with legal obligations.</li>
-    </ul>
-
-    <h2>4. Legal bases for processing</h2>
-    <p>
-      Where the General Data Protection Regulation applies, we process personal data based on one or more of the following legal bases:
-    </p>
-    <ul>
-      <li><strong>Contract:</strong> to provide Repero AI and manage your account;</li>
-      <li><strong>Legitimate interests:</strong> to secure, maintain, improve, and monitor the service;</li>
-      <li><strong>Consent:</strong> where required, such as for optional communications or certain cookies;</li>
-      <li><strong>Legal obligation:</strong> where processing is required by applicable law.</li>
-    </ul>
-
-    <h2>5. AI processing</h2>
-    <p>
-      Repero AI may use artificial intelligence systems and large language models to process user content. This may include prompts, documents, retrieved passages, metadata, generated outputs, and other contextual information necessary to provide the requested feature.
-    </p>
-    <p>
-      We aim to limit the data sent to AI providers to what is necessary for the requested operation. However, you should not upload content that you are not authorized to process or content that requires a higher level of confidentiality than the service currently provides.
-    </p>
-    <p>
-      AI-generated outputs may be inaccurate or incomplete. You are responsible for reviewing outputs before relying on them.
-    </p>
-
-    <h2>6. Third-party providers</h2>
-    <p>
-      We may use third-party providers to operate Repero AI, including providers for:
-    </p>
-    <ul>
-      <li>Cloud hosting and infrastructure;</li>
-      <li>Database, storage, and search infrastructure;</li>
-      <li>Authentication through Google, Microsoft, or other identity providers;</li>
-      <li>Email delivery;</li>
-      <li>Payment processing;</li>
-      <li>AI processing and language model services;</li>
-      <li>Error monitoring, logging, observability, and security.</li>
-    </ul>
-    <p>
-      These providers may process personal data on our behalf where necessary to deliver the service.
-    </p>
-
-    <h2>7. International transfers</h2>
-    <p>
-      Some providers may process data outside Belgium or the European Economic Area. Where required, we rely on appropriate safeguards, such as contractual protections or other legally recognized transfer mechanisms.
-    </p>
-
-    <h2>8. Cookies and similar technologies</h2>
-    <p>
-      Repero AI may use cookies or similar technologies for authentication, session management, security, preferences, analytics, and service functionality.
-    </p>
-    <p>
-      Essential cookies are required for the service to function. Optional cookies, if used, may require your consent depending on applicable law.
-    </p>
-
-    <h2>9. Data retention</h2>
-    <p>
-      We keep personal data only for as long as necessary for the purposes described in this Privacy Policy, including providing the service, complying with legal obligations, resolving disputes, maintaining security, and enforcing agreements.
-    </p>
-    <p>
-      User content may be retained while your account is active or until you delete it, subject to backup, security, technical, or legal retention requirements.
-    </p>
-    <p>
-      Logs and technical data may be retained for a limited period for security, debugging, audit, and operational purposes.
-    </p>
-
-    <h2>10. Data security</h2>
-    <p>
-      We apply technical and organizational measures designed to protect personal data against unauthorized access, loss, misuse, alteration, or disclosure.
-    </p>
-    <p>
-      No online service can guarantee absolute security. You are responsible for using strong authentication methods, protecting your credentials, and ensuring that the content you upload is appropriate for the service.
-    </p>
-
-    <h2>11. Your rights</h2>
-    <p>
-      Depending on applicable law, you may have the right to:
-    </p>
-    <ul>
-      <li>Access your personal data;</li>
-      <li>Request correction of inaccurate data;</li>
-      <li>Request deletion of your data;</li>
-      <li>Request restriction of processing;</li>
-      <li>Object to certain processing;</li>
-      <li>Request data portability;</li>
-      <li>Withdraw consent where processing is based on consent;</li>
-      <li>Lodge a complaint with a data protection authority.</li>
-    </ul>
-    <p>
-      To exercise your rights, contact us at:
-      <a href="mailto:privacy@repero.ai">privacy@repero.ai</a>
-    </p>
-
-    <h2>12. Children</h2>
-    <p>
-      Repero AI is not intended for children under the age required by applicable law to use online services without parental consent. We do not knowingly collect personal data from children.
-    </p>
-
-    <h2>13. Business users and organizations</h2>
-    <p>
-      If you use Repero AI on behalf of an organization, that organization may control or access the workspace, tenant, projects, documents, and content associated with its account, depending on the plan and configuration.
-    </p>
-
-    <h2>14. Changes to this Privacy Policy</h2>
-    <p>
-      We may update this Privacy Policy from time to time. If changes are material, we will take reasonable steps to notify users, such as by updating the website, sending an email, or displaying a notice in the application.
-    </p>
-
-    <h2>15. Contact</h2>
-    <p>
-      For privacy questions or requests, contact us at:
-      <a href="mailto:privacy@repero.ai">privacy@repero.ai</a>
-    </p>
-  </section>
-</main>
+<LegalDocument lang="en" title="Privacy Policy" metaTitle="Privacy Policy | Repero AI" description="How Repero AI processes personal data on its public website and in its service." canonical={canonical} alternate={alternate} lastUpdated={legalDates.en} eyebrow="Privacy">
+  <p>This policy describes the categories of personal data Repero processes when you visit <strong>repero.ai</strong>, contact us, or use Repero AI. It distinguishes the public website from product-side operations at <strong>app.repero.ai</strong>.</p>
+  <aside class="legal-document__notice" aria-label="Publication status"><p><strong>Publication status.</strong> The legal identity, registered address, enterprise/VAT details and designated privacy contact for the controller have not yet been confirmed for publication. They must be completed before commercial publication. This policy does not claim GDPR compliance merely by being published.</p></aside>
+  <h2>1. Controller and contact</h2>
+  <p>The controller for the relevant processing must be identified in the legal notice before commercial publication. The owner must also publish a contact method for privacy requests. Until those facts are confirmed, do not rely on this page as a complete controller-identification notice.</p>
+  <h2>2. Processing at a glance</h2>
+  <table><thead><tr><th scope="col">Activity</th><th scope="col">Data categories</th><th scope="col">Purpose and legal basis</th><th scope="col">Recipients and retention</th></tr></thead><tbody>
+    <tr><td>Website delivery and security</td><td>IP address, browser/device information, request data, security events</td><td>Deliver and protect the website; legitimate interests and, where applicable, legal obligations</td><td>Cloudflare edge services are used for the public website. Data is kept only as needed for delivery, security, incident handling, and applicable obligations.</td></tr>
+    <tr><td>Account and authentication</td><td>Account identifiers, email address, display/profile data, authentication and session-security data</td><td>Create and secure access to the service; performance of a contract and legitimate interests in security</td><td>Product providers are not confirmed in this repository. Retention must follow the applicable account and deletion policy.</td></tr>
+    <tr><td>Workspace and user content</td><td>Workspace/project metadata, prompts, conversations, documents, sources, generated artefacts, and related metadata</td><td>Provide requested storage, organization, retrieval, and AI-assisted functionality; performance of a contract</td><td>Infrastructure and AI-provider arrangements require confirmation. Content is retained only for the relevant service purpose, subject to deletion, backup, security, and legal requirements.</td></tr>
+    <tr><td>Technical, security, and usage data</td><td>Logs, timestamps, request metadata, error/performance data, and security events</td><td>Operate, secure, troubleshoot, and improve reliability; legitimate interests and legal obligations where applicable</td><td>Recipients and exact schedules require confirmation. Retention is limited to what is necessary for those purposes.</td></tr>
+    <tr><td>Billing</td><td>Billing contact, plan, invoices, tax and payment-status data</td><td>Administer a paid service and meet accounting obligations; contract and legal obligation</td><td>Only applicable if paid plans are enabled. Payment provider and retention details are pending commercial decisions.</td></tr>
+    <tr><td>Support and contact requests</td><td>Contact details and the information included in a request</td><td>Respond to and document requests; contract, legitimate interests, or consent as applicable</td><td>Recipients and retention are limited to the support purpose and applicable obligations.</td></tr>
+  </tbody></table>
+  <h2>3. AI-assisted functionality</h2>
+  <p>Repero uses AI systems and generative models to provide requested functionality. Depending on the feature, user-provided prompts, documents, retrieved passages, metadata, and other relevant context may be processed as necessary to perform that request.</p>
+  <p>Repero may use different models or providers depending on product configuration. This public repository does not confirm the providers enabled in production, their data locations, or their processing terms. Repero does not make a claim here about provider training, model retention, encryption, or geographic processing.</p>
+  <p>AI outputs can be incomplete, incorrect, or misleading. Users should review outputs when accuracy, safety, legal, financial, medical, professional, or other material decisions are involved. See <a href="/en/trust/ai">AI transparency</a>.</p>
+  <h2>4. Optional communications</h2>
+  <p>Marketing or newsletter communications are not currently evidenced as active on this public site. If introduced, they will be described separately and sent only on the appropriate legal basis, including consent where required. Withdrawal will be made available as easily as possible.</p>
+  <h2>5. Cookies and similar technologies</h2>
+  <p>The audited site code does not intentionally deploy analytics, marketing cookies, local storage, or session storage. Cloudflare edge/security technologies may apply where necessary. See the <a href="/en/cookies">Cookies Policy</a> for the current public-site position.</p>
+  <h2>6. Recipients, subprocessors, and transfers</h2>
+  <p>Personal data may be made available to service providers necessary to run the website or service, under appropriate arrangements where required. Confirmed public-site infrastructure is Cloudflare Pages/edge delivery; optional waitlist storage uses Cloudflare D1 only if that unused endpoint is activated.</p>
+  <p>The production inventory for authentication, model providers, storage, databases, observability, email, payment, and other subprocessors has not yet been confirmed from <strong>ai-platform</strong>. A public provider list will not be published until that audit is complete. International-transfer details will be added only after they are confirmed.</p>
+  <h2>7. Retention</h2>
+  <p>Repero should retain personal data only for the period necessary for the relevant purpose, including service delivery, security, dispute handling, and legal or accounting obligations. Exact schedules, backup handling, deletion jobs, and post-termination export behavior remain operational decisions to be confirmed in the product.</p>
+  <h2>8. Your rights</h2>
+  <p>Subject to applicable law, individuals may have rights to access, rectification, erasure, restriction, objection, portability, and withdrawal of consent where processing relies on consent. They may also lodge a complaint with the competent data-protection authority.</p>
+  <p>A verified contact channel and a product-side rights-request process are still required. Those operations belong to <strong>app.repero.ai</strong> and are not implemented by this static website.</p>
+  <h2>9. Changes</h2>
+  <p>Repero may update this policy when processing, providers, or legal requirements change. The last-updated date will be revised and material changes should be communicated through an appropriate channel.</p>
+</LegalDocument>

@@ -1,0 +1,11 @@
+---
+import LegalDocument from '../../components/LegalDocument.astro';
+import { legalDates, legalUrls } from '../../lib/legal';
+const { canonical, alternate } = legalUrls('fr', '/mentions-legales', '/legal-notice');
+---
+<LegalDocument lang="fr" title="Mentions légales" metaTitle="Mentions légales | Repero AI" description="Informations relatives à l’éditeur et à l’hébergement de repero.ai." canonical={canonical} alternate={alternate} lastUpdated={legalDates.fr} eyebrow="Mentions légales">
+  <aside class="legal-document__notice" aria-label="Statut de publication"><p><strong>Non prêt pour une publication commerciale.</strong> Les informations d’éditeur nécessaires pour finaliser ces mentions n’ont pas été fournies. Aucun nom légal, aucune adresse, aucun numéro d’entreprise, numéro TVA ou contact n’est inventé sur cette page.</p></aside>
+  <h2>Informations d’éditeur requises avant publication</h2><ul><li>Nom légal ou commercial exact et forme juridique, le cas échéant ;</li><li>Adresse du siège ou de l’activité ;</li><li>Numéro d’entreprise BCE/KBO ;</li><li>Numéro/statut TVA, le cas échéant ;</li><li>E-mail juridique et personne de publication/contact lorsque requis ;</li><li>Éléments d’identification de l’hébergeur exigés par le format final.</li></ul>
+  <h2>Hébergement</h2><p>Le site public est déployé via Cloudflare Pages. La formulation exacte de l’hébergement ainsi que les coordonnées éventuellement requises doivent être vérifiées par le propriétaire avant publication.</p>
+  <h2>Contact et conditions applicables</h2><p>Les coordonnées, l’approche consommateur, la juridiction et le traitement des plaintes doivent être complétés après confirmation de l’entité contractante et de l’approche clientèle. Consultez les <a href="/fr/terms">Conditions d’utilisation</a> et la <a href="/fr/privacy">Politique de confidentialité</a>.</p>
+</LegalDocument>

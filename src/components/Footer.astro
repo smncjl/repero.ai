@@ -11,7 +11,9 @@ const isEn = lang === 'en';
       <div class="flex flex-wrap justify-center gap-2 md:gap-4">
         <a href={`/${lang}/trust/ai`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'AI transparency' : 'Transparence IA'}</a>
         <a href={`/${lang}/privacy`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Privacy' : 'Confidentialité'}</a>
+        <a href={`/${lang}/cookies`} class="text-slate-400 hover:text-slate-300 transition-colors">Cookies</a>
         <a href={`/${lang}/terms`} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Terms' : 'Conditions'}</a>
+        <a href={isEn ? '/en/legal-notice' : '/fr/mentions-legales'} class="text-slate-400 hover:text-slate-300 transition-colors">{isEn ? 'Legal notice' : 'Mentions légales'}</a>
       </div>
     </div>
   </div>
